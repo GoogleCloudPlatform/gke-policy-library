@@ -15,7 +15,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
- name: httpbin
+ name: source-principals-all
  namespace: foo
 spec:
  selector:
@@ -26,6 +26,85 @@ spec:
  - from:
    - source:
        principals: ["*"]
+   - source:
+       namespaces: ["test"]
+   to:
+   - operation:
+       methods: ["GET"]
+       paths: ["/info*"]
+   - operation:
+       methods: ["POST"]
+       paths: ["/data"]
+   when:
+   - key: request.auth.claims[iss]
+     values: ["https://accounts.google.com"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: source-principals-dne
+ namespace: foo
+spec:
+ selector:
+   matchLabels:
+     app: httpbin
+     version: v1
+ rules:
+ - from:
+   - source:
+       namespaces: ["test"]
+   to:
+   - operation:
+       methods: ["GET"]
+       paths: ["/info*"]
+   - operation:
+       methods: ["POST"]
+       paths: ["/data"]
+   when:
+   - key: request.auth.claims[iss]
+     values: ["https://accounts.google.com"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: source-principals-good
+ namespace: foo
+spec:
+ selector:
+   matchLabels:
+     app: httpbin
+     version: v1
+ rules:
+ - from:
+   - source:
+       principals: ["cluster.local/ns/default/sa/sleep"]
+   - source:
+       namespaces: ["test"]
+   to:
+   - operation:
+       methods: ["GET"]
+       paths: ["/info*"]
+   - operation:
+       methods: ["POST"]
+       paths: ["/data"]
+   when:
+   - key: request.auth.claims[iss]
+     values: ["https://accounts.google.com"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: source-principals-someall
+ namespace: foo
+spec:
+ selector:
+   matchLabels:
+     app: httpbin
+     version: v1
+ rules:
+ - from:
+   - source:
+       principals: ["cluster.local/ns/default/sa/sleep", "*"]
    - source:
        namespaces: ["test"]
    to:
