@@ -32,8 +32,37 @@ spec:
 apiVersion: authentication.istio.io/v1alpha1
 kind: Policy
 metadata:
-  name: service-policy
+  name: policy-no-peers
   namespace: default
 spec:
   targets:
   - name: httpbin
+---
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
+metadata:
+  name: default-mode-strict
+  namespace: default
+spec:
+  peers:
+  - mtls:
+      mode: STRICT
+---
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
+metadata:
+  name: default-mtls-null
+  namespace: default
+spec:
+  peers:
+  - mtls:
+---
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
+metadata:
+  name: default-mtls-empty
+  namespace: default
+spec:
+  peers:
+  - mtls: {}
+
