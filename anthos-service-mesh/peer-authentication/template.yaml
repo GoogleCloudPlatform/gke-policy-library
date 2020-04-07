@@ -33,8 +33,7 @@ spec:
           p.apiVersion == "authentication.istio.io/v1alpha1"
           p.kind == "Policy"
 
-          speckeys := { k | p.spec[k]}
-          not speckeys["peers"]
+          not p.spec["peers"]
           
           msg := "spec.peers does not exist"
         } 
@@ -51,14 +50,19 @@ spec:
           msg := "spec.peers cannot be empty"
         } 
 
-        # VIOLATION peer authentication is set to permissive
+        # VIOLATION peer authentication does not set mTLS correctly
         violation[{"msg": msg}] {
           p := input.review.object
 
           p.apiVersion == "authentication.istio.io/v1alpha1"
           p.kind == "Policy"
           
-          p.spec["peers"][_]["mtls"]["mode"] != "STRICT"
-          
-          msg := "spec.peers must include [{mtls: {}, mode: STRICT}]"
+          peer := p.spec.peers[_]
+
+          # check for different valid configurations
+          not peer.mtls.mode == "STRICT"
+          not peer.mtls == {}
+          not peer.mtls == null
+
+          msg := "spec.peers does not include STRICT mTLS settings"
         }
