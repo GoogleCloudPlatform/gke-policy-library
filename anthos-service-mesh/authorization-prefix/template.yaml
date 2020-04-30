@@ -46,9 +46,11 @@ spec:
           parts := split(principal, "/")
           
           badprefix := input.parameters.disallowedprefixes[_]
-          startswith(parts[_], badprefix)
+
+          # check the final component of source.principals, the service account name
+          startswith(parts[count(parts) - 1], badprefix)
           
-          msg := sprintf("source.principals '%v' cannot contain '%v'", [principal, badprefix])
+          msg := sprintf("source.principals '%v' cannot begin with '%v'", [principal, badprefix])
         }
 
         violation[{"msg":msg}] {
