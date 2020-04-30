@@ -37,7 +37,7 @@ spec:
 
           tpl == {"mode": "DISABLE"}
 
-          msg := "spec.trafficPolicy.tls.mode == DISABLE"
+          msg := sprintf("spec.trafficPolicy.tls.mode == DISABLE for host(s): %v", [d.spec.host])
         }
 
         # spec.subsets[].trafficPolicy.tls.mode == DISABLE
@@ -50,5 +50,5 @@ spec:
           subset := d.spec["subsets"][_]          
           subset["trafficPolicy"] == { "tls": {"mode": "DISABLE"}}
               
-          msg := "subsets[].trafficPolicy.tls.mode == DISABLE"
+          msg := sprintf("subsets[].trafficPolicy.tls.mode == DISABLE for host-subset: %v-%v", [d.spec.host, subset.name])
         }
