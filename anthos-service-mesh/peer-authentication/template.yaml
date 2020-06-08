@@ -63,6 +63,7 @@ spec:
           not peer.mtls.mode == "STRICT"
           not peer.mtls == {}
           not peer.mtls == null
+          not peer.mtls
 
           msg := "spec.peers does not include STRICT mTLS settings"
         }
