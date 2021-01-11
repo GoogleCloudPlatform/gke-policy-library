@@ -11,7 +11,7 @@
 
 [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller), part of [Anthos Config Management](https://cloud.google.com/anthos-config-management/), is a Kubernetes [dynamic admission controller](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) that checks, audits, and enforces your clusters' compliance with policies related to security, regulations, or arbitrary business rules.
 
-Policy Controller policies are broken up into two separate objects: `Constraint`s and `ConstraintTemplate`s. Having two disticint objects allows for separation of the policy **definition** (`ConstraintTemplate`) and policy **enforcement** (`Constraint`).
+Policy Controller policies are broken up into two separate objects: `Constraint`s and `ConstraintTemplate`s. Having two distinct objects allows for separation of the policy **definition** (`ConstraintTemplate`) and policy **enforcement** (`Constraint`).
 
 This repository contains `ConstraintTemplate` and example `Constraint` objects for use with Anthos GKE and Anthos Service Mesh.
 
@@ -21,8 +21,11 @@ See [Installing Policy Controller](https://cloud.google.com/anthos-config-manage
 
 ## Policies
 
-- Anthos GKE (coming soon)
 - [Anthos Service Mesh](/anthos-service-mesh)
+
+## Bundles
+
+- [CIS Kubernetes 1.5.1](/bundles/cis-k8s-1.5.1) 
 
 ## Usage
 
