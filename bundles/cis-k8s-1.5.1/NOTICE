@@ -3,7 +3,7 @@ The following notice applies to these files originally from the Gatekeeper Libra
 5.2.2-5.2.3_psp-host-namespace.yaml
 5.2.4_psp-host-network-ports.yaml
 5.2.5_psp-allow-privilege-escalation-container.yaml
-5.2.6_psp-pods-allowed-user-ranges.yaml
+5.2.6_psp-restrict_root_containers.yaml
 5.2.7-5.2.8-5.2.9_capabilities.yaml
 5.7.2_seccomp-docker-default.yaml
 
