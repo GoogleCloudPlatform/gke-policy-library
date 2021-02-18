@@ -1,0 +1,14 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: cis-k8s-v1.5.1
+packageMetadata:
+  shortDescription: CIS Benchmark Kubernetes v1.5.1
+openAPI:
+  definitions:
+    io.k8s.cli.setters.enforcementAction:
+      x-k8s-cli:
+        setter:
+          name: enforcementAction
+          value: dryrun
+          isSet: true
