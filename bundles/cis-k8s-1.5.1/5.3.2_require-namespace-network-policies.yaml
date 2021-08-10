@@ -6,4 +6,4 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Requires that every namespace defined in the cluster has a NetworkPolicy."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}

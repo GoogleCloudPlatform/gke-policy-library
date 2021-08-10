@@ -6,7 +6,7 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Restricts containers with `securityContext.privileged` set to `true`."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}
   match:
     kinds:
     - apiGroups:

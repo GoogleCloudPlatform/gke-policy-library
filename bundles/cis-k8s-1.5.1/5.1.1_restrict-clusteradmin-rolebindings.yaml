@@ -6,7 +6,7 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Restricts use of the cluster-admin role."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}
   parameters:
     restrictedRole:
       apiGroup: "rbac.authorization.k8s.io"
