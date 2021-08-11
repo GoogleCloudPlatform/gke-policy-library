@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPSeccomp
-metadata:
+metadata: # kpt-merge: /psp-seccomp-docker-default
   name: psp-seccomp-docker-default
   annotations:
     # This constraint is not certified by CIS.

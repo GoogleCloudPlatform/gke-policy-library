@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRestrictRoleBindings
-metadata:
+metadata: # kpt-merge: /restrict-clusteradmin-rolebindings
   name: restrict-clusteradmin-rolebindings
   annotations:
     # This constraint is not certified by CIS.

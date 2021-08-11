@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPHostNamespace
-metadata:
+metadata: # kpt-merge: /psp-host-namespace
   name: psp-host-namespace
   annotations:
     # This constraint is not certified by CIS.

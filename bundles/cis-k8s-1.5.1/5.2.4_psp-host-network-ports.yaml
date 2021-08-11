@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPHostNetworkingPorts
-metadata:
+metadata: # kpt-merge: /psp-host-network-ports
   name: psp-host-network-ports
   annotations:
     # This constraint is not certified by CIS.

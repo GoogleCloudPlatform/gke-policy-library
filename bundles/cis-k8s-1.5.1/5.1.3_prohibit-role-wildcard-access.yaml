@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sProhibitRoleWildcardAccess
-metadata:
+metadata: # kpt-merge: /prohibit-role-wildcard-access
   name: prohibit-role-wildcard-access
   annotations:
     # This constraint is not certified by CIS.

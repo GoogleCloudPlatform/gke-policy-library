@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPPrivilegedContainer
-metadata:
+metadata: # kpt-merge: /psp-privileged-container
   name: psp-privileged-container
   annotations:
     # This constraint is not certified by CIS.

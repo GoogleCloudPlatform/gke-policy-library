@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPodsRequireSecurityContext
-metadata:
+metadata: # kpt-merge: /pods-require-security-context
   name: pods-require-security-context
   annotations:
     # This constraint is not certified by CIS.

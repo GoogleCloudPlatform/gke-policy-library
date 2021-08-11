@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPAllowedUsers
-metadata:
+metadata: # kpt-merge: /psp-pods-must-run-as-nonroot
   name: psp-pods-must-run-as-nonroot
   annotations:
     # This constraint is not certified by CIS.

@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRequireNamespaceNetworkPolicies
-metadata:
+metadata: # kpt-merge: /require-namespace-network-policies
   name: require-namespace-network-policies
   annotations:
     # This constraint is not certified by CIS.

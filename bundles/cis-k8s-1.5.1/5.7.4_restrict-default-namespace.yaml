@@ -1,6 +1,6 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRestrictNamespaces
-metadata:
+metadata: # kpt-merge: /restrict-default-namespace
   name: restrict-default-namespace
   annotations:
     # This constraint is not certified by CIS.
