@@ -6,7 +6,7 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Restricts resources from using the `default` namespace."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}
   parameters:
     restrictedNamespaces:
     - default

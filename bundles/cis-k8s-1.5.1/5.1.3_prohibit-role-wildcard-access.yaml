@@ -6,4 +6,4 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Restricts use of wildcards in Roles and ClusterRoles."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}
