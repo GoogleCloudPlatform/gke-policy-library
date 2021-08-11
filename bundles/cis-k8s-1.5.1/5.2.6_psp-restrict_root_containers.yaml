@@ -6,7 +6,7 @@ metadata:
     # This constraint is not certified by CIS.
     description: "Restricts containers from running as the root user."
 spec:
-  enforcementAction: dryrun # {"$kpt-set":"enforcementAction"}
+  enforcementAction: dryrun # kpt-set: ${enforcementAction}
   match:
     kinds:
     - apiGroups: [""]
