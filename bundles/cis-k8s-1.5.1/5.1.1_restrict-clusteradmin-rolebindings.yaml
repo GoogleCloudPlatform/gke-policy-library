@@ -5,6 +5,7 @@ metadata:
   annotations:
     # This constraint is not certified by CIS.
     description: "Restricts use of the cluster-admin role."
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.1.1
 spec:
   enforcementAction: dryrun # kpt-set: ${enforcementAction}
   parameters:
