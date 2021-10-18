@@ -5,5 +5,6 @@ metadata:
   annotations:
     # This constraint is not certified by CIS.
     description: "Requires that Pods must have a `securityContext` defined."
+    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: "5.7.3"
 spec:
   enforcementAction: dryrun # kpt-set: ${enforcementAction}
