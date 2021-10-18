@@ -5,7 +5,7 @@ metadata:
   annotations:
     # This constraint is not certified by CIS.
     description: "Restricts resources from using the `default` namespace."
-    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: "5.7.4"
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.7.4
 spec:
   enforcementAction: dryrun # kpt-set: ${enforcementAction}
   parameters:
