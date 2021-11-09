@@ -7,7 +7,7 @@ metadata:
     description: "Restricts containers with `allowPrivilegeEscalation` set to `true`."
     bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.5
 spec:
-  enforcementAction: dryrun # kpt-set: ${enforcementAction}
+  enforcementAction: dryrun
   match:
     kinds:
     - apiGroups: [""]
