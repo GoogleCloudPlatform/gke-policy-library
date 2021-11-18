@@ -8,3 +8,9 @@ metadata:
     bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.3.2
 spec:
   enforcementAction: dryrun # kpt-set: ${enforcementAction}
+  match:
+    excludedNamespaces:
+      - kube-system
+      - config-management-system
+      - config-management-monitoring
+      - resource-group-system
