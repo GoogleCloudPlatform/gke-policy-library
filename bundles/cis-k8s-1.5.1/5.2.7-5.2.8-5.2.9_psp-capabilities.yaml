@@ -7,7 +7,7 @@ metadata:
     description: "Requires containers to drop the `NET_RAW` capability; constainers may not have allowedCapabilities set to anything other than an empty array; "
     bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.7, 5.2.8, 5.2.9
 spec:
-  enforcementAction: dryrun # kpt-set: ${enforcementAction}
+  enforcementAction: dryrun
   match:
     kinds:
     - apiGroups: [""]
