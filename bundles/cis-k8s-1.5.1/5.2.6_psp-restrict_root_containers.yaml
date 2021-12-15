@@ -26,6 +26,10 @@ spec:
     kinds:
     - apiGroups: [""]
       kinds: ["Pod"]
+    excludedNamespaces:
+      - kube-system
+      - asm-system
+      - config-management-system      
   parameters:
     runAsUser:
       rule: MustRunAsNonRoot

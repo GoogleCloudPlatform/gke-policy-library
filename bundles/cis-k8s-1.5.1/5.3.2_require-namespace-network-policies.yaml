@@ -25,6 +25,9 @@ spec:
   match:
     excludedNamespaces:
       - kube-system
+      - kube-node-lease
+      - kube-public
+      - gatekeeper-system
       - config-management-system
       - config-management-monitoring
       - resource-group-system
