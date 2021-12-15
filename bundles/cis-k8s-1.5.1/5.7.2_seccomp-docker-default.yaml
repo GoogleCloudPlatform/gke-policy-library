@@ -26,6 +26,12 @@ spec:
     kinds:
     - apiGroups: [""]
       kinds: ["Pod"]
+    excludedNamespaces:
+      - kube-system
+      - gatekeeper-system
+      - config-management-monitoring
+      - config-management-system
+      - asm-system
   parameters:
     allowedProfiles:
     - docker/default

@@ -26,3 +26,10 @@ spec:
     kinds:
     - apiGroups: [""]
       kinds: ["Pod"]
+    excludedNamespaces:
+      - kube-system
+      - istio-system
+      - asm-system
+      - config-management-system
+      - config-management-monitoring
+      - resource-group-system

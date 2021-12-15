@@ -26,6 +26,12 @@ spec:
     kinds:
     - apiGroups: [""]
       kinds: ["Pod"]
+    excludedNamespaces:
+      - kube-system
+      - config-management-system
+      - config-management-monitoring
+      - resource-group-system
+      - asm-system
   parameters:
     allowedCapabilities: []
     requiredDropCapabilities: ["NET_RAW"]
