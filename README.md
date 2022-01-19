@@ -1,4 +1,4 @@
-# Anthos Config Management – Policy Controller Library
+# Anthos Config Management – Policy Controller Library
 
 ## Contents
 - [Background](#background)
