@@ -19,13 +19,15 @@ metadata:
   annotations:
     # This constraint is not certified by CIS.
     description: "Restricts containers from rnuning with the `hostNetwork` flag set to `true`."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.4
+    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: 5.2.4
 spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups: [""]
-      kinds: ["Pod"]
+    - apiGroups:
+      - ''
+      kinds:
+      - Pod
   parameters:
     hostNetwork: true
     #min: 80

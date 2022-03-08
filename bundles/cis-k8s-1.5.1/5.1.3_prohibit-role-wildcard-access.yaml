@@ -18,8 +18,8 @@ metadata:
   name: prohibit-role-wildcard-access
   annotations:
     # This constraint is not certified by CIS.
-    description: "Restricts use of wildcards in Roles and ClusterRoles."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.1.3
+    description: Restricts use of wildcards in Roles and ClusterRoles.
+    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: 5.1.3
 spec:
   enforcementAction: dryrun
   match:
@@ -29,29 +29,29 @@ spec:
   parameters:
     exemptions:
       clusterRoles:
-        - name: "config-management-operator"
-        - name: "configsync.gke.io:ns-reconciler"
-        - name: "cluster-admin"
-        - name: "external-metrics-reader"
-        - name: "gatekeeper-manager-role"
-        - name: "istio-reader-clusterrole-asm-1124-1-istio-system"
-        - name: "istio-reader-istio-system"
-        - name: "istiod-clusterrole-asm-1124-1-istio-system"
-        - name: "istiod-istio-system"
-        - name: "kubelet-api-admin"
-        - name: "metering"
-        - name: "resource-group-manager-role"
-        - name: "system:controller:disruption-controller"
-        - name: "system:controller:generic-garbage-collector"
-        - name: "system:controller:horizontal-pod-autoscaler"
-        - name: "system:controller:namespace-controller"
-        - name: "system:controller:resourcequota-controller"
-        - name: "system:gcp-controller-manager"
-        - name: "system:gke-common-webhooks"
-        - name: "system:gke-hpa-actor"
-        - name: "system:gke-master-resourcequota"
-        - name: "system:glbc-status"
-        - name: "system:kube-controller-manager"
-        - name: "system:kubestore-collector"
-        - name: "system:kubelet-api-admin"
-        - name: "system:managed-certificate-controller"
+      - name: config-management-operator
+      - name: 'configsync.gke.io:ns-reconciler'
+      - name: cluster-admin
+      - name: external-metrics-reader
+      - name: gatekeeper-manager-role
+      - name: istio-reader-clusterrole-asm-1124-1-istio-system
+      - name: istio-reader-istio-system
+      - name: istiod-clusterrole-asm-1124-1-istio-system
+      - name: istiod-istio-system
+      - name: kubelet-api-admin
+      - name: metering
+      - name: resource-group-manager-role
+      - name: 'system:controller:disruption-controller'
+      - name: 'system:controller:generic-garbage-collector'
+      - name: 'system:controller:horizontal-pod-autoscaler'
+      - name: 'system:controller:namespace-controller'
+      - name: 'system:controller:resourcequota-controller'
+      - name: 'system:gcp-controller-manager'
+      - name: 'system:gke-common-webhooks'
+      - name: 'system:gke-hpa-actor'
+      - name: 'system:gke-master-resourcequota'
+      - name: 'system:glbc-status'
+      - name: 'system:kube-controller-manager'
+      - name: 'system:kubestore-collector'
+      - name: 'system:kubelet-api-admin'
+      - name: 'system:managed-certificate-controller'

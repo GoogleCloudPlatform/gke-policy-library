@@ -1,12 +1,21 @@
-CIS Kubernetes Benchmark v.1.5.1
-==================================================
+# cis-k8s-1.5.1
 
 ## Description
+sample description
 
-These constraints are intended to address the recommendations the CIS Kubernetes Benchmark v.1.5.1.
+## Usage
 
-The accompanying [tutorial](https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark) provides more details.
+### Fetch the package
+`kpt pkg get REPO_URI[.git]/PKG_PATH[@VERSION] cis-k8s-1.5.1`
+Details: https://kpt.dev/reference/cli/pkg/get/
 
-## Disclaimer
+### View package content
+`kpt pkg tree cis-k8s-1.5.1`
+Details: https://kpt.dev/reference/cli/pkg/tree/
 
-These constraints have not been certified by CIS.
+### Apply the package
+```
+kpt live init cis-k8s-1.5.1
+kpt live apply cis-k8s-1.5.1 --reconcile-timeout=2m --output=table
+```
+Details: https://kpt.dev/reference/cli/live/

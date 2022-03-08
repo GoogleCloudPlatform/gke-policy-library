@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
-  name: cis-k8s-v1.5.1
+  name: cis-k8s-1.5.1
 info:
   description: CIS Benchmark Kubernetes v1.5.1
 pipeline:

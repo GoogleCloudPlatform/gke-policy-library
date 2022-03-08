@@ -18,20 +18,25 @@ metadata:
   name: psp-seccomp-docker-default
   annotations:
     # This constraint is not certified by CIS.
-    description: "Requires that Pods have seccomp profile set to `docker/default`."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.7.2
+    description: Requires that Pods have seccomp profile set to docker/default.
+    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: 5.7.2
 spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups: [""]
-      kinds: ["Pod"]
+    - apiGroups:
+      - ''
+      kinds:
+      - Pod
     excludedNamespaces:
-      - kube-system
-      - gatekeeper-system
-      - config-management-monitoring
-      - config-management-system
-      - asm-system
+    - kube-system
+    - gatekeeper-system
+    - config-management-monitoring
+    - config-management-system
+    - asm-system
+    - resource-group-system
+    - istio-system
+    - gke-connect
   parameters:
     allowedProfiles:
     - docker/default
