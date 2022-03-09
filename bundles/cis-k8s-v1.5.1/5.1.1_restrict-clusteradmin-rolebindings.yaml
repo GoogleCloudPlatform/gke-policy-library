@@ -18,7 +18,7 @@ metadata:
   name: restrict-clusteradmin-rolebindings
   annotations:
     # This constraint is not certified by CIS.
-    description: "Restricts use of the cluster-admin role."
+    description: Restricts use of the cluster-admin role.
     bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.1.1
 spec:
   enforcementAction: dryrun
@@ -32,15 +32,15 @@ spec:
       kind: Group
       name: 'system:masters'
     # for GKE Hub feature authorizer
-    - apiGroup: "rbac.authorization.k8s.io"
-      kind: "User"
-      name: "^service-[0-9]+@gcp-sa-gkehub.iam.gserviceaccount.com$"
+    - apiGroup: rbac.authorization.k8s.io
+      kind: User
+      name: '^service-[0-9]+@gcp-sa-gkehub.iam.gserviceaccount.com$'
       regexMatch: true
     # for ACM to install in-cluster resources
-    - apiGroup: "rbac.authorization.k8s.io"
-      kind: "User"
-      name: "^service-[0-9]+@gcp-sa-anthosconfigmanagement.iam.gserviceaccount.com$"
+    - apiGroup: rbac.authorization.k8s.io
+      kind: User
+      name: '^service-[0-9]+@gcp-sa-anthosconfigmanagement.iam.gserviceaccount.com$'
       regexMatch: true
     # for Config Sync reconciler service account
-    - kind: "ServiceAccount"
-      name: "reconciler-manager"
+    - kind: ServiceAccount
+      name: reconciler-manager

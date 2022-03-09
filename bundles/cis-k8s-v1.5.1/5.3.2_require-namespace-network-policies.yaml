@@ -13,25 +13,25 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPSeccomp
+kind: K8sRequireNamespaceNetworkPolicies
 metadata:
-  name: psp-seccomp-docker-default
+  name: require-namespace-network-policies
   annotations:
     # This constraint is not certified by CIS.
-    description: "Requires that Pods have seccomp profile set to `docker/default`."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.7.2
+    description: "Requires that every namespace defined in the cluster has a NetworkPolicy."
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.3.2
 spec:
   enforcementAction: dryrun
   match:
-    kinds:
-    - apiGroups: [""]
-      kinds: ["Pod"]
     excludedNamespaces:
       - kube-system
+      - kube-node-lease
+      - kube-public
       - gatekeeper-system
-      - config-management-monitoring
       - config-management-system
+      - config-management-monitoring
+      - resource-group-system
+      - gke-connect
+      - istio-system
       - asm-system
-  parameters:
-    allowedProfiles:
-    - docker/default
+      - default

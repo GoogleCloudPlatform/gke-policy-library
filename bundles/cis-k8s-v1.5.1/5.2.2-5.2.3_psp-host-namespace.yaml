@@ -13,23 +13,20 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPAllowPrivilegeEscalationContainer
+kind: K8sPSPHostNamespace
 metadata:
-  name: psp-allow-privilege-escalation-container
+  name: psp-host-namespace
   annotations:
     # This constraint is not certified by CIS.
-    description: "Restricts containers with `allowPrivilegeEscalation` set to `true`."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.5
+    description: "Prohibits containers from running with `hostPID` or `hostIPC` set to `true`."
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: '5.2.2, 5.2.3'
 spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups: [""]
-      kinds: ["Pod"]
+    - apiGroups:
+      - ''
+      kinds:
+      - Pod
     excludedNamespaces:
-      - kube-system
-      - istio-system
-      - asm-system
-      - config-management-system
-      - config-management-monitoring
-      - resource-group-system
+    - kube-system

@@ -13,21 +13,22 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequireNamespaceNetworkPolicies
+kind: K8sPSPHostNetworkingPorts
 metadata:
-  name: require-namespace-network-policies
+  name: psp-host-network-ports
   annotations:
     # This constraint is not certified by CIS.
-    description: "Requires that every namespace defined in the cluster has a NetworkPolicy."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.3.2
+    description: "Restricts containers from rnuning with the `hostNetwork` flag set to `true`."
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.4
 spec:
   enforcementAction: dryrun
   match:
-    excludedNamespaces:
-      - kube-system
-      - kube-node-lease
-      - kube-public
-      - gatekeeper-system
-      - config-management-system
-      - config-management-monitoring
-      - resource-group-system
+    kinds:
+    - apiGroups:
+      - ''
+      kinds:
+      - Pod
+  parameters:
+    hostNetwork: true
+    #min: 80
+    #max: 9000

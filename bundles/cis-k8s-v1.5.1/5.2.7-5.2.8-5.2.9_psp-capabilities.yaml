@@ -13,13 +13,13 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPCapabilities
 metadata:
-  name: psp-privileged-container
+  name: psp-capabilities
   annotations:
     # This constraint is not certified by CIS.
-    description: "Restricts containers with `securityContext.privileged` set to `true`."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.1
+    description: "Requires containers to drop the `NET_RAW` capability; constainers may not have allowedCapabilities set to anything other than an empty array; "
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: '5.2.7, 5.2.8, 5.2.9'
 spec:
   enforcementAction: dryrun
   match:
@@ -29,4 +29,13 @@ spec:
       kinds:
       - Pod
     excludedNamespaces:
-      - kube-system
+    - kube-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - asm-system
+    - gke-connect
+  parameters:
+    allowedCapabilities: []
+    requiredDropCapabilities:
+    - NET_RAW

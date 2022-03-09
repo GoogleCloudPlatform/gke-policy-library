@@ -13,15 +13,30 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sNoEnvVarSecrets
+kind: K8sPSPSeccomp
 metadata:
-  name: no-secrets-as-env-vars
+  name: psp-seccomp-docker-default
   annotations:
     # This constraint is not certified by CIS.
-    description: "Prohibits secrets as environment variables in container definitions; instead, use mounted secret files in data volumes."
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.4.1
+    description: Requires that Pods have seccomp profile set to docker/default.
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.7.2
 spec:
   enforcementAction: dryrun
   match:
+    kinds:
+    - apiGroups:
+      - ''
+      kinds:
+      - Pod
     excludedNamespaces:
-      - config-management-system
+    - kube-system
+    - gatekeeper-system
+    - config-management-monitoring
+    - config-management-system
+    - asm-system
+    - resource-group-system
+    - istio-system
+    - gke-connect
+  parameters:
+    allowedProfiles:
+    - docker/default
