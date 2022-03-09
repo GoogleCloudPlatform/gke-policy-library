@@ -13,13 +13,13 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPAllowedUsers
+kind: K8sPSPHostNetworkingPorts
 metadata:
-  name: psp-pods-must-run-as-nonroot
+  name: psp-host-network-ports
   annotations:
     # This constraint is not certified by CIS.
-    description: Restricts containers from running as the root user.
-    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: 5.2.6
+    description: "Restricts containers from rnuning with the `hostNetwork` flag set to `true`."
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.4
 spec:
   enforcementAction: dryrun
   match:
@@ -28,10 +28,7 @@ spec:
       - ''
       kinds:
       - Pod
-    excludedNamespaces:
-    - kube-system
-    - asm-system
-    - config-management-system
   parameters:
-    runAsUser:
-      rule: MustRunAsNonRoot
+    hostNetwork: true
+    #min: 80
+    #max: 9000

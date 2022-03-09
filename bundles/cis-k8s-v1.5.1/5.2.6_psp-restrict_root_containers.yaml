@@ -13,13 +13,13 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPHostNamespace
+kind: K8sPSPAllowedUsers
 metadata:
-  name: psp-host-namespace
+  name: psp-pods-must-run-as-nonroot
   annotations:
     # This constraint is not certified by CIS.
-    description: "Prohibits containers from running with `hostPID` or `hostIPC` set to `true`."
-    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: '5.2.2, 5.2.3'
+    description: Restricts containers from running as the root user.
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.6
 spec:
   enforcementAction: dryrun
   match:
@@ -30,3 +30,8 @@ spec:
       - Pod
     excludedNamespaces:
     - kube-system
+    - asm-system
+    - config-management-system
+  parameters:
+    runAsUser:
+      rule: MustRunAsNonRoot

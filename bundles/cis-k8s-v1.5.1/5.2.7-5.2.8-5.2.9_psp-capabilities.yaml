@@ -13,13 +13,13 @@
 # limitations under the License.
 
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPSeccomp
+kind: K8sPSPCapabilities
 metadata:
-  name: psp-seccomp-docker-default
+  name: psp-capabilities
   annotations:
     # This constraint is not certified by CIS.
-    description: Requires that Pods have seccomp profile set to docker/default.
-    bundles.validator.forsetisecurity.org/cis-k8s-1.5.1: 5.7.2
+    description: "Requires containers to drop the `NET_RAW` capability; constainers may not have allowedCapabilities set to anything other than an empty array; "
+    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: '5.2.7, 5.2.8, 5.2.9'
 spec:
   enforcementAction: dryrun
   match:
@@ -30,13 +30,12 @@ spec:
       - Pod
     excludedNamespaces:
     - kube-system
-    - gatekeeper-system
-    - config-management-monitoring
     - config-management-system
-    - asm-system
+    - config-management-monitoring
     - resource-group-system
-    - istio-system
+    - asm-system
     - gke-connect
   parameters:
-    allowedProfiles:
-    - docker/default
+    allowedCapabilities: []
+    requiredDropCapabilities:
+    - NET_RAW
