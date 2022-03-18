@@ -3,17 +3,10 @@
 ## Description
 Anthos Service Mesh security policy constraints bundle.
 
-## Setters
-
--   `enforcementAction`: The enforcement mode of the constraints, options are `dryrun` (default) or
-    `deny`.
--   `root-namespace`: The root namespace of the Anthos Service Mesh, default as `istio-system`.
--   `strictness-level`: The strictness level of the security policy constraints, options are `Low` or
-    `High` (default).
-
 ## Instruction
 
-1.  Set the vaules usig setters, there are two ways to set values:
+1.  Set the vaules usig [set-enforcement-action](https://catalog.kpt.dev/set-enforcement-action/v0.1/)
+    and [setters](https://catalog.kpt.dev/apply-setters/v0.2/), there are two ways to set values:
 
     1.  (Recommended) Maintain the values in `Kptfile` kpt functionConfig file in source
         control, user can setup different setters files and use them as needed.
@@ -24,7 +17,16 @@ Anthos Service Mesh security policy constraints bundle.
         kpt fn render .
         ```
 
-    2.  Use `kpt fn eval pkg --image gcr.io/kpt-fn/apply-setters:v0.2.0 --`
+    2.  Use `kpt fn eval -i gcr.io/kpt-fn/set-enforcement-action:v0.1 --`
+        followed by `enforcementAction=deny` to set the custom values.
+
+        Example:
+
+        ```shell
+        kpt fn eval -i gcr.io/kpt-fn/set-enforcement-action:v0.1 -- enforcementAction=deny
+        ```
+
+    3.  Use `kpt fn eval pkg --image gcr.io/kpt-fn/apply-setters:v0.2.0 --`
         followed by `setter=value` to set the custom values.
 
         Example:
@@ -35,15 +37,6 @@ Anthos Service Mesh security policy constraints bundle.
         strictness-level="High"
         ```
 
-    3.  Use `kpt fn eval -i gcr.io/kpt-fn/set-enforcement-action:v0.1 --`
-        followed by `enforcementAction=deny` to set the custom values.
-
-        Example:
-
-        ```shell
-        kpt fn eval -i gcr.io/kpt-fn/set-enforcement-action:v0.1 -- enforcementAction=deny
-        ```
-
 2.  Apply the package
     Details: https://kpt.dev/reference/cli/live/
 
@@ -51,3 +44,13 @@ Anthos Service Mesh security policy constraints bundle.
     kpt live init asm-policy-v0.0.1
     kpt live apply asm-policy-v0.0.1 --reconcile-timeout=2m --output=table
     ```
+
+## Reference
+
+### Configurable fields
+
+-   `enforcementAction`: The enforcement mode of the constraints, options are `dryrun` (default) or
+    `deny`.
+-   `root-namespace`: The root namespace of the Anthos Service Mesh, default as `istio-system`.
+-   `strictness-level`: The strictness level of the security policy constraints, options are `Low` or
+    `High` (default).
