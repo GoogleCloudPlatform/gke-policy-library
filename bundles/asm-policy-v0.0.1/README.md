@@ -1,7 +1,7 @@
 # asm-policy-v0.0.1
 
 ## Description
-Anthos Service Mesh security policy constraints bundle.
+Anthos Service Mesh security policy bundle.
 
 ## Instruction
 

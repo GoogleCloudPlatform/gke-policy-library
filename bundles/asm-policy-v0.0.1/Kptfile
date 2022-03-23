@@ -3,7 +3,7 @@ kind: Kptfile
 metadata:
   name: asm-policy-v0.0.1
 info:
-  description: Anthos Service Mesh security policy constraints bundle.
+  description: Anthos Service Mesh security policy bundle.
 pipeline:
   mutators:
   - image: gcr.io/kpt-fn/set-enforcement-action:v0.1
