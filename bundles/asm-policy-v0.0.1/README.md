@@ -36,7 +36,6 @@ Anthos Service Mesh security policy bundle.
 
             ```shell
             kpt fn eval pkg --image gcr.io/kpt-fn/apply-setters:v0.2.0 -- \
-            root-namespace="istio-system" \
             strictness-level="High"
             ```
 
@@ -54,6 +53,5 @@ Anthos Service Mesh security policy bundle.
 
 -   `enforcementAction`: The enforcement mode of the constraints, options are `dryrun` (default),
     `deny` or `warn`.
--   `root-namespace`: The root namespace of the Anthos Service Mesh, default as `istio-system`.
 -   `strictness-level`: The strictness level of the security policy constraints, options are `Low` or
     `High` (default).
