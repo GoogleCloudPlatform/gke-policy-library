@@ -18,7 +18,7 @@ metadata:
   name: psp-host-network-ports
   annotations:
     # This constraint is not certified by CIS.
-    description: "Restricts containers from rnuning with the `hostNetwork` flag set to `true`."
+    description: "Restricts containers from running with the `hostNetwork` flag set to `true`."
     bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: 5.2.4
 spec:
   enforcementAction: dryrun
