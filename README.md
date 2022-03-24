@@ -15,7 +15,7 @@ This repository contains **sample** Constraints which can be used with the [libr
 
 ## Bundles
 
-- [CIS Kubernetes 1.5.1](./bundles/cis-k8s-1.5.1)
+- [CIS Kubernetes 1.5.1](./bundles/cis-k8s-v1.5.1)
 
 ## Usage
 
