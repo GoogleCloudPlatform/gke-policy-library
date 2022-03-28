@@ -1,0 +1,14 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: asm-policy-v0.0.1
+info:
+  description: Anthos Service Mesh security policy bundle.
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/set-enforcement-action:v0.1
+    configMap:
+      enforcementAction: dryrun
+  - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+    configMap:
+      strictness-level: High
