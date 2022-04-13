@@ -32,6 +32,7 @@ spec:
     - kube-system
     - asm-system
     - config-management-system
+    - cert-manager
   parameters:
     runAsUser:
       rule: MustRunAsNonRoot
