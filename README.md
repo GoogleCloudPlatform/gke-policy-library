@@ -16,6 +16,7 @@ This repository contains **sample** Constraints which can be used with the [libr
 ## Bundles
 
 - [CIS Kubernetes 1.5.1](./bundles/cis-k8s-v1.5.1)
+- [ASM Policy 0.0.1](./bundles/asm-policy-v0.0.1)
 
 ## Usage
 
