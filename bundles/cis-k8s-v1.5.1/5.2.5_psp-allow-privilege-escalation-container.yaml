@@ -35,3 +35,4 @@ spec:
     - config-management-system
     - config-management-monitoring
     - resource-group-system
+    - cert-manager

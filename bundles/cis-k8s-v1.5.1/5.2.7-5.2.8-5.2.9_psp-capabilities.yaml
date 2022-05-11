@@ -35,6 +35,7 @@ spec:
     - resource-group-system
     - asm-system
     - gke-connect
+    - cert-manager
   parameters:
     allowedCapabilities: []
     requiredDropCapabilities:
