@@ -11,21 +11,33 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPCapabilities
 metadata:
-  name: psp-capabilities
+  name: cis-k8s-v1.5.1-psp-capabilities
+  labels:
+    policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
     # This constraint is not certified by CIS.
-    description: "Requires containers to drop the `NET_RAW` capability; containers may not have allowedCapabilities set to anything other than an empty array; "
-    bundles.validator.forsetisecurity.org/cis-k8s-v1.5.1: '5.2.7, 5.2.8, 5.2.9'
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'cis-k8s-v1.5.1',
+        bundleDisplayName: 'CIS Kubernetes Benchmark 1.5.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
+        bundleVersion: '202208.1',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your in cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        controlNumbers: '[5.2.7,5.2.8,5.2.9]',
+        severity: 'UNASSIGNED',
+        description: 'Requires containers to drop the `NET_RAW` capability; containers may not have allowedCapabilities set to anything other than an empty array.',
+        remediation: 'Secrets as environment variables are prohibited in container definitions, please use a mounted secret file in a data volume.  See ‘Using Secrets as files from a Pod’ for more information: https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-files-from-a-pod',
+        minimumTemplateLibraryVersion: '1.10.2'
+      }"
 spec:
   enforcementAction: dryrun
   match:
     kinds:
     - apiGroups:
-      - ''
+      - ""
       kinds:
       - Pod
     excludedNamespaces:
