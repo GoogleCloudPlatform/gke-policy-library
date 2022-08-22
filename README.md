@@ -17,6 +17,7 @@ This repository contains **sample** Constraints which make use of Policy Control
 
 ## Bundles
 
+- [Policy Essentials v2022](./bundles/policy-essentials-v2022)
 - [CIS Kubernetes 1.5.1](./bundles/cis-k8s-v1.5.1)
 - [ASM Policy 0.0.1](./bundles/asm-policy-v0.0.1)
 
