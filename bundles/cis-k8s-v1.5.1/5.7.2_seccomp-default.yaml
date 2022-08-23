@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPHostNamespace
+kind: K8sPSPSeccomp
 metadata:
-  name: cis-k8s-v1.5.1-psp-host-namespace
+  name: cis-k8s-v1.5.1-psp-seccomp-default
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
@@ -26,10 +26,10 @@ metadata:
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
         bundleVersion: '202208.1',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your in cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
-        controlNumbers: '[5.2.2,5.2.3]',
+        controlNumbers: '[5.7.2]',
         severity: 'UNASSIGNED',
-        description: 'Prohibits containers from running with `hostPID` or `hostIPC` set to `true`.',
-        remediation: 'Containers are restricted from running with `hostPID` or `hostIPC` set to `true`, please remove the `hostPID: true` and/or `hostIPC: true` from your containers.',
+        description: 'Requires that Pods have seccomp profile set to runtime/default or docker/default.',
+        remediation: 'Containers are restricted from running with `seccomp` other than `runtime/default` or `docker/default`, please remote or set your containers `seccomp` annotation to `runtime/default`.  See ‘Set the Seccomp Profile for a Container’ for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-seccomp-profile-for-a-containe',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
@@ -42,3 +42,14 @@ spec:
       - Pod
     excludedNamespaces:
     - kube-system
+    - gatekeeper-system
+    - config-management-monitoring
+    - config-management-system
+    - asm-system
+    - resource-group-system
+    - istio-system
+    - gke-connect
+  parameters:
+    allowedProfiles:
+    - runtime/default
+    - docker/default
