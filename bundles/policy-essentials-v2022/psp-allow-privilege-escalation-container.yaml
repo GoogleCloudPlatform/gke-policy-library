@@ -1,0 +1,49 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPAllowPrivilegeEscalationContainer
+metadata:
+  name: policy-essentials-v2022-psp-allow-privilege-escalation
+  labels:
+    policycontroller.gke.io/bundleName: policy-essentials-v2022
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'policy-essentials-v2022',
+        bundleDisplayName: 'Policy Essentials v2022',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
+        bundleVersion: '202208.1',
+        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your in cluster resources.',
+        controlNumbers: '[]',
+        severity: 'UNASSIGNED',
+        description: 'Restricts containers with `allowPrivilegeEscalation` set to `true`.',
+        remediation: 'Containers are restricted from running with `allowPrivilegeEscalation` set to `true`, please remove the `allowPrivilegeEscalation: true` from your containers.',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - istio-system
+    - asm-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - cert-manager
