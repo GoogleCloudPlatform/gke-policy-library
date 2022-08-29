@@ -1,9 +1,9 @@
 apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
-  name: cis-k8s-v1.5.1
+  name: policy-essentials-v2022
 info:
-  description: Policy essentials bundle v2022
+  description: Policy Essentials v2022
 pipeline:
   mutators:
   - image: gcr.io/kpt-fn/set-enforcement-action:v0.1
