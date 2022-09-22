@@ -22,4 +22,4 @@ spec:
   enforcementAction: dryrun
   parameters:
     rootNamespace: istio-system
-    strictnessLevel: High # kpt-set: ${strictness-level}
+    strictnessLevel: High

@@ -28,5 +28,7 @@ spec:
           - Pod
     excludedNamespaces:
       - istio-system
+      - kube-system
+      - asm-system
   parameters:
-    strictnessLevel: High # kpt-set: ${strictness-level}
+    strictnessLevel: High
