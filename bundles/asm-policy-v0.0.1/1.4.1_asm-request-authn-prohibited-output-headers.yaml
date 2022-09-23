@@ -12,14 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: AsmPeerAuthnMeshStrictMtls
+kind: AsmRequestAuthnProhibitedOutputHeaders
 metadata:
-  name: asm-peer-authn-mesh-strict-mtls
+  name: asm-request-authn-prohibited-output-headers
   annotations:
-    description: Enforce the mesh level strict mtls PeerAuthentication.
-    bundles.validator.forsetisecurity.org/asm-policy-v0.0.1: 1.3.1
+    description: "In RequestAuthentication, enforce the jwtRules outputPayloadToHeader to not contain well known HTTP request headers or user predefined prohibited headers."
+    bundles.validator.forsetisecurity.org/asm-policy-v0.0.1: 1.4.1
 spec:
   enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - security.istio.io
+        kinds:
+          - RequestAuthentication
   parameters:
-    rootNamespace: istio-system
-    strictnessLevel: High
+    prohibitedHeaders: []

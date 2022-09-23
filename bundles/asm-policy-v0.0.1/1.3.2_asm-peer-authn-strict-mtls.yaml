@@ -27,4 +27,4 @@ spec:
         kinds:
           - PeerAuthentication
   parameters:
-    strictnessLevel: High # kpt-set: ${strictness-level}
+    strictnessLevel: High

@@ -27,4 +27,4 @@ spec:
         kinds:
           - AuthorizationPolicy
   parameters:
-    strictnessLevel: High # kpt-set: ${strictness-level}
+    strictnessLevel: High
