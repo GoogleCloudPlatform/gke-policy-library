@@ -7,6 +7,11 @@ Controller to achieve many of the same protections as
 with the added ability to test your policies before enforcing them and exclude
 coverage of specific resources.
 
+
+## Compatibility
+
+This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.1+.
+
 ## Usage
 
 Configure the listed Pod Security Policies (PSP) v2022 Constraints per the PSP
