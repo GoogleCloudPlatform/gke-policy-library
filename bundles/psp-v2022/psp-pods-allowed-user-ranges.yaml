@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPSeccomp
+kind: K8sPSPAllowedUsers
 metadata:
-  name: psp-v2022-psp-seccomp-default
+  name: psp-v2022-psp-pods-allowed-user-ranges
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
@@ -23,13 +23,13 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202208.01',
+        bundleVersion: '202209.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'Controls the seccomp profile used by containers. Corresponds to the `seccomp.security.alpha.kubernetes.io/allowedProfileNames` annotation on a PodSecurityPolicy.',
+        description: 'Controls the user and group IDs of the container and some volumes. Corresponds to the `runAsUser`, `runAsGroup`, `supplementalGroups`, and `fsGroup` fields in a PodSecurityPolicy.',
         remediation: '',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:
   enforcementAction: dryrun
@@ -41,14 +41,34 @@ spec:
       - Pod
     excludedNamespaces:
     - kube-system
-    - gatekeeper-system
-    - config-management-monitoring
-    - config-management-system
     - asm-system
-    - resource-group-system
-    - istio-system
+    - config-management-system
+    - config-management-monitoring
+    - cert-manager
     - gke-connect
+    - istio-system
+    - resource-group-system
+    - gatekeeper-system
   parameters:
-    allowedProfiles:
-    - runtime/default
-    - docker/default
+    exemptImages:
+    - gcr.io/gke-release/asm/proxyv2:*
+    runAsUser:
+      rule: MustRunAs # MustRunAsNonRoot # RunAsAny
+      ranges:
+      - min: 100
+        max: 200
+    runAsGroup:
+      rule: MustRunAs # MayRunAs # RunAsAny
+      ranges:
+      - min: 100
+        max: 200
+    supplementalGroups:
+      rule: MustRunAs # MayRunAs # RunAsAny
+      ranges:
+      - min: 100
+        max: 200
+    fsGroup:
+      rule: MustRunAs # MayRunAs # RunAsAny
+      ranges:
+      - min: 100
+        max: 200

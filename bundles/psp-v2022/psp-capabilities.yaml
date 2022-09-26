@@ -23,7 +23,7 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202208.01',
+        bundleVersion: '202209.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
@@ -48,6 +48,8 @@ spec:
     - gke-connect
     - cert-manager
   parameters:
+    exemptImages:
+    - gcr.io/gke-release/asm/proxyv2:*
     allowedCapabilities:
     - something
     requiredDropCapabilities:
