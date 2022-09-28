@@ -23,7 +23,7 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202208.1',
+        bundleVersion: '202209.0',
         bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your in cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
@@ -51,10 +51,15 @@ spec:
       - name: ^istiod-clusterrole-asm-[0-9]{4}-[0-9]-istio-system$
         regexMatch: true
       - name: istiod-istio-system
+      - name: istiod-gke-system
       - name: kubelet-api-admin
       - name: metering
       - name: resource-group-manager-role
       - name: servicemesh
+      - name: anet-operator-cluster-role
+      - name: cilium
+      - name: cilium-operator
+      - name: stackdriver-operator
       - name: system:controller:disruption-controller
       - name: system:controller:generic-garbage-collector
       - name: system:controller:horizontal-pod-autoscaler
