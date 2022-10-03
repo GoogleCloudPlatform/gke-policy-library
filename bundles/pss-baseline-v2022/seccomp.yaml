@@ -1,0 +1,56 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPSeccomp
+metadata:
+  name: pss-baseline-v2022-seccomp
+  labels:
+    policycontroller.gke.io/bundleName: pss-baseline-v2022
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pss-baseline-v2022',
+        bundleDisplayName: 'Pod Security Standards Baseline v2022',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/pss-baseline-v2022',
+        bundleVersion: '202209.2',
+        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
+        controlNumbers: '[]',
+        severity: 'UNASSIGNED',
+        description: 'Seccomp profile must not be explicitly set to `Unconfined`.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: '',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+    - config-management-monitoring
+    - config-management-system
+    - asm-system
+    - resource-group-system
+    - istio-system
+    - gke-connect
+  parameters:
+    allowedProfiles:
+    - RuntimeDefault
+    - Localhost
+    exemptImages:
+    - gcr.io/gke-release/asm/proxyv2:*
