@@ -14,10 +14,23 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: AsmPeerAuthnStrictMtls
 metadata:
-  name: asm-peer-authn-strict-mtls
+  name: asm-policy-v0.0.1-asm-peer-authn-strict-mtls
+  labels:
+    policycontroller.gke.io/bundleName: asm-policy-v0.0.1
   annotations:
-    description: Enforce all PeerAuthentications cannot overwrite strict mtls.
-    bundles.validator.forsetisecurity.org/asm-policy-v0.0.1: 1.3.1
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'asm-policy-v0.0.1',
+        bundleDisplayName: 'Anthos Service Mesh v0.0.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
+        bundleVersion: '202209.0',
+        bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
+        controlNumbers: '[1.3.2]',
+        severity: 'UNASSIGNED',
+        description: 'Enforce all PeerAuthentications cannot overwrite strict mtls.',
+        remediation: 'Modify corresponding PeerAuthentication to not overwrite upper level strict mtls. The lower level PeerAuthentication should only set to STRICT or UNSET.',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
 spec:
   enforcementAction: dryrun
   match:

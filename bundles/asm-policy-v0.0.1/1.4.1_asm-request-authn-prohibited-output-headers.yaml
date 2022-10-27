@@ -14,10 +14,23 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: AsmRequestAuthnProhibitedOutputHeaders
 metadata:
-  name: asm-request-authn-prohibited-output-headers
+  name: asm-policy-v0.0.1-asm-request-authn-prohibited-output-headers
+  labels:
+    policycontroller.gke.io/bundleName: asm-policy-v0.0.1
   annotations:
-    description: "In RequestAuthentication, enforce the jwtRules outputPayloadToHeader to not contain well known HTTP request headers or user predefined prohibited headers."
-    bundles.validator.forsetisecurity.org/asm-policy-v0.0.1: 1.4.1
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'asm-policy-v0.0.1',
+        bundleDisplayName: 'Anthos Service Mesh v0.0.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
+        bundleVersion: '202209.0',
+        bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
+        controlNumbers: '[1.4.1]',
+        severity: 'UNASSIGNED',
+        description: 'In RequestAuthentication, enforce the jwtRules outputPayloadToHeader to not contain well known HTTP request headers or user predefined prohibited headers.',
+        remediation: 'Modify the corresponding RequestAuthentication to not use well known or predefined prohibited headers.',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
 spec:
   enforcementAction: dryrun
   match:

@@ -14,10 +14,23 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: AsmAuthzPolicySafePattern
 metadata:
-  name: asm-authz-policy-safe-pattern
+  name: asm-policy-v0.0.1-asm-authz-policy-safe-pattern
+  labels:
+    policycontroller.gke.io/bundleName: asm-policy-v0.0.1
   annotations:
-    description: Enforce the AuthorizationPolicy safe patterns.
-    bundles.validator.forsetisecurity.org/asm-policy-v0.0.1: 1.2.3
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'asm-policy-v0.0.1',
+        bundleDisplayName: 'Anthos Service Mesh v0.0.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
+        bundleVersion: '202209.0',
+        bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
+        controlNumbers: '[1.2.3]',
+        severity: 'UNASSIGNED',
+        description: 'Enforce the AuthorizationPolicy safe patterns.',
+        remediation: 'Modify the corresponding AuthorizationPolicy following safe pattern: https://istio.io/latest/docs/ops/best-practices/security/#safer-authorization-policy-patterns.',
+        minimumTemplateLibraryVersion: '1.11.2'
+      }"
 spec:
   enforcementAction: dryrun
   match:
