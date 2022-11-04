@@ -24,12 +24,12 @@ metadata:
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark 1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your in cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.2.1]',
         severity: 'UNASSIGNED',
         description: 'Restricts containers with `securityContext.privileged` set to `true`.',
-        remediation: 'Containers are restricted from running with `securityContext.privileged` set to `true`, please remove the `securityContext.privileged: true` from your containers.  See ‘Configure a Security Context for a Pod or Container’ for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/',
+        remediation: 'Containers cannot run with `securityContext.privileged` set to `true`. Remove `securityContext.privileged: true` from your containers. See “Configure a Security Context for a Pod or Container” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:

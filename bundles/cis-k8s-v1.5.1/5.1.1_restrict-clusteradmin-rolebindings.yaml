@@ -24,12 +24,12 @@ metadata:
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark 1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your in cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.1.1]',
         severity: 'UNASSIGNED',
         description: 'Restricts the use of the `cluster-admin` role.',
-        remediation: 'The use of the ‘cluster-admin’ `ClusterRole` for Role-based access control (RBAC) is restricted, please use a different role.  See ‘Using RBAC Authorization’ for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        remediation: 'The use of the cluster-admin `ClusterRole` for Role-based access control (RBAC) is restricted. Use a different role. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:

@@ -24,12 +24,12 @@ metadata:
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark 1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your in cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.7.3]',
         severity: 'UNASSIGNED',
-        description: 'Requires that Pods must have a `securityContext` defined.',
-        remediation: 'Containers are restricted from running without a `securityContext` defined, please set your containers `securityContext: `.  See ‘Set the security context for a Pod’ for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod',
+        description: 'Requires that Pods define `securityContext`.',
+        remediation: 'Containers cannot run without a `securityContext` defined. Set your containers `securityContext: `. See “Set the security context for a Pod” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod',
         minimumTemplateLibraryVersion: '1.10.2'
       }"
 spec:
