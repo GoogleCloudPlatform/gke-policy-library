@@ -23,12 +23,12 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your in cluster resources.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'Requires containers to drop the `NET_RAW` capability; containers may not have allowedCapabilities set to anything other than an empty array.',
-        remediation: 'Secrets as environment variables are prohibited in container definitions, please use a mounted secret file in a data volume.  See ‘Using Secrets as files from a Pod’ for more information: https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-files-from-a-pod',
+        description: 'Requires the use of `NET_RAW` in containers; `allowedCapabilities` must be set to an empty array.',
+        remediation: 'Containers cannot run with the `NET_RAW` capability.  Set your containers with `allowedCapabilities: []`. See “Set capabilities for a Container” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
         minimumTemplateLibraryVersion: '1.10.2'
       }"
 spec:

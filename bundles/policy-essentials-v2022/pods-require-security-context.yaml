@@ -23,12 +23,12 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your in cluster resources.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'Requires that Pods must have a `securityContext` defined.',
-        remediation: 'Containers are restricted from running without a `securityContext` defined, please set your containers `securityContext: `.  See ‘Set the security context for a Pod’ for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod',
+        description: 'Requires that Pods define `securityContext`.',
+        remediation: 'Containers cannot run without a `securityContext` defined. Set your containers `securityContext: `. See “Set the security context for a Pod” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod',
         minimumTemplateLibraryVersion: '1.10.2'
       }"
 spec:
