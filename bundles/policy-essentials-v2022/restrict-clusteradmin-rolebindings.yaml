@@ -23,12 +23,12 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202209.0',
-        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your in cluster resources.',
+        bundleVersion: '202211.0',
+        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Restricts the use of the `cluster-admin` role.',
-        remediation: 'The use of the ‘cluster-admin’ `ClusterRole` for Role-based access control (RBAC) is restricted, please use a different role.  See ‘Using RBAC Authorization’ for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        remediation: 'The use of the cluster-admin `ClusterRole` for Role-based access control (RBAC) is restricted. Use a different role. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:
