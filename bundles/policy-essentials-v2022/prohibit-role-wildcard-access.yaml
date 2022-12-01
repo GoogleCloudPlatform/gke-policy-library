@@ -23,7 +23,7 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202211.0',
+        bundleVersion: '202211.1',
         bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
@@ -74,3 +74,9 @@ spec:
       - name: system:kubestore-collector
       - name: system:kubelet-api-admin
       - name: system:managed-certificate-controller
+      - name: lifecycle-controllers-deployer
+      - name: metrics-server-operator
+      - name: vmruntime-vmruntime-manager-role
+      - name: capi-aggregated-manager-role
+      - name: ^capi-manager-role-[0-9].[0-9]+.[0-9]+$
+        regexMatch: true

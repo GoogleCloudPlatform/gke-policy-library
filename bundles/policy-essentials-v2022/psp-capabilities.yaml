@@ -23,7 +23,7 @@ metadata:
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202211.0',
+        bundleVersion: '202211.1',
         bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
@@ -52,4 +52,8 @@ spec:
     requiredDropCapabilities:
     - NET_RAW
     exemptImages:
-    - gcr.io/gke-release/asm/proxyv2:*
+    - gcr.io/gke-release/*
+    - gcr.io/config-management-release/*
+    - gcr.io/kubebuilder/*
+    - gcr.io/anthos-baremetal-release/*
+    - gke.gcr.io/*
