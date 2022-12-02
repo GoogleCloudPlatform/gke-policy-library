@@ -13,13 +13,14 @@ Policy Controller is based on the open source [Open Policy Agent Gatekeeper](htt
 
 Policy Controller comes with a [library of ConstraintTemplates](https://cloud.google.com/anthos-config-management/docs/reference/constraint-template-library) for common security and compliance controls.
 
-This repository contains **sample** Constraints which make use of Policy Controller's ConstraintTemplates to demonstrate how you might configure policy enforcement on your own cluster.
+This repository contains **sample** `Constraint`s which make use of Policy Controller's `ConstraintTemplates` to demonstrate how you might configure policy enforcement on your own cluster.
 
 ## Bundles
 
-- [ASM Policy 0.0.1](./bundles/asm-policy-v0.0.1)
-- [CIS Kubernetes 1.5.1](./bundles/cis-k8s-v1.5.1)
+- [ASM Policy v0.0.1](./bundles/asm-policy-v0.0.1)
+- [CIS Kubernetes v1.5.1](./bundles/cis-k8s-v1.5.1)
 - [Pod Security Policy v2022](./bundles/psp-v2022)
+- [Pod Security Standards Baseline v2022](./bundles/pss-baseline-v2022)
 - [Policy Essentials v2022](./bundles/policy-essentials-v2022)
 
 ## Usage
