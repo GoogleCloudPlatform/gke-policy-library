@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202209.0',
+        bundleVersion: '202212.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls usage of host network namespace by pod containers. Specific ports must be specified. Corresponds to the `hostNetwork` and `hostPorts` fields in a PodSecurityPolicy.',
-        remediation: '',
+        remediation: 'Pods are restricted to the port range inclusive of the `min` and `max` fields. Use a different port or customize the fields.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:

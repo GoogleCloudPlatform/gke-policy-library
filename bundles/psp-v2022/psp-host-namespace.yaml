@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202209.0',
+        bundleVersion: '202212.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Disallows sharing of host PID and IPC namespaces by pod containers. Corresponds to the `hostPID` and `hostIPC` fields in a PodSecurityPolicy.',
-        remediation: '',
+        remediation: 'Containers cannot run with `hostPID` or `hostIPC` set to `true`. Set your containers with `hostPID: false`, `hostIPC: false`, or both.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
