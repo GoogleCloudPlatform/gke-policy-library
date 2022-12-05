@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202209.0',
+        bundleVersion: '202212.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '',
         severity: 'UNASSIGNED',
         description: 'Controls restricting escalation to root privileges. Corresponds to the `allowPrivilegeEscalation` field in a PodSecurityPolicy.',
-        remediation: '',
+        remediation: 'Containers cannot run with `allowPrivilegeEscalation` set to `true`. Set your containers to `allowPrivilegeEscalation: false` or customize the field.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
@@ -47,3 +47,6 @@ spec:
     - config-management-monitoring
     - resource-group-system
     - cert-manager
+  parameters:
+    exemptImages:
+    - gcr.io/anthos-baremetal-release/*

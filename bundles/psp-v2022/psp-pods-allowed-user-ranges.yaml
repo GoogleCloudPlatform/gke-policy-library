@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202209.0',
+        bundleVersion: '202212.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls the user and group IDs of the container and some volumes. Corresponds to the `runAsUser`, `runAsGroup`, `supplementalGroups`, and `fsGroup` fields in a PodSecurityPolicy.',
-        remediation: '',
+        remediation: 'The user and group IDs of the container and some volumes are restricted to those listed in the `runAsUser`, `runAsGroup`, `supplementalGroups`, and `fsGroup` fields. Use allowed user and group IDs or customize the fields.',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:
@@ -52,6 +52,7 @@ spec:
   parameters:
     exemptImages:
     - gcr.io/gke-release/asm/proxyv2:*
+    - gcr.io/anthos-baremetal-release/*
     runAsUser:
       rule: MustRunAs # MustRunAsNonRoot # RunAsAny
       ranges:
