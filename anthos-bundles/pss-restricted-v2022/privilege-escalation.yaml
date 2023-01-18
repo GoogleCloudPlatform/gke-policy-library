@@ -1,0 +1,47 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPAllowPrivilegeEscalationContainer
+metadata:
+  name: pss-restricted-v2022-privilege-escalation
+  labels:
+    policycontroller.gke.io/bundleName: pss-restricted-v2022
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pss-restricted-v2022',
+        bundleDisplayName: 'Pod Security Standards Restricted v2022',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/pss-restricted-v2022',
+        bundleVersion: '202211.1',
+        bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Anthos Policy Controller to to achieve many of the protections of the Kubernetes Pod Security Standards Restricted policy.',
+        controlNumbers: '',
+        severity: 'UNASSIGNED',
+        description: 'Privilege escalation (such as via set-user-ID or set-group-ID file mode) should not be allowed.',
+        remediation: '',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - istio-system
+    - asm-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - cert-manager
+  parameters:
+    exemptImages:
+    - gcr.io/anthos-baremetal-release/*
