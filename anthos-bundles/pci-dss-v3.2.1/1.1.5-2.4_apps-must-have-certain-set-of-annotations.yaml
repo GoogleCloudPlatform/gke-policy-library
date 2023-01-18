@@ -1,0 +1,63 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredAnnotations
+metadata:
+  name: pci-dss-v3.2.1-apps-must-have-certain-set-of-annotations
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v3.2.1
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pci-dss-v3.2.1',
+        bundleDisplayName: 'PCI DSS v3.2.1',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
+        bundleVersion: '202301.0',
+        bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
+        controlNumbers: '[1.1.5,2.4]',
+        severity: 'UNASSIGNED',
+        description: 'Requires that every namespace in the cluster has a default deny NetworkPolicy for egress.',
+        remediation: 'Every namespace in the cluster requires a default deny NetworkPolicy for egress. Add the required NetworkPolicy. See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies/',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - apps
+        kinds:
+          - ReplicaSet
+          - Deployment
+          - StatefulSet
+          - DaemonSet
+    excludedNamespaces:
+      - kube-system
+      - kube-node-lease
+      - kube-public
+      - gatekeeper-system
+      - config-management-system
+      - config-management-monitoring
+      - resource-group-system
+      - gke-connect
+      - istio-system
+      - asm-system
+      - cert-manager
+      - gke-system
+      - capi-system
+      - anthos-identity-service
+      - vm-system
+      - capi-kubeadm-bootstrap-system
+      - gke-managed-metrics-server
+  parameters:
+    message: All apps must have a `network-controls/date` annotations.
+    annotations:
+      - key: network-controls/date
+        # Matches YYYY-MM-DD
+        allowedRegex: ^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$
