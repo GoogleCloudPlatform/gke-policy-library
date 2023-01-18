@@ -1,0 +1,52 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireDefaultDenyEgressPolicy
+metadata:
+  name: pci-dss-v3.2.1-extended-require-default-deny-network-policies
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v3.2.1-extended
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pci-dss-v3.2.1-extended',
+        bundleDisplayName: 'PCI DSS v3.2.1',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1-extended',
+        bundleVersion: '202301.0',
+        bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
+        controlNumbers: '[1.2,1.3,2.2.2]',
+        severity: 'UNASSIGNED',
+        description: 'Requires that every namespace defined in the cluster have a default deny NetworkPolicy for egress.',
+        remediation: 'Every namespace defined in the cluster requires a default deny NetworkPolicy for egress, please add the required NetworkPolicy.  See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies/',
+        minimumTemplateLibraryVersion: '1.14.0'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    excludedNamespaces:
+      - istio-system
+      - kube-system
+      - config-management-system
+      - resource-group-system
+      - gatekeeper-system
+      - kube-public
+      - gke-connect
+      - asm-system
+      - kube-node-lease
+      - config-management-monitoring
+      - capi-system
+      - vm-system
+      - gke-managed-metrics-server
+      - cert-manager
+      - anthos-creds
+      - anthos-identity-service
+      - capi-kubeadm-bootstrap-system
+      - gke-system
+      # Use of the default namespace for pods is restricted by pci-dss-v3.2.1-restrict-default-namespace
+      - default

@@ -25,12 +25,11 @@ This repository contains **sample** `Constraint`s which make use of Policy Contr
 
 ## Anthos Policy Bundles
 
-[Anthos](https://cloud.google.com/anthos) Policy Bundles may only be used on an Anthos cluster[^1], including any associated ci/cd use.
+[Anthos](https://cloud.google.com/anthos) Policy Bundles may only be used on an Anthos cluster, including any associated ci/cd use. “Anthos cluster” is defined as “A Cluster (of any kind) registered to a [fleet project](https://cloud.google.com/anthos/fleet-management/docs/fleet-concepts) where the Anthos API is enabled”.
 
+- [Payment Card Industry Data Security Standard (PCI DSS) v3.2.1](./anthos-bundles/pci-dss-v3.2.1) and [PCI DSS v3.2.1 Extended](./anthos-bundles/pci-dss-v3.2.1-extended)
 - [Pod Security Standards Restricted v2022](./anthos-bundles/pss-restricted-v2022)
 
 ## Usage
 
 See [Creating constraints](https://cloud.google.com/anthos-config-management/docs/how-to/creating-constraints)
-
-[^1] “Anthos cluster” is defined as “A Cluster (of any kind) registered to a [fleet project](https://cloud.google.com/anthos/fleet-management/docs/fleet-concepts) where the Anthos API is enabled”.
