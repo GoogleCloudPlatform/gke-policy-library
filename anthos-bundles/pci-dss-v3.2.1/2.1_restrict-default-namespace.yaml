@@ -1,0 +1,39 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictNamespaces
+metadata:
+  name: pci-dss-v3.2.1-restrict-default-namespace
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v3.2.1
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pci-dss-v3.2.1',
+        bundleDisplayName: 'PCI DSS v3.2.1',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
+        bundleVersion: '202301.0',
+        bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
+        controlNumbers: '[2.1]',
+        severity: 'UNASSIGNED',
+        description: 'Restricts pods from using the default namespace.',
+        remediation: Cannot use the default namespace. Use a different namespace. See "Namespaces" for more information: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/',
+        minimumTemplateLibraryVersion: '1.10.2'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+  parameters:
+    restrictedNamespaces:
+    - default
