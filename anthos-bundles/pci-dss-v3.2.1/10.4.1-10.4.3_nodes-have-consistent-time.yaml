@@ -1,0 +1,33 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireCosNodeImage
+metadata:
+  name: pci-dss-v3.2.1-nodes-have-consistent-time
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v3.2.1
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'pci-dss-v3.2.1',
+        bundleDisplayName: 'PCI DSS v3.2.1',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
+        bundleVersion: '202301.0',
+        bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
+        controlNumbers: '[10.4.1,10.4.3]',
+        severity: 'UNASSIGNED',
+        description: 'Ensures consistent and correct time on Nodes by allowing only Container-Optimized OS (COS) as the OS image.',
+        remediation: 'OS image must be Container-Optimized OS (COS). See "Node Images" for more information: https://cloud.google.com/kubernetes-engine/docs/concepts/node-images',
+        minimumTemplateLibraryVersion: '1.12.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    excludedNamespaces:
+      - kube-system
