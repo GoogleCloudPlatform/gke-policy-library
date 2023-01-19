@@ -1,4 +1,4 @@
-# PSP-v2022
+# PSP v2022
 
 ## Description
 Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy
@@ -6,13 +6,6 @@ Controller to achieve many of the same protections as
 [Kubernetes Pod Security Policy (PSP)](https://v1-24.docs.kubernetes.io/docs/concepts/security/pod-security-policy/),
 with the added ability to test your policies before enforcing them and exclude
 coverage of specific resources.
-
-
-## Compatibility
-
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.1+.
-
-## Usage
 
 Configure the listed Pod Security Policies (PSP) v2022 Constraints per the PSP
 Field Names to implement a Kubernetes Pod Security Policy.
@@ -36,31 +29,30 @@ Field Names to implement a Kubernetes Pod Security Policy.
 | The user and group IDs of the container           | runAsUser, runAsGroup, supplementalGroups, fsGroup | psp-v2022-psp-pods-allowed-user-ranges        |
 | Usage of volume types                             | volumes                                            | psp-v2022-psp-volume-types                    |
 
-### Fetch the package
-`kpt pkg get https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/psp-v2022`
-Details: https://kpt.dev/reference/cli/pkg/get/
+## Compatibility
 
-### View package content
-`kpt pkg tree psp-v2022`
-Details: https://kpt.dev/reference/cli/pkg/tree/
+This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.1 or higher.
 
-### Configure the constraints
+### (Optional) Preview the policy constraints with kubectl:
+```shell
+kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/psp-v2022
+```
+
+### Apply the policy constraints with kubectl:
+```shell
+kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/psp-v2022
+```
+
+### (Optional) Configure the constraints
 Adjust the PSP Field Name `parameters` in the constraint files as required for
 your cluster environment.  For more details check specific
 [PSP Field Name]((https://v1-24.docs.kubernetes.io/docs/concepts/security/pod-security-policy/))
 in the table above.  For example in `psp-host-network-ports` configure:
-```
-      <pre>
-        parameters:
-          hostNetwork: true
-          min: 80
-          max: 9000
-      </pre>
+```yaml
+  parameters:
+    hostNetwork: true
+    min: 80
+    max: 9000
 ```
 
-### Apply the package
-```
-kpt live init psp-v2022
-kpt live apply psp-v2022 --reconcile-timeout=2m --output=table
-```
-Details: https://kpt.dev/reference/cli/live/
+### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security](https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security)
