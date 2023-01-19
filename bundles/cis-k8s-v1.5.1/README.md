@@ -13,21 +13,18 @@ These constraints are not certified by CIS.
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.12.0+.
+This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.12.0 or higher.
 
 ## Usage
 
-### Fetch the package
-`kpt pkg get REPO_URI[.git]/PKG_PATH[@VERSION] cis-k8s-v1.5.1`
-Details: https://kpt.dev/reference/cli/pkg/get/
-
-### View package content
-`kpt pkg tree cis-k8s-v1.5.1`
-Details: https://kpt.dev/reference/cli/pkg/tree/
-
-### Apply the package
+### (Optional) Preview the policy constraints with kubectl:
+```shell
+kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/cis-k8s-v1.5.1
 ```
-kpt live init cis-k8s-v1.5.1
-kpt live apply cis-k8s-v1.5.1 --reconcile-timeout=2m --output=table
+
+### Apply the policy constraints with kubectl:
+```shell
+kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/cis-k8s-v1.5.1
 ```
-Details: https://kpt.dev/reference/cli/live/
+
+### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark](https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark)
