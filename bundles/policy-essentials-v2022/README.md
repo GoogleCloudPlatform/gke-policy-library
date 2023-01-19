@@ -1,4 +1,4 @@
-Polic Essentials v2022
+Policy Essentials v2022
 ==================================================
 
 ## Description
