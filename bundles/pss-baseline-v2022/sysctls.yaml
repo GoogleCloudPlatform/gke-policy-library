@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPSeccomp
+kind: K8sPSPForbiddenSysctls
 metadata:
-  name: pss-baseline-v2022-seccomp
+  name: pss-baseline-v2022-sysctls
   labels:
     policycontroller.gke.io/bundleName: pss-baseline-v2022
   annotations:
@@ -27,32 +27,22 @@ metadata:
         bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'Seccomp profile must not be explicitly set to `Unconfined`.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        description: 'Sysctls can disable security mechanisms or affect all containers on a host, and should be disallowed except for an allowed "safe" subset. A sysctl is considered safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
         remediation: '',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.14.1'
       }"
+    policycontroller.gke.io/bundleName: psp-v2022
 spec:
-  enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups:
-      - ""
-      kinds:
-      - Pod
-    excludedNamespaces:
-    - kube-system
-    - gatekeeper-system
-    - config-management-monitoring
-    - config-management-system
-    - asm-system
-    - resource-group-system
-    - istio-system
-    - gke-connect
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
   parameters:
-    allowedProfiles:
-    - RuntimeDefault
-    - Localhost
-    - not configured
-    exemptImages:
-    - gcr.io/gke-release/asm/proxyv2:*
-    - gcr.io/anthos-baremetal-release/*
+    allowedSysctls:
+      - kernel.shm_rmid_forced
+      - net.ipv4.ip_local_port_range
+      - net.ipv4.ip_unprivileged_port_start
+      - net.ipv4.tcp_syncookies
+      - net.ipv4.ping_group_range
