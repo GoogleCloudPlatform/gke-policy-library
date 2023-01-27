@@ -23,7 +23,7 @@ metadata:
         bundleName: 'asm-policy-v0.0.1',
         bundleDisplayName: 'Anthos Service Mesh v0.0.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
-        bundleVersion: '202211.0',
+        bundleVersion: '202301.0',
         bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
         controlNumbers: '[1.1.2]',
         severity: 'UNASSIGNED',
@@ -45,4 +45,4 @@ spec:
       - asm-system
       - gke-system
   parameters:
-    strictnessLevel: High
+    strictnessLevel: High # kpt-set: ${strictness-level}
