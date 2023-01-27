@@ -18,12 +18,12 @@ metadata:
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202301.0',
+        bundleVersion: '202301.1',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[5.1.1, 5.3]',
         severity: 'UNASSIGNED',
         description: 'Requires the presence of an Anti-Virus daemonset.',
-        remediation: 'Add an Anti-Virus daemonset with matching name and namespace. See "Installing antivirus and file integrity monitoring on Container-Optimized OS" for an example: https://cloud.google.com/architecture/installing-antivirus-and-file-integrity-monitoring-on-container-optimized-os',
+        remediation: 'Add an Anti-Virus daemonset with the specified name and namespace. See "Kubernetes ClamAV container" for an example: https://cloud.google.com/community/tutorials/gcp-cos-clamav',
         minimumTemplateLibraryVersion: '1.14.0'
       }"
 spec:
