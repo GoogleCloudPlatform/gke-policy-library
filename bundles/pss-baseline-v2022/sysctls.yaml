@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPProcMount
+kind: K8sPSPForbiddenSysctls
 metadata:
-  name: pss-baseline-v2022-proc-mount-type
+  name: pss-baseline-v2022-sysctls
   labels:
     policycontroller.gke.io/bundleName: pss-baseline-v2022
   annotations:
@@ -27,12 +27,12 @@ metadata:
         bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'The default `/proc` masks are set up to reduce attack surface, and should be required.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        description: 'Sysctls can disable security mechanisms or affect all containers on a host, and should be disallowed except for an allowed "safe" subset. A sysctl is considered safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
         remediation: '',
-        minimumTemplateLibraryVersion: '1.10.2'
+        minimumTemplateLibraryVersion: '1.14.1'
       }"
+    policycontroller.gke.io/bundleName: psp-v2022
 spec:
-  enforcementAction: dryrun
   match:
     kinds:
       - apiGroups:
@@ -40,4 +40,9 @@ spec:
         kinds:
           - Pod
   parameters:
-    procMount: Default
+    allowedSysctls:
+      - kernel.shm_rmid_forced
+      - net.ipv4.ip_local_port_range
+      - net.ipv4.ip_unprivileged_port_start
+      - net.ipv4.tcp_syncookies
+      - net.ipv4.ping_group_range

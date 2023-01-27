@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ metadata:
         bundleName: 'pss-baseline-v2022',
         bundleDisplayName: 'Pod Security Standards Baseline v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/pss-baseline-v2022',
-        bundleVersion: '202211.0',
-        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
+        bundleVersion: '202301.0',
+        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Setting the SELinux type is restricted, and setting a custom SELinux user or role option is forbidden.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
@@ -32,12 +32,15 @@ metadata:
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:
+  enforcementAction: dryrun
   match:
     kinds:
       - apiGroups:
           - ""
         kinds:
           - Pod
+    excludedNamespaces:
+      - kube-system
   parameters:
     allowedSELinuxOptions:
       - type: container_t
