@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pci-dss-v3.2.1-extended',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1-extended',
-        bundleVersion: '202301.0',
+        bundleVersion: '202303.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[8.1,8.1.5]',
         severity: 'UNASSIGNED',
@@ -53,6 +53,12 @@ spec:
       - name: ^.+@gcp-sa-appdevexperience.iam.gserviceaccount.com$
         regexMatch: true
       - name: ^.+@gcp-sa-gkeonprem.iam.gserviceaccount.com$
+        regexMatch: true
+      - name: ^.+gcp-sa-anthosidentityservice.iam.gserviceaccount.com$
+        regexMatch: true
+      - name: ^.+@gcp-sa-mcsd.iam.gserviceaccount.com$
+        regexMatch: true
+      - name: ^.+@gcp-sa-cloudbuild.iam.gserviceaccount.com$
         regexMatch: true
       # Permit selected patterns
       - name: ^system:.+$
@@ -144,3 +150,5 @@ spec:
       - name: istio-cni
       - name: istio-cni-repair-rolebinding
       - name: mdp-controller
+      - name: fluentbit-gke
+      - name: admission-webhook
