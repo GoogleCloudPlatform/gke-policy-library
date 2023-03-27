@@ -25,4 +25,5 @@ kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-l
 kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/pci-dss-v3.2.1-extended
 ```
 
-### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3](https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3)
+### For more information visit:
+[https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3](https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3)
