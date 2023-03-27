@@ -9,7 +9,7 @@ The [PCI DSS standards document](https://www.pcisecuritystandards.org/documents/
 
 ## Compatibility
 
-This bundle requires [ Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) version 1.14.0 or higher.
+This bundle requires [ Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) version 1.14.3 or higher.
 
 ## Usage
 
