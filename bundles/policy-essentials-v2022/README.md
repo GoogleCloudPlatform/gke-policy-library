@@ -7,7 +7,7 @@ Use the Policy Essentials v2022 policy bundle with [Anthos Policy Controller](ht
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.12.0 or higher.
+This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.3 or higher.
 
 ## Usage
 
@@ -21,4 +21,5 @@ kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-l
 kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/policy-essentials-v2022
 ```
 
-### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3](https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3)
+### For more information visit:
+[https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3](https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3)
