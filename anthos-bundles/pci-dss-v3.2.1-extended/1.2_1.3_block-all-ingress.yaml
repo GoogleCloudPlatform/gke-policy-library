@@ -42,5 +42,6 @@ spec:
       - gatekeeper-webhook-service
       - antrea
       - istio-ingress
+      - istio-ingressgateway
       # Example of adding an allowed Ingress object
       - pci-dss-service
