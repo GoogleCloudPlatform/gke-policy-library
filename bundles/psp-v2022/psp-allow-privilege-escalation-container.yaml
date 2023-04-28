@@ -18,17 +18,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202303.0',
+        bundleVersion: '202304.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
-        controlNumbers: '',
+        controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls restricting escalation to root privileges. Corresponds to the `allowPrivilegeEscalation` field in a PodSecurityPolicy.',
-        remediation: 'Containers cannot run with `allowPrivilegeEscalation` set to `true`. Set your containers to `allowPrivilegeEscalation: false` or customize the field.',
+        remediation: 'Containers cannot run with `allowPrivilegeEscalation` set to `true`. Set your containers with `allowPrivilegeEscalation: false` or customize the field.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
@@ -47,6 +47,9 @@ spec:
     - config-management-monitoring
     - resource-group-system
     - cert-manager
+  # K8sPSPAllowPrivilegeEscalationContainer documentation and parameters:
+  # https://cloud.google.com/anthos-config-management/docs/latest/reference/constraint-template-library#k8spspallowprivilegeescalationcontainer
   parameters:
     exemptImages:
     - gcr.io/anthos-baremetal-release/*
+    - '*' # Remove to set allowPrivilegeEscalation: false

@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202303.0',
+        bundleVersion: '202304.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls Linux capabilities on containers. Corresponds to the `allowedCapabilities` and `requiredDropCapabilities` fields in a PodSecurityPolicy.',
-        remediation: 'Containers cannot run with capabilies listed in the `requiredDropCapabilities` field. Drop the listed capabilities or customize the field. See “Set capabilities for a Container” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
+        remediation: 'Containers cannot run with capabilities listed in the `requiredDropCapabilities` field. Drop the listed capabilities or customize the field. See “Set capabilities for a Container” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
         minimumTemplateLibraryVersion: '1.10.2'
       }"
 spec:
@@ -47,6 +47,8 @@ spec:
     - asm-system
     - gke-connect
     - cert-manager
+  # K8sPSPCapabilities documentation and parameters:
+  # https://cloud.google.com/anthos-config-management/docs/latest/reference/constraint-template-library#k8spspcapabilities
   parameters:
     exemptImages:
     - gcr.io/gke-release/*
@@ -55,6 +57,18 @@ spec:
     - gcr.io/anthos-baremetal-release/*
     - gke.gcr.io/*
     allowedCapabilities:
-    - something
-    requiredDropCapabilities:
-    - must_drop
+    - AUDIT_WRITE
+    - CHOWN
+    - DAC_OVERRIDE
+    - FOWNER
+    - FSETID
+    - KILL
+    - MKNOD
+    - NET_BIND_SERVICE
+    - SETFCAP
+    - SETGID
+    - SETPCAP
+    - SETUID
+    - SYS_CHROOT
+    # requiredDropCapabilities:
+    # - ALL
