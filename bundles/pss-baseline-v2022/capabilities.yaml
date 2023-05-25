@@ -18,17 +18,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pss-baseline-v2022
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pss-baseline-v2022',
         bundleDisplayName: 'Pod Security Standards Baseline v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/pss-baseline-v2022',
-        bundleVersion: '202303.0',
-        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Anthos Policy Controller to achieve many of the protections of the Kubernetes Pod Security Standards Baseline policy.',
+        bundleVersion: '202305.0',
+        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Baseline policy protections.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
-        description: 'Adding additional capabilities beyond those listed below must be disallowed.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
-        remediation: '',
+        description: 'Adding capabilities beyond those listed is not allowed. https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Containers can add only capabilities listed in the `allowedCapabilities` field. Drop any unlisted capabilities from your containers: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
         minimumTemplateLibraryVersion: '1.10.2'
       }"
 spec:
