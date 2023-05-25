@@ -13,17 +13,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1-extended
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1-extended',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1-extended',
-        bundleVersion: '202303.0',
+        bundleVersion: '202305.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[8.1,8.1.5]',
         severity: 'UNASSIGNED',
         description: 'Restricts the use of names in RBAC subjects to permitted values.',
-        remediation: 'The use of names in RBAC bindings is restricted to permitted values. Remove the restricted RBAC subject entry or add the name to the `allowedSubjects` list. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        remediation: 'Cannot use names in RBAC bindings other than permitted values. Remove the restricted RBAC subject entry or add the name to the `allowedSubjects` list. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
         minimumTemplateLibraryVersion: '1.14.0'
       }"
 spec:
@@ -152,3 +152,5 @@ spec:
       - name: mdp-controller
       - name: fluentbit-gke
       - name: admission-webhook
+      - name: operator
+      - name: collector
