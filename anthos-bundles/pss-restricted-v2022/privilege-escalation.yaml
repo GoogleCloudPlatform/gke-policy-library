@@ -13,17 +13,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pss-restricted-v2022
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pss-restricted-v2022',
-        bundleVersion: '202301.1',
-        bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Anthos Policy Controller to achieve many of the protections of the Kubernetes Pod Security Standards Restricted policy.',
-        controlNumbers: '',
+        bundleVersion: '202305.0',
+        bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
+        controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Privilege escalation (such as via set-user-ID or set-group-ID file mode) should not be allowed.',
-        remediation: '',
+        remediation: 'Containers cannot run with `allowPrivilegeEscalation` set to `true`. Set your containers with `allowPrivilegeEscalation: false`.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
