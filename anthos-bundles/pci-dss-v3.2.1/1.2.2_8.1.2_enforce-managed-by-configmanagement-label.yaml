@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202303.0',
+        bundleVersion: '202305.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.2.2, 8.1.2]',
         severity: 'UNASSIGNED',
@@ -39,6 +39,7 @@ spec:
     - kube-public
     - gatekeeper-system
     - config-management-monitoring
+    - config-management-system
     - resource-group-system
     - gke-connect
     - istio-system
@@ -51,6 +52,8 @@ spec:
     - capi-kubeadm-bootstrap-system
     - vm-system
     - gke-managed-metrics-server
+    - gmp-system
+    - gmp-public
   parameters:
     labels:
     - allowedRegex: ^(.+\.googleapis\.com|configmanagement\.gke\.io)$
