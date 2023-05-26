@@ -18,18 +18,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
-    # This constraint is not certified by CIS.
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202303.0',
+        bundleVersion: '202305.2',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Anthos Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.1.3]',
         severity: 'UNASSIGNED',
         description: 'Restricts the use of wildcards in `Roles` and `ClusterRoles`.',
-        remediation: 'The use of the wildcard character  in `Roles` and `ClusterRoles` is restricted. Remove all wildcards from your `Roles` and `ClusterRoles`. See “RoleBinding and ClusterRoleBinding” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
+        remediation: 'Cannot use the wildcard character in `Roles` and `ClusterRoles. Remove all wildcards from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
         minimumTemplateLibraryVersion: '1.12.0'
       }"
 spec:
@@ -38,6 +37,12 @@ spec:
     excludedNamespaces:
     - gke-connect
     - resource-group-system
+    kinds:
+    - apiGroups:
+      - rbac.authorization.k8s.io
+      kinds:
+      - ClusterRole
+      - Role
   parameters:
     exemptions:
       clusterRoles:
@@ -85,3 +90,4 @@ spec:
       - name: mdp-controller
       - name: system:cloud-controller-manager
       - name: cloudbuild
+      - name: metadata-agent
