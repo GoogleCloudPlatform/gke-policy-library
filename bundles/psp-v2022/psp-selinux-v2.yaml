@@ -23,12 +23,12 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202304.0',
+        bundleVersion: '202305.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Defines an allow-list of seLinuxOptions configurations for pod containers. Corresponds to a PodSecurityPolicy requiring SELinux configs.',
-        remediation: 'Pods can only use `seLinuxOptions` configurations listed in the `allowedSELinuxOptions` field.  Use only listed `seLinuxOptions` or customize the field.',
+        remediation: 'Pods can use only the `seLinuxOptions` configurations listed in the `allowedSELinuxOptions` field.',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:

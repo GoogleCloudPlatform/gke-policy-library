@@ -1,5 +1,9 @@
 # Changelog
 
+## 202305.0
+
+* Updates several remediations
+
 ## 202304.0
 
 * Align default parameters with [PSP Baseline](https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/policy/baseline-psp.yaml)
