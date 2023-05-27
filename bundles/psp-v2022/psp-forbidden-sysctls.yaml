@@ -28,7 +28,7 @@ metadata:
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls the `sysctl` profile used by containers. Corresponds to the `forbiddenSysctls` field in a PodSecurityPolicy.',
-        remediation: 'Containers can set only sysctls listed in the `allowedSysctls` field. Drop the listed `sysctl` or customize the field.',
+        remediation: 'Containers can only set sysctls listed in the `allowedSysctls` field. Drop the listed `sysctl` or customize the field.',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:
