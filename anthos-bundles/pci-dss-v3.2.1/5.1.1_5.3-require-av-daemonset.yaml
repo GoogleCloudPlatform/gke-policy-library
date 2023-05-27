@@ -13,14 +13,14 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202303.0',
+        bundleVersion: '202305.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
-        controlNumbers: '[5.1.1, 5.3]',
+        controlNumbers: '[5.1.1,5.3]',
         severity: 'UNASSIGNED',
         description: 'Requires the presence of an Anti-Virus daemonset.',
         remediation: 'Add an Anti-Virus daemonset with the specified name and namespace. See "Kubernetes ClamAV container" for an example: https://cloud.google.com/community/tutorials/gcp-cos-clamav',
