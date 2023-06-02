@@ -1,0 +1,39 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireCosNodeImage
+metadata:
+  name: nist-800-r5-nodes-have-consistent-time
+  labels:
+    policycontroller.gke.io/bundleName: nist-800-r5
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'nist-800-r5',
+        bundleDisplayName: 'NIST 800 r5',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
+        bundleVersion: '202306.0-preview',
+        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[AU-8]',
+        severity: 'UNASSIGNED',
+        description: 'Ensures consistent and correct time on Nodes by allowing only Container-Optimized OS (COS) or Ubuntu as the OS image.',
+        remediation: 'OS image must be Container-Optimized OS (COS) or Ubuntu. See "Node Images" for more information: https://cloud.google.com/kubernetes-engine/docs/concepts/node-images',
+        minimumTemplateLibraryVersion: '1.14.3'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Node
+  parameters:
+    exemptOsImages:
+    - Ubuntu* #https://cloud.google.com/anthos/clusters/docs/bare-metal/latest/installing/configure-os/ubuntu#time-synch

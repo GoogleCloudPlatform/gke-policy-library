@@ -1,0 +1,39 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sEnforceConfigManagement
+metadata:
+  name: nist-800-r5-enforce-config-management
+  labels:
+    policycontroller.gke.io/bundleName: nist-800-r5
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        bundleName: 'nist-800-r5',
+        bundleDisplayName: 'NIST 800 r5',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
+        bundleVersion: '202306.0-preview',
+        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[CM-2, CM-3, CM-4, CM-5, CM-6, CP-9, CP-10, SI-7, SA-10, SC-7, PL-1]',
+        severity: 'UNASSIGNED',
+        description: 'Requires that Anthos Config Management is running with Drift Prevention enabled and at least one `RootSync` object on the cluster.',
+        remediation: 'Ensure Anthos Config Management is enabled and running, Config Sync `preventDrift: true`, and at least one Config Sync `RootSync` object is present on the cluster. See "Get started with Config Sync" for more information: https://cloud.google.com/anthos-config-management/docs/tutorials/config-sync-multi-repo',
+        minimumTemplateLibraryVersion: '1.14.0'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - configmanagement.gke.io
+      kinds:
+      - ConfigManagement
+  parameters:
+    requireDriftPrevention: true
+    requireRootSync: true

@@ -1,0 +1,53 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPSeccomp
+metadata:
+  name: nist-800-r5-seccomp
+  labels:
+    policycontroller.gke.io/bundleName: nist-800-r5
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nist-800-r5',
+        bundleDisplayName: 'NIST 800 r5',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
+        bundleVersion: '202306.0-preview',
+        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[CM-3,CM-7]',
+        severity: 'UNASSIGNED',
+        description: 'Seccomp profile must not be explicitly set to `Unconfined`.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Containers cannot run with `seccomp` profile set to `Unconfined`. Remove or set your containers `seccomp` annotation to `RuntimeDefault` or `Localhost`. See "Set the Seccomp Profile for a Container" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-seccomp-profile-for-a-container',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+    - config-management-monitoring
+    - config-management-system
+    - asm-system
+    - resource-group-system
+    - istio-system
+    - gke-connect
+  parameters:
+    allowedProfiles:
+    - RuntimeDefault
+    - Localhost
+    - not configured
+    exemptImages:
+    - gcr.io/gke-release/asm/proxyv2:*
+    - gcr.io/anthos-baremetal-release/*
