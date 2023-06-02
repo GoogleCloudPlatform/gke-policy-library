@@ -1,0 +1,64 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: nist-800-r5-require-managed-by-label
+  labels:
+    policycontroller.gke.io/bundleName: nist-800-r5
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nist-800-r5',
+        bundleDisplayName: 'NIST 800 r5',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
+        bundleVersion: '202306.0-preview',
+        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[CM-2,CM-3,CM-4,CM-5,CM-6,CP-9,CP-10,SI-7,SA-10,SC-7,PL-1]',
+        severity: 'UNASSIGNED',
+        description: 'Requires all apps have a valid `app.kubernetes.io/managed-by` label.',
+        remediation: 'All apps must have a specified value for the `app.kubernetes.io/managed-by` label. Objects must be managed by a valid Configuration Management system included in the parameter.',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - apps
+        kinds:
+          - ReplicaSet
+          - Deployment
+          - StatefulSet
+          - DaemonSet
+    excludedNamespaces:
+      - kube-system
+      - kube-public
+      - gatekeeper-system
+      - config-management-monitoring
+      - config-management-system
+      - resource-group-system
+      - gke-connect
+      - istio-system
+      - asm-system
+      - poco-trial
+      - cert-manager
+      - gke-system
+      - capi-system
+      - anthos-identity-service
+      - capi-kubeadm-bootstrap-system
+      - vm-system
+      - gke-managed-metrics-server
+      - gmp-system
+      - gmp-public
+  parameters:
+    labels:
+      - allowedRegex: ^(.+\.googleapis\.com|configmanagement\.gke\.io)$
+        key: app.kubernetes.io/managed-by
+    message: This resource is missing the required app.kubernetes.io/managed-by label
