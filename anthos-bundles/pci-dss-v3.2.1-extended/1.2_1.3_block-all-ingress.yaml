@@ -13,12 +13,12 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1-extended
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1-extended',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1-extended',
-        bundleVersion: '202305.0',
+        bundleVersion: '202306.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.2,1.3]',
         severity: 'UNASSIGNED',
@@ -31,16 +31,16 @@ spec:
   parameters:
     allowList:
       - ^istiod-asm-[0-9]{4}-[0-9]$
-      - metrics-server
-      - kubernetes
-      - gke-connect-monitoring
-      - kube-dns
-      - istiod
-      - canonical-service-controller-manager-metrics-service
-      - default-http-backend
-      - otel-collector
-      - gatekeeper-webhook-service
-      - antrea
-      - istio-ingress
+      - ^metrics-server$
+      - ^kubernetes$
+      - ^gke-connect-monitoring$
+      - ^kube-dns$
+      - ^istiod$
+      - ^canonical-service-controller-manager-metrics-service$
+      - ^default-http-backend$
+      - ^otel-collector$
+      - ^gatekeeper-webhook-service$
+      - ^antrea$
+      - ^istio-ingress$
       # Example of adding an allowed Ingress object
-      - pci-dss-service
+      - ^allowed-service$
