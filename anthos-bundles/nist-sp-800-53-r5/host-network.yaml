@@ -7,23 +7,23 @@
 # cluster” is defined as “A Cluster (of any kind) registered to a fleet project
 # where the Anthos API is enabled”.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPHostNamespace
+kind: K8sPSPHostNetworkingPorts
 metadata:
-  name: nist-800-r5-host-namespaces
+  name: nist-sp-800-53-r5-host-network
   labels:
-    policycontroller.gke.io/bundleName: nist-800-r5
+    policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
     policycontroller.gke.io/constraintData: |-
       "{
-        bundleName: 'nist-800-r5',
-        bundleDisplayName: 'NIST 800 r5',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
-        bundleVersion: '202306.0-preview',
-        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        bundleName: 'nist-sp-800-53-r5',
+        bundleDisplayName: 'NIST SP 800-53 Rev. 5',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[CM-3,CM-7]',
         severity: 'UNASSIGNED',
-        description: 'Restricts containers with `hostPID` or `hostIPC` set to `true`.',
-        remediation: 'Containers cannot run with `hostPID` or `hostIPC` set to `true`. Set your containers with both `hostPID: false` and `hostIPC: false`.',
+        description: 'Restricts containers from running with the `hostNetwork` flag set to `true`.',
+        remediation: 'Containers cannot run with `hostNetwork` set to `true`. Remove `hostNetwork: true` from your containers.',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
 spec:
@@ -36,3 +36,7 @@ spec:
       - Pod
     excludedNamespaces:
     - kube-system
+  parameters:
+    hostNetwork: false
+    min: 1
+    max: 65535
