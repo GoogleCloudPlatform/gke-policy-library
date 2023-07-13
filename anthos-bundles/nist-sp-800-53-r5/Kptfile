@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
-  name: nist-800-r5
+  name: nist-sp-800-53-r5
 info:
   description: NIST SP 800 Release 5
 pipeline:
