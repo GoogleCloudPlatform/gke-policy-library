@@ -1,0 +1,48 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPVolumeTypes
+metadata:
+  name: nist-sp-800-190-restrict-volume-types
+  labels:
+    policycontroller.gke.io/bundleName: nist-sp-800-190
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nist-sp-800-190',
+        bundleDisplayName: 'NIST SP 800-190',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[CM-3,CM-6,CM-7]',
+        severity: 'UNASSIGNED',
+        description: 'Restricts the mountable volumes types to the allowed list.',
+        remediation: 'Cannot use mountable volume types unless listed in the `volumes` field. See "Volumes" for more information: https://kubernetes.io/docs/concepts/storage/volumes/',
+        minimumTemplateLibraryVersion: '1.10.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+    excludedNamespaces:
+      - kube-system
+  parameters:
+    volumes:
+      - configMap
+      - csi
+      - downwardAPI
+      - emptyDir
+      - ephemeral
+      - persistentVolumeClaim
+      - projected
+      - secret

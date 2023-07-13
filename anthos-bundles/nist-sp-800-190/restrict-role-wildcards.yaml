@@ -1,0 +1,88 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sProhibitRoleWildcardAccess
+metadata:
+  name: nist-sp-800-190-restrict-role-wildcards
+  labels:
+    policycontroller.gke.io/bundleName: nist-sp-800-190
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nist-sp-800-190',
+        bundleDisplayName: 'NIST SP 800-190',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[AC-6]',
+        severity: 'UNASSIGNED',
+        description: 'Restricts the use of wildcards in `Roles` and `ClusterRoles`.',
+        remediation: 'Cannot use the wildcard character in `Roles` and `ClusterRoles. Remove all wildcards from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
+        minimumTemplateLibraryVersion: '1.12.0'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    excludedNamespaces:
+    - gke-connect
+    - resource-group-system
+    kinds:
+    - apiGroups:
+      - rbac.authorization.k8s.io
+      kinds:
+      - ClusterRole
+      - Role
+  parameters:
+    exemptions:
+      clusterRoles:
+      - name: config-management-operator
+      - name: configsync.gke.io:ns-reconciler
+      - name: cluster-admin
+      - name: external-metrics-reader
+      - name: gatekeeper-manager-role
+      - name: ^istio-reader-clusterrole-asm-[0-9]{4}-[0-9]-istio-system$
+        regexMatch: true
+      - name: istio-reader-istio-system
+      - name: ^istiod-clusterrole-asm-[0-9]{4}-[0-9]-istio-system$
+        regexMatch: true
+      - name: istiod-istio-system
+      - name: istiod-gke-system
+      - name: kubelet-api-admin
+      - name: metering
+      - name: resource-group-manager-role
+      - name: servicemesh
+      - name: anet-operator-cluster-role
+      - name: cilium
+      - name: cilium-operator
+      - name: stackdriver-operator
+      - name: system:controller:disruption-controller
+      - name: system:controller:generic-garbage-collector
+      - name: system:controller:horizontal-pod-autoscaler
+      - name: system:controller:namespace-controller
+      - name: system:controller:resourcequota-controller
+      - name: system:gcp-controller-manager
+      - name: system:gke-common-webhooks
+      - name: system:gke-hpa-actor
+      - name: system:gke-master-resourcequota
+      - name: system:glbc-status
+      - name: system:kube-controller-manager
+      - name: system:kubestore-collector
+      - name: system:kubelet-api-admin
+      - name: system:managed-certificate-controller
+      - name: lifecycle-controllers-deployer
+      - name: metrics-server-operator
+      - name: vmruntime-vmruntime-manager-role
+      - name: capi-aggregated-manager-role
+      - name: ^capi-manager-role-[0-9].[0-9]+.[0-9]+$
+        regexMatch: true
+      - name: istio-reader-clusterrole-managed
+      - name: mdp-controller
+      - name: system:cloud-controller-manager
+      - name: cloudbuild
+      - name: metadata-agent

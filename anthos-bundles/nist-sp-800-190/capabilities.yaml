@@ -1,0 +1,57 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPCapabilities
+metadata:
+  name: nist-sp-800-190-capabilities
+  labels:
+    policycontroller.gke.io/bundleName: nist-sp-800-190
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nist-sp-800-190',
+        bundleDisplayName: 'NIST SP 800-190',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
+        controlNumbers: '[CM-3,CM-7]',
+        severity: 'UNASSIGNED',
+        description: 'Adding capabilities beyond those listed is not allowed. https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Containers can add only capabilities listed in the `allowedCapabilities` field. Drop any unlisted capabilities from your containers: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
+        minimumTemplateLibraryVersion: '1.10.2'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+  parameters:
+    allowedCapabilities:
+    - AUDIT_WRITE
+    - CHOWN
+    - DAC_OVERRIDE
+    - FOWNER
+    - FSETID
+    - KILL
+    - MKNOD
+    - NET_BIND_SERVICE
+    - SETFCAP
+    - SETGID
+    - SETPCAP
+    - SETUID
+    - SYS_CHROOT
+    exemptImages:
+    - gcr.io/gke-release/*
+    - gcr.io/config-management-release/*
+    - gcr.io/kubebuilder/*
+    - gcr.io/anthos-baremetal-release/*
+    - gke.gcr.io/*
