@@ -9,21 +9,21 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRequireDaemonsets
 metadata:
-  name: nist-800-r5-require-av-daemonset
+  name: nist-sp-800-53-r5-require-av-daemonset
   labels:
-    policycontroller.gke.io/bundleName: nist-800-r5
+    policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
     policycontroller.gke.io/constraintData: |-
       "{
-        bundleName: 'nist-800-r5',
-        bundleDisplayName: 'NIST 800 r5',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
-        bundleVersion: '202306.0-preview',
-        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        bundleName: 'nist-sp-800-53-r5',
+        bundleDisplayName: 'NIST SP 800-53 Rev. 5',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[SI-3]',
         severity: 'UNASSIGNED',
         description: 'Requires the presence of an Anti-Virus daemonset.',
-        remediation: 'Add an Anti-Virus daemonset with the specified name and namespace. See "Kubernetes ClamAV container" for an example: https://cloud.google.com/community/tutorials/gcp-cos-clamav',
+        remediation: 'Add an Anti-Virus daemonset, such as ClamAV, with the specified name and namespace.',
         minimumTemplateLibraryVersion: '1.14.0'
       }"
 spec:

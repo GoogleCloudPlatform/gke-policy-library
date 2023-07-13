@@ -9,21 +9,21 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRestrictRbacSubjects
 metadata:
-  name: nist-800-r5-restrict-rbac-subjects
+  name: nist-sp-800-53-r5-restrict-rbac-subjects
   labels:
-    policycontroller.gke.io/bundleName: nist-800-r5
+    policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
     policycontroller.gke.io/constraintData: |-
       "{
-        bundleName: 'nist-800-r5',
-        bundleDisplayName: 'NIST 800 r5',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nist-800-r5',
-        bundleVersion: '202306.0-preview',
-        bundleDescription: 'Use the NIST SP 800 r5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 r5 and NIST SP 800-190 Appendix B controls.',
+        bundleName: 'nist-sp-800-53-r5',
+        bundleDisplayName: 'NIST SP 800-53 Rev. 5',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AC-2,AC-3,IA-2,IA-4,IA-5,MA-4]',
         severity: 'UNASSIGNED',
         description: 'Restricts the use of names in RBAC subjects to permitted values.',
-        remediation: 'Cannot use names in  RBAC bindings other than permitted values. Remove the restricted RBAC subject entry or add the name to the `allowedSubjects` list. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        remediation: 'Cannot use names in RBAC bindings other than permitted values. Remove the restricted RBAC subject entry or add the name to the `allowedSubjects` list. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
         minimumTemplateLibraryVersion: '1.14.0'
       }"
 spec:
@@ -154,3 +154,5 @@ spec:
       - name: admission-webhook
       - name: operator
       - name: collector
+      - name: cilium-win
+      - name: maintenance-handler

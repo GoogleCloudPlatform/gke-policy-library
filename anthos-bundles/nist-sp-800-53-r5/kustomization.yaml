@@ -22,6 +22,7 @@ resources:
 - privileged-containers.yaml
 - proc-mount-type.yaml
 - require-av-daemonset.yaml
+- require-binauthz.yaml
 - require-managed-by-label.yaml
 - require-namespace-network-policies.yaml
 - restrict-clusteradmin-rolebindings.yaml
