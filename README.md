@@ -22,6 +22,7 @@ This repository contains **sample** `Constraint`s which make use of Policy Contr
 | [CIS Kubernetes v1.5.1](./bundles/cis-k8s-v1.5.1) | No | 202307.0 |
 | [National Institute of Standards and Technology SP 800-53 Rev. 5](./anthos-bundles/nist-sp-800-53-r5) | Yes | 202307.0 |
 | [National Institute of Standards and Technology SP 800-190](./anthos-bundles/nist-sp-800-190) | Yes | 202307.0 |
+| [NSA CISA Kubernetes Hardening Guide v1.2](./anthos-bundles/nsa-cisa-k8s-v1.2) | Yes | 202307.0 |
 | [Payment Card Industry Data Security Standard (PCI DSS) v3.2.1](./anthos-bundles/pci-dss-v3.2.1) and [PCI DSS v3.2.1 Extended](./anthos-bundles/pci-dss-v3.2.1-extended) | Yes | 202306.0 |
 | [Pod Security Policy v2022](./bundles/psp-v2022) | No | 202305.0 |
 | [Pod Security Standards Baseline v2022](./bundles/pss-baseline-v2022) | No | 202305.0 |

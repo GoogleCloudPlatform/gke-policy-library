@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: nsa-cisa-k8s-v1.2
+info:
+  description: NSA CISA Kubernetes Hardening Guide v1.2
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/set-enforcement-action:v0.1
+      configMap:
+        enforcementAction: dryrun

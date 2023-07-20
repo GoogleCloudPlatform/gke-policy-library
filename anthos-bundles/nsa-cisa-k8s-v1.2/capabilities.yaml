@@ -1,0 +1,54 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPCapabilities
+metadata:
+  name: nsa-cisa-k8s-v1.2-capabilities
+  labels:
+    policycontroller.gke.io/bundleName: nsa-cisa-k8s-v1.2
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'nsa-cisa-k8s-v1.2',
+        bundleDisplayName: 'NSA CISA Kubernetes Hardening Guide v1.2',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nsa-cisa-k8s-v1.2',
+        bundleVersion: '202307.0',
+        bundleDescription: 'Use the NSA CISA Kubernetes Hardening Guide v1.2 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NSA CISA Kubernetes Hardening Guide v1.2.',
+        controlNumbers: '[]',
+        severity: 'Medium',
+        description: 'Containers must drop all capabilities, and are not permitted to add back any capabilities.',
+        remediation: 'Containers cannot run with any capabilities.  Set your containers with `securityContext.capabilities.add: []` and `securityContext.capabilities.drop: ["all"]`. See "Set capabilities for a Container" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
+        minimumTemplateLibraryVersion: '1.10.2'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - asm-system
+    - gke-connect
+    - cert-manager
+  parameters:
+    allowedCapabilities: []
+    requiredDropCapabilities:
+    - ALL
+    exemptImages:
+    - gcr.io/gke-release/*
+    - gcr.io/config-management-release/*
+    - gcr.io/kubebuilder/*
+    - gcr.io/anthos-baremetal-release/*
+    - gke.gcr.io/*
