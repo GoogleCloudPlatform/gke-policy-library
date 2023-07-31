@@ -70,6 +70,7 @@ spec:
       - name: system:gke-common-webhooks
       - name: system:gke-hpa-actor
       - name: system:gke-master-resourcequota
+      - name: system:gke-vpa-target-reader
       - name: system:glbc-status
       - name: system:kube-controller-manager
       - name: system:kubestore-collector
