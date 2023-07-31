@@ -1,0 +1,49 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPodDisruptionBudget
+metadata:
+  name: cost-reliability-v2023-pod-disruption-budget
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cost-reliability-v2023',
+        bundleDisplayName: 'Cost and Reliability v2023',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
+        bundleVersion: '202307.0-preview',
+        bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
+        controlNumbers: '[]',
+        severity: 'UNASSIGNED',
+        description: 'Requires appropriate PodDisruptionBudget configuration for Deployments, ReplicaSets, StatefulSets, and ReplicationControllers.',
+        remediation: 'Cannot set `maxUnavailable` to zero, or `minAvailable` to that same value as `replicas. Use different values. See "Disruptions" for more information: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+  labels:
+    policycontroller.gke.io/bundleName: cost-reliability-v2023
+spec:
+  enforcementAction: dryrun
+  match:
+    excludedNamespaces:
+      - kube-system
+      - gke-managed-metrics-server
+    kinds:
+      - apiGroups:
+          - apps
+        kinds:
+          - Deployment
+          - ReplicaSet
+          - StatefulSet
+      - apiGroups:
+          - policy
+        kinds:
+          - PodDisruptionBudget
+      - apiGroups:
+          - ""
+        kinds:
+          - ReplicationController

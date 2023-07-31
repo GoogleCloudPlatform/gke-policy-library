@@ -18,7 +18,7 @@ metadata:
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202307.0',
+        bundleVersion: '202307.1',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AC-6,CM-4,CM-5,CM-7]',
         severity: 'UNASSIGNED',
@@ -34,31 +34,36 @@ spec:
       kind: ClusterRole
       name: cluster-admin
     allowedSubjects:
-    - apiGroup: rbac.authorization.k8s.io
-      kind: Group
-      name: system:masters
-    # for GKE Hub feature authorizer
-    - apiGroup: rbac.authorization.k8s.io
-      kind: User
-      name: ^service-[0-9]+@gcp-sa-gkehub.iam.gserviceaccount.com$
-      regexMatch: true
-    # for ACM to install in-cluster resources
-    - apiGroup: rbac.authorization.k8s.io
-      kind: User
-      name: ^service-[0-9]+@gcp-sa-anthosconfigmanagement.iam.gserviceaccount.com$
-      regexMatch: true
-    # for Config Sync reconciler service account
-    - kind: ServiceAccount
-      name: reconciler-manager
-    # for Config Sync admission webhook
-    - kind: ServiceAccount
-      name: admission-webhook
-    # For kube-storage-version-migrator, part of the GKE control plane
-    - apiGroup: rbac.authorization.k8s.io
-      kind: User
-      name: system:storageversionmigrator
-    # Kubernetes service account for Config Sync reconciler
-    # https://cloud.google.com/anthos-config-management/docs/how-to/installing-config-sync#git-creds-secret
-    - kind: ServiceAccount
-      name: ^root-reconciler[a-z0-9-]*$
-      regexMatch: true
+      - apiGroup: rbac.authorization.k8s.io
+        kind: Group
+        name: system:masters
+      # for GKE Hub feature authorizer
+      - apiGroup: rbac.authorization.k8s.io
+        kind: User
+        name: ^service-[0-9]+@gcp-sa-gkehub.iam.gserviceaccount.com$
+        regexMatch: true
+      # for ACM to install in-cluster resources
+      - apiGroup: rbac.authorization.k8s.io
+        kind: User
+        name: ^service-[0-9]+@gcp-sa-anthosconfigmanagement.iam.gserviceaccount.com$
+        regexMatch: true
+      # for Config Sync reconciler service account
+      - kind: ServiceAccount
+        name: reconciler-manager
+      # for Config Sync admission webhook
+      - kind: ServiceAccount
+        name: admission-webhook
+      # For kube-storage-version-migrator, part of the GKE control plane
+      - apiGroup: rbac.authorization.k8s.io
+        kind: User
+        name: system:storageversionmigrator
+      # Kubernetes service account for Config Sync reconciler
+      # https://cloud.google.com/anthos-config-management/docs/how-to/installing-config-sync#git-creds-secret
+      - kind: ServiceAccount
+        name: ^root-reconciler[a-z0-9-]*$
+        regexMatch: true
+      # for GKE Autopilot
+      - kind: ServiceAccount
+        name: system:gke-vpa-target-reader
+      - kind: ServiceAccount
+        name: serviceaccount-cluster-admin

@@ -1,0 +1,57 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPodResourcesBestPractices
+metadata:
+  name: cost-reliability-v2023-pod-resources-best-practices
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cost-reliability-v2023',
+        bundleDisplayName: 'Cost and Reliability v2023',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
+        bundleVersion: '202307.0-preview',
+        bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
+        controlNumbers: '[]',
+        severity: 'UNASSIGNED',
+        description: 'Requires that containers are not best-effort and following burstable best practices.',
+        remediation: 'Cannot run containers without cpu and memory requests (best-effort) and memory limit equal to memory request (burstable). Optional annotations can be configured to bypass best specific practices for individual containers. See "State of Kubernetes Cost Optimization Report" for more information: https://goo.gle/state-of-kubernetes-cost-optimization',
+        minimumTemplateLibraryVersion: '1.15.3'
+      }"
+  labels:
+    policycontroller.gke.io/bundleName: cost-reliability-v2023
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+    excludedNamespaces:
+      - kube-system
+      - kube-node-lease
+      - kube-public
+      - istio-system
+      - asm-system
+      - gatekeeper-system
+      - config-management-system
+      - config-management-monitoring
+      - cnrm-system
+      - hnc-system
+      - gke-managed-system
+      - gke-gmp-system
+      - gmp-public
+      - gmp-system
+      - resource-group-system
+      - gke-connect
+  parameters:
+    exemptImages:
+      - gcr.io/anthos-baremetal-release/*
+      - gcr.io/gke-release/asm/proxyv2:*

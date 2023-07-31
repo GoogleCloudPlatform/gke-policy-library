@@ -18,7 +18,7 @@ metadata:
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202307.0',
+        bundleVersion: '202307.1',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AU-8]',
         severity: 'UNASSIGNED',
@@ -30,10 +30,10 @@ spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups:
-      - ""
-      kinds:
-      - Node
+      - apiGroups:
+          - ""
+        kinds:
+          - Node
   parameters:
     exemptOsImages:
-    - Ubuntu* #https://cloud.google.com/anthos/clusters/docs/bare-metal/latest/installing/configure-os/ubuntu#time-synch
+      - Ubuntu* #https://cloud.google.com/anthos/clusters/docs/bare-metal/latest/installing/configure-os/ubuntu#time-synch

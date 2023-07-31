@@ -18,7 +18,7 @@ metadata:
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202307.0',
+        bundleVersion: '202307.1',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AC-2,AC-3,IA-2,IA-4,IA-5,MA-4]',
         severity: 'UNASSIGNED',
@@ -37,6 +37,9 @@ spec:
           - ClusterRoleBinding
   parameters:
     allowedSubjects:
+      # Permit Google Groups for RBAC: https://cloud.google.com/kubernetes-engine/docs/how-to/google-groups-rbac
+      # Uncomment the following line and put your domain name after '@'
+      # - name: "gke-security-groups@[yourdomain.com]"
       # Permit email Domains
       - name: ^.+@google.com$ # Update to your email domain
         regexMatch: true
@@ -156,3 +159,5 @@ spec:
       - name: collector
       - name: cilium-win
       - name: maintenance-handler
+      - name: filestorecsi-node-sa
+      - name: gcsfusecsi-node-sa

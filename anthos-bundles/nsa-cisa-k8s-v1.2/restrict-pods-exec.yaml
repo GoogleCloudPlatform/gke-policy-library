@@ -30,27 +30,27 @@ spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups:
-      - rbac.authorization.k8s.io
-      kinds:
-      - Role
-      - ClusterRole
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - Role
+          - ClusterRole
   parameters:
     disallowedRules:
-    - apiGroups:
-      - ""
-      resources:
-      - pods/exec
-      verbs:
-      - create
+      - apiGroups:
+          - ""
+        resources:
+          - pods/exec
+        verbs:
+          - create
     exemptions:
       clusterRoles:
-      - name: edit
-      - name: system:aggregate-to-edit
-      - name: admin
-      - name: cluster-admin
-      - name: config-management-operator
-      - name: vmruntime-vmruntime-manager-role
+        - name: edit
+        - name: system:aggregate-to-edit
+        - name: admin
+        - name: cluster-admin
+        - name: config-management-operator
+        - name: vmruntime-vmruntime-manager-role
       roles:
-      - name: agent-updater
-        namespace: gke-connect
+        - name: agent-updater
+          namespace: gke-connect

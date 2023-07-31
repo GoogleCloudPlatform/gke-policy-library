@@ -1,0 +1,71 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: cost-reliability-v2023-required-labels
+  labels:
+    policycontroller.gke.io/bundleName: cost-reliability-v2023
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cost-reliability-v2023',
+        bundleDisplayName: 'Cost and Reliability v2023',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
+        bundleVersion: '202307.0-preview',
+        bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
+        controlNumbers: '[]',
+        severity: 'UNASSIGNED',
+        description: 'Requires all pods and apps to have the required labels: `environment`, `team`, and `app`.',
+        remediation: 'Cannot have a pod or app without the required labels: `environment`, `team`, and `app`. Add the missing labels. See "Labels and Selectors" for more information: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - apps
+        kinds:
+          - ReplicaSet
+          - Deployment
+          - StatefulSet
+          - DaemonSet
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+    excludedNamespaces:
+      - kube-system
+      - kube-public
+      - gatekeeper-system
+      - config-management-monitoring
+      - config-management-system
+      - resource-group-system
+      - gke-connect
+      - istio-system
+      - asm-system
+      - poco-trial
+      - cert-manager
+      - gke-system
+      - capi-system
+      - anthos-identity-service
+      - capi-kubeadm-bootstrap-system
+      - vm-system
+      - gke-managed-metrics-server
+      - gmp-system
+      - gmp-public
+      - gke-gmp-system
+      - cluster-* # Anthos clusters on bare metal
+  parameters:
+    labels:
+      - key: environment
+      - key: team
+      - key: app
+    message: 'This app is missing one or more required labels: `environment`, `team`, and `app`.'

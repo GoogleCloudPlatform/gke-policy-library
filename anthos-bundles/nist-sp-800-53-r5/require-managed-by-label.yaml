@@ -18,7 +18,7 @@ metadata:
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202307.0',
+        bundleVersion: '202307.1',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[CM-2,CM-3,CM-4,CM-5,CM-6,CP-9,CP-10,SI-7,SA-10,SC-7,PL-1]',
         severity: 'UNASSIGNED',
@@ -57,6 +57,7 @@ spec:
       - gke-managed-metrics-server
       - gmp-system
       - gmp-public
+      - gke-gmp-system
   parameters:
     labels:
       - allowedRegex: ^(.+\.googleapis\.com|configmanagement\.gke\.io)$
