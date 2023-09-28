@@ -1,0 +1,50 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPAllowPrivilegeEscalationContainer
+metadata:
+  name: cis-gke-v1.4.0-restrict-privilege-escalation
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.4.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202308.1-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.4.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.4.0',
+        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/cis-gke-v1.4.0',
+        bundleVersion: '202308.1-preview',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.4.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[4.2.5,5.10.3]',
+        severity: 'UNASSIGNED',
+        description: 'Restricts containers with `allowPrivilegeEscalation` set to `true`.',
+        remediation: 'Containers cannot run with `allowPrivilegeEscalation` set to `true`. Set your containers with `allowPrivilegeEscalation: false`.',
+        minimumTemplateLibraryVersion: '1.11.1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - gke-system
+    - istio-system
+    - asm-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - cert-manager
+    - anthos-identity-service
+  parameters:
+    exemptImages:
+    - gcr.io/anthos-baremetal-release/*

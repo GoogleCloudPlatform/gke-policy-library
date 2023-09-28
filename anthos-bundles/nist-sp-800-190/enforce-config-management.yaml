@@ -13,17 +13,18 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202307.1',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[CM-2,CM-3,CM-4,CM-5,CM-6,CP-9,CP-10,SI-7,SA-10]',
         severity: 'UNASSIGNED',
-        description: 'Requires that Anthos Config Management is running with Drift Prevention enabled and at least one `RootSync` object on the cluster.',
-        remediation: 'Ensure Anthos Config Management is enabled and running, Config Sync `preventDrift: true`, and at least one Config Sync `RootSync` object is present on the cluster. See "Get started with Config Sync" for more information: https://cloud.google.com/anthos-config-management/docs/tutorials/config-sync-multi-repo',
+        description: 'Requires that Config Management is running with Drift Prevention enabled and at least one `RootSync` object on the cluster.',
+        remediation: 'Ensure Config Management is enabled and running, Config Sync `preventDrift: true`, and at least one Config Sync `RootSync` object is present on the cluster. See "Get started with Config Sync" for more information: https://cloud.google.com/anthos-config-management/docs/tutorials/config-sync-multi-repo',
         minimumTemplateLibraryVersion: '1.14.0'
       }"
 spec:

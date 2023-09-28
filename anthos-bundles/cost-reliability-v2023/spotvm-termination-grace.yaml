@@ -11,18 +11,19 @@ kind: GkeSpotVMTerminationGrace
 metadata:
   name: cost-reliability-v2023-spotvm-termination-grace
   annotations:
+    policycontroller.gke.io/bundleVersion: 202309.0-preview
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202307.0-preview',
+        bundleVersion: '202309.0-preview',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Requires `terminationGracePeriodSeconds` of 15s or less for Pods and Pod Templates with a `nodeSelector` or `nodeAfffinty` for `gke-spot`.',
         remediation: 'Cannot have a Pod or Pod Templates using a `gke-spot` `nodeSelector` or `nodeAfffinty without a `terminationGracePeriodSeconds` of 15s or less. See "Pod Lifecycle" for more information: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle',
-        minimumTemplateLibraryVersion: '1.15.3'
+        minimumTemplateLibraryVersion: '1.16.0'
       }"
   labels:
     policycontroller.gke.io/bundleName: cost-reliability-v2023
@@ -34,3 +35,5 @@ spec:
           - ""
         kinds:
           - Pod
+  parameters:
+    includePodOnSpotNodes: true

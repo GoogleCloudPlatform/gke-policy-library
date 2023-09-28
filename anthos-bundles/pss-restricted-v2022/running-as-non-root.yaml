@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pss-restricted-v2022',
-        bundleVersion: '202307.0',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
@@ -26,6 +26,7 @@ metadata:
         remediation: '',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
+    policycontroller.gke.io/bundleVersion: "202309.0"
 spec:
   enforcementAction: dryrun
   match:
@@ -44,6 +45,7 @@ spec:
     - istio-system
     - resource-group-system
     - gatekeeper-system
+    - anthos-identity-service
   parameters:
     exemptImages:
     - gcr.io/gke-release/asm/proxyv2:*

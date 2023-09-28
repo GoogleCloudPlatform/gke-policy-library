@@ -13,12 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202307.0',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[2.1]',
         severity: 'UNASSIGNED',

@@ -13,16 +13,17 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nsa-cisa-k8s-v1.2
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nsa-cisa-k8s-v1.2',
         bundleDisplayName: 'NSA CISA Kubernetes Hardening Guide v1.2',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nsa-cisa-k8s-v1.2',
-        bundleVersion: '202307.0',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the NSA CISA Kubernetes Hardening Guide v1.2 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NSA CISA Kubernetes Hardening Guide v1.2.',
         controlNumbers: '[]',
         severity: 'Medium',
-        description: 'On supported hosts, the `runtime/default` AppArmor profile applies by default. The baseline policy should prevent overriding or disabling the default AppArmor profile, or restrict overrides to an allowed set of profiles. https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        description: 'On supported hosts, the `runtime/default` AppArmor profile applies by default. The baseline policy should prevent overriding or disabling the default AppArmor profile, or restrict overrides to an allowed set of profiles.',
         remediation: 'Pods must use an AppArmor profile listed in the `allowedProfiles` field. Use a different AppArmor profile. See "AppArmor" for more information: https://kubernetes.io/docs/tutorials/clusters/apparmor/',
         minimumTemplateLibraryVersion: '1.11.1'
       }"

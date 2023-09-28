@@ -18,13 +18,14 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: policy-essentials-v2022
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202307.1',
-        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Anthos Policy Controller to apply Google recommended best practices to your cluster resources.',
+        bundleVersion: '202309.0',
+        bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Restricts containers from running as the root user.',
@@ -44,6 +45,7 @@ spec:
     - asm-system
     - config-management-system
     - cert-manager
+    - anthos-identity-service
   parameters:
     runAsUser:
       rule: MustRunAsNonRoot

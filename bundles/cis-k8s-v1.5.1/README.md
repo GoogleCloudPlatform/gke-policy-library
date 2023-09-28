@@ -3,7 +3,7 @@ CIS Kubernetes Benchmark v.1.5.1
 
 ## Description
 
-Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.
+Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.
 
 The accompanying [CIS Kubernetes Benchmark tutorial](https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark) provides more details.
 
@@ -13,7 +13,7 @@ These constraints are not certified by CIS.
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.3 or higher.
+This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.3 or higher.
 
 ## Usage
 

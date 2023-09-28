@@ -7,7 +7,7 @@ Controller to achieve many of the protections of the
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.1+.
+This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.1+.
 
 ## Usage
 

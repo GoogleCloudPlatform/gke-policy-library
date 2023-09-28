@@ -31,7 +31,7 @@ Field Names to implement a Kubernetes Pod Security Policy.
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.1 or higher.
+This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.1 or higher.
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell

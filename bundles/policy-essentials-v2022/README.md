@@ -3,11 +3,11 @@ Policy Essentials v2022
 
 ## Description
 
-Use the Policy Essentials v2022 policy bundle with [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) to apply best practices to your cluster resources.
+Use the Policy Essentials v2022 policy bundle with [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) to apply best practices to your cluster resources.
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.3 or higher.
+This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.14.3 or higher.
 
 ## Usage
 

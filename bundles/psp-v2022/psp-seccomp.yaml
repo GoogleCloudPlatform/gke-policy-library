@@ -18,13 +18,14 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202305.0',
-        bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Anthos Policy Controller to implement the Kubernetes Pod Security Policies.',
+        bundleVersion: '202309.0',
+        bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNASSIGNED',
         description: 'Controls the seccomp profile used by containers. Corresponds to the `seccomp.security.alpha.kubernetes.io/allowedProfileNames` annotation on a PodSecurityPolicy.',

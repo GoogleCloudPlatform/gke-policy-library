@@ -13,17 +13,18 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202307.1',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[AC-4,CA-9,SC-4]',
         severity: 'UNASSIGNED',
         description: 'Requires that every namespace defined in the cluster has a NetworkPolicy.',
-        remediation: 'Cannot use a namespace in the cluster without a NetworkPolicy. Add a NetworkPolicy to your namespace. See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies',
+        remediation: 'Cannot have a namespace in the cluster without a NetworkPolicy. Add a NetworkPolicy to your namespace. See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
 spec:

@@ -13,12 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
+    policycontroller.gke.io/bundleVersion: "202309.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202307.1',
+        bundleVersion: '202309.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AU-8]',
         severity: 'UNASSIGNED',
