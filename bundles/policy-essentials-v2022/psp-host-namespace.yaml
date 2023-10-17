@@ -18,16 +18,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: policy-essentials-v2022
   annotations:
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/policy-essentials-v2022',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Restricts containers with `hostPID` or `hostIPC` set to `true`.',
         remediation: 'Containers cannot run with `hostPID` or `hostIPC` set to `true`. Set your containers with both `hostPID: false` and `hostIPC: false`.',
         minimumTemplateLibraryVersion: '1.11.1'

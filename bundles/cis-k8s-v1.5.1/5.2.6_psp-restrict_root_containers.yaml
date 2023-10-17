@@ -18,16 +18,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.2.6]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Restricts containers from running as the root user.',
         remediation: 'Containers cannot run with `runAsUser` set to `root`. Set your containers with `runAsUser: ` to a non-root user ID. See "Set the security context for a Pod" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod',
         minimumTemplateLibraryVersion: '1.11.1'
@@ -46,6 +46,7 @@ spec:
     - config-management-system
     - cert-manager
     - anthos-identity-service
+    - apigee
   parameters:
     runAsUser:
       rule: MustRunAsNonRoot

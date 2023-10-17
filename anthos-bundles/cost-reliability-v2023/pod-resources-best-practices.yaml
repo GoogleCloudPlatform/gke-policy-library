@@ -11,16 +11,16 @@ kind: K8sPodResourcesBestPractices
 metadata:
   name: cost-reliability-v2023-pod-resources-best-practices
   annotations:
-    policycontroller.gke.io/bundleVersion: 202309.0-preview
+    policycontroller.gke.io/bundleVersion: 202310.0-preview
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202309.0-preview',
+        bundleVersion: '202310.0-preview',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Requires that containers are not best-effort and following burstable best practices.',
         remediation: 'Cannot run containers without cpu and memory requests (best-effort) and memory limit equal to memory request (burstable). Optional annotations can be configured to bypass best specific practices for individual containers. See "State of Kubernetes Cost Optimization Report" for more information: https://goo.gle/state-of-kubernetes-cost-optimization',
         minimumTemplateLibraryVersion: '1.15.3'
@@ -56,6 +56,8 @@ spec:
       - cert-manager
       - gke-managed-metrics-server
       - anthos-identity-service
+      - apigee
+      - apigee-system
   parameters:
     exemptImages:
       - gcr.io/anthos-baremetal-release/*

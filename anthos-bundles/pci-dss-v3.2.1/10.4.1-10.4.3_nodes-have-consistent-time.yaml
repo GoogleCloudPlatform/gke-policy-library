@@ -18,15 +18,15 @@ metadata:
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[10.4.1,10.4.3]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Ensures consistent and correct time on Nodes by allowing only Container-Optimized OS (COS) or Ubuntu as the OS image.',
         remediation: 'OS image must be Container-Optimized OS (COS) or Ubuntu. See "Node Images" for more information: https://cloud.google.com/kubernetes-engine/docs/concepts/node-images',
         minimumTemplateLibraryVersion: '1.14.3'
       }"
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:

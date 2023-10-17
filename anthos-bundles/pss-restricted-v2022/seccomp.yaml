@@ -18,15 +18,15 @@ metadata:
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pss-restricted-v2022',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Seccomp profile must be explicitly set to one of the allowed values. Both the Unconfined profile and the absence of a profile are prohibited.',
         remediation: 'Containers cannot run with a `seccomp` profile other than `RuntimeDefault` or `Localhost`. Set your containers `seccomp` annotation to `RuntimeDefault` or `Localhost`. See \"Set the Seccomp Profile for a Container\" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-seccomp-profile-for-a-container',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:
@@ -48,6 +48,8 @@ spec:
     - anthos-identity-service
     - gke-system
     - cert-manager
+    - apigee
+    - apigee-system
   parameters:
     allowedProfiles:
     - RuntimeDefault

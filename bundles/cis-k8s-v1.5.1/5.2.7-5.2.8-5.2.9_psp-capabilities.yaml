@@ -18,16 +18,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.2.7,5.2.8,5.2.9]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Containers must drop the `NET_RAW` capability and are not permitted to add back any capabilities.',
         remediation: 'Set your containers with `securityContext.capabilities.add: []` and `securityContext.capabilities.drop: ["NET_RAW"]`. See "Set capabilities for a Container" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
         minimumTemplateLibraryVersion: '1.10.2'
@@ -49,6 +49,7 @@ spec:
     - gke-connect
     - cert-manager
     - anthos-identity-service
+    - apigee
   parameters:
     allowedCapabilities: []
     requiredDropCapabilities:

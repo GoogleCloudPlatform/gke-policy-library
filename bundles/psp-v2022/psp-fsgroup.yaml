@@ -23,15 +23,15 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Controls allocating an FSGroup that owns the Pod's volumes. Corresponds to the `fsGroup` field in a PodSecurityPolicy.',
         remediation: ' You can use only Pod volume groups listed in the `fsGroup` field. Use a different group or customize the field.',
         minimumTemplateLibraryVersion: '1.10.1'
       }"
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:

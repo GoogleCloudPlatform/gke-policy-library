@@ -18,16 +18,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.1.3]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Restricts the use of wildcards in `Roles` and `ClusterRoles`.',
         remediation: 'Cannot use the wildcard character in `Roles` and `ClusterRoles. Remove all wildcards from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
         minimumTemplateLibraryVersion: '1.12.0'
@@ -38,6 +38,7 @@ spec:
     excludedNamespaces:
       - gke-connect
       - resource-group-system
+      - apigee
     kinds:
       - apiGroups:
           - rbac.authorization.k8s.io
@@ -94,3 +95,5 @@ spec:
         - name: metadata-agent
         - name: system:gke-vpa-target-reader
         - name: policycontroller
+        - name: apigee
+        - name: apigee-init

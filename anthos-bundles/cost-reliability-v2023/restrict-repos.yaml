@@ -11,16 +11,16 @@ kind: K8sAllowedRepos
 metadata:
   name: cost-reliability-v2023-restrict-repos
   annotations:
-    policycontroller.gke.io/bundleVersion: 202309.0-preview
+    policycontroller.gke.io/bundleVersion: 202310.0-preview
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202309.0-preview',
+        bundleVersion: '202310.0-preview',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Restricts container images to an allowed `repos` list.',
         remediation: 'Containers images must be in the allowed `repos` list. Use a different container image or add allowed repos to the `repos` parameter in the `cost-reliability-v2023-restrict-repos` constraint. See "Images" for more information: https://kubernetes.io/docs/concepts/containers/images/',
         minimumTemplateLibraryVersion: '1.10.1'

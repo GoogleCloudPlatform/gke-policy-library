@@ -13,16 +13,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[SR-4,SI-7,RA-5,SA-3,SC-12,CM-6,AU-10,CM-14,SI-1,IA-5,AC-4,AC-6,SA-11]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Requires the Binary Authorization Validating Admission Webhook.',
         remediation: 'Containers must use Binary Authorization for container image authenticity and attestation. See "Set up Binary Authorization" for more information: https://cloud.google.com/binary-authorization/docs/set-up-platform',
         minimumTemplateLibraryVersion: '1.15.2'

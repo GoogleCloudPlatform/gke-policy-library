@@ -13,16 +13,16 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-gke-v1.4.0
   annotations:
-    policycontroller.gke.io/bundleVersion: 202308.1-preview
+    policycontroller.gke.io/bundleVersion: 202310.0-preview
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-gke-v1.4.0',
         bundleDisplayName: 'CIS GKE Benchmark v1.4.0',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/cis-gke-v1.4.0',
-        bundleVersion: '202308.1-preview',
+        bundleVersion: '202310.0-preview',
         bundleDescription: 'Use the CIS GKE Benchmark 1.4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.4.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
         controlNumbers: '[4.2.4,5.10.3]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Restricts containers from running with the `hostNetwork` flag set to `true`.',
         remediation: 'Containers cannot run with `hostNetwork` set to `true`. Remove `hostNetwork: true` from your containers.',
         minimumTemplateLibraryVersion: '1.11.1'

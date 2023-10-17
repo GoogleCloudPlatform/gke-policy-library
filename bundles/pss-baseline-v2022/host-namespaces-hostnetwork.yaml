@@ -23,15 +23,15 @@ metadata:
         bundleName: 'pss-baseline-v2022',
         bundleDisplayName: 'Pod Security Standards Baseline v2022',
         bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/pss-baseline-v2022',
-        bundleVersion: '202309.0',
+        bundleVersion: '202310.0',
         bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Baseline policy protections.',
         controlNumbers: '[]',
-        severity: 'UNASSIGNED',
+        severity: 'UNSPECIFIED',
         description: 'Sharing the host namespaces must be disallowed.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
         remediation: '',
         minimumTemplateLibraryVersion: '1.11.1'
       }"
-    policycontroller.gke.io/bundleVersion: "202309.0"
+    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:
