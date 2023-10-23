@@ -8,7 +8,7 @@ The Anthos Service Mesh security policy bundle enforces policies in the followin
 
 ## Compatibility
 
-This bundle requires [Anthos Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.2 or higher.
+This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-management/docs/concepts/policy-controller) v1.11.2 or higher.
 
 ## Usage
 
