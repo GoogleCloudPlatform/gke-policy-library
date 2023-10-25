@@ -15,12 +15,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nsa-cisa-k8s-v1.2
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nsa-cisa-k8s-v1.2
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nsa-cisa-k8s-v1.2
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nsa-cisa-k8s-v1.2
 ```
 
 ### For more information visit:

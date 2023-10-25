@@ -15,12 +15,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/cost-reliability-v2023
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/cost-reliability-v2023
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/cost-reliability-v2023
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/cost-reliability-v2023
 ```
 
 ### For more information visit:

@@ -30,10 +30,10 @@ v1.15.2 or higher, and is intended for use only with
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/cis-gke-v1.4.0
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/cis-gke-v1.4.0
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/cis-gke-v1.4.0
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/cis-gke-v1.4.0
 ```

@@ -30,12 +30,12 @@ Controls](https://kubernetes.io/docs/concepts/security/pod-security-standards/#b
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/pss-baseline-v2022
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/pss-baseline-v2022
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/pss-baseline-v2022
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/pss-baseline-v2022
 ```
 
 ### (Optional) Configure the `pss-baseline-v2022-host-ports` constraint

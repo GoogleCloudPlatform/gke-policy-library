@@ -3,7 +3,7 @@ NIST SP 800-190
 
 ## Description
 
-The [NIST SP 800-190 bundle](https://github.com/GoogleCloudPlatform/acm-policy-controller-library/blob/master/anthos-bundles/nist-sp-800-190)
+The [NIST SP 800-190 bundle](https://github.com/GoogleCloudPlatform/gke-policy-library/blob/master/anthos-bundles/nist-sp-800-190)
 implements controls listed in
 [National Institute of Standards and Technology (NIST) Special Publication (SP) 800-190](https://doi.org/10.6028/NIST.SP.800-190),
 Application Container Security Guide. The bundle is intended to help
@@ -24,12 +24,12 @@ version 1.15.2 or higher.
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nist-sp-800-190
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nist-sp-800-190
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nist-sp-800-190
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nist-sp-800-190
 ```
 
 ### For more information visit:

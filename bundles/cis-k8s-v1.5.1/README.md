@@ -19,12 +19,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/cis-k8s-v1.5.1
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/cis-k8s-v1.5.1
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/cis-k8s-v1.5.1
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/cis-k8s-v1.5.1
 ```
 
 ### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark](https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark)

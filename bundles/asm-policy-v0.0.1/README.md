@@ -14,12 +14,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/asm-policy-v0.0.1
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/asm-policy-v0.0.1
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/asm-policy-v0.0.1
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/asm-policy-v0.0.1
 ```
 
 ### Configurable fields

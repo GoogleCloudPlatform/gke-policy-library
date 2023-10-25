@@ -23,12 +23,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/pss-restricted-v2022
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/pss-restricted-v2022
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/pss-restricted-v2022
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/pss-restricted-v2022
 ```
 
 ### For more information visit: [https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted](https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted)

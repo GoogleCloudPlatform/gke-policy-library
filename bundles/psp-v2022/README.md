@@ -35,12 +35,12 @@ This bundle requires [Policy Controller](https://cloud.google.com/anthos-config-
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/psp-v2022
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/psp-v2022
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/bundles/psp-v2022
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/bundles/psp-v2022
 ```
 
 ### (Optional) Configure the constraints

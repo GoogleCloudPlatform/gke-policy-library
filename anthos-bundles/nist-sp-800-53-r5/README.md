@@ -3,7 +3,7 @@ NIST SP 800-53 Rev. 5
 
 ## Description
 
-The [NIST SP 800-53 Rev. 5 bundle](https://github.com/GoogleCloudPlatform/acm-policy-controller-library/blob/master/anthos-bundles/nist-sp-800-53-r5)
+The [NIST SP 800-53 Rev. 5 bundle](https://github.com/GoogleCloudPlatform/gke-policy-library/blob/master/anthos-bundles/nist-sp-800-53-r5)
 implements controls listed in
 [National Institute of Standards and Technology (NIST) Special Publication (SP) 800-53 Rev. 5](https://doi.org/10.6028/NIST.SP.800-53r5).
 The bundle may help organizations protect their systems and data from a variety
@@ -22,12 +22,12 @@ version 1.15.2 or higher.
 
 ### (Optional) Preview the policy constraints with kubectl:
 ```shell
-kubectl kustomize https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nist-sp-800-53-r5
+kubectl kustomize https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nist-sp-800-53-r5
 ```
 
 ### Apply the policy constraints with kubectl:
 ```shell
-kubectl apply -k https://github.com/GoogleCloudPlatform/acm-policy-controller-library.git/anthos-bundles/nist-sp-800-53-r5
+kubectl apply -k https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/nist-sp-800-53-r5
 ```
 
 ### For more information visit:
