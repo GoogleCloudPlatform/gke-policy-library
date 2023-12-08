@@ -11,19 +11,20 @@ kind: K8sPodDisruptionBudget
 metadata:
   name: cost-reliability-v2023-pod-disruption-budget
   annotations:
-    policycontroller.gke.io/bundleVersion: 202310.0-preview
+    policycontroller.gke.io/bundleVersion: "202311.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202310.0-preview',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Requires appropriate PodDisruptionBudget configuration for Deployments, ReplicaSets, StatefulSets, and ReplicationControllers.',
         remediation: 'Cannot set `maxUnavailable` to zero, or `minAvailable` to that same value as `replicas. Use different values. See "Disruptions" for more information: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: 'f7523253870ec7e98de8486be6f131433bf8157078d5d476e8d8c31d65d969d4'
       }"
   labels:
     policycontroller.gke.io/bundleName: cost-reliability-v2023

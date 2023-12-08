@@ -13,20 +13,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.1.4]',
         severity: 'UNSPECIFIED',
         description: 'Requires all apps to contain a specified label to meet firewall requirements.',
         remediation: 'All apps must have a valid firewall audit label. Check the app's firewall and add a label with the format `pci-dss-firewall-audit: "pci-dss-2022q1"` where the suffix is {Year}q{Quarter}.',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '30c7410d55831c90dcfef410a3cb182b83ad209204c6e6d5f36fcd27a1955fc4'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:

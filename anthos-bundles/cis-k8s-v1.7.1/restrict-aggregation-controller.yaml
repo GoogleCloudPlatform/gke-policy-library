@@ -1,0 +1,48 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictRoleBindings
+metadata:
+  name: cis-k8s-v1.7.1-restrict-aggregation-controller
+  labels:
+    policycontroller.gke.io/bundleName: cis-k8s-v1.7.1
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-k8s-v1.7.1',
+        bundleDisplayName: 'CIS Kubernetes Benchmark v1.7.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.7.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        controlNumbers: '[5.1.8]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the use of the `clusterrole-aggregation-controller` role.',
+        remediation: 'Cannot use the clusterrole-aggregation-controller `ClusterRole` for Role-based access control (RBAC). Use a different role. See "Using RBAC Authorization" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        minimumTemplateLibraryVersion: '1.15.2',
+        constraintHash: '39af0b87cfbed34be25462454ed575559835366fb702916114e602ae11e044b9'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - ClusterRoleBinding
+          - RoleBinding
+  parameters:
+    restrictedRole:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: system:controller:clusterrole-aggregation-controller
+    allowedSubjects:
+      - apiGroup: ""
+        kind: ServiceAccount
+        name: clusterrole-aggregation-controller

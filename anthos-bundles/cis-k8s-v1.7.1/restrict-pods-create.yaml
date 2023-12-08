@@ -1,0 +1,78 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictRoleRules
+metadata:
+  name: cis-k8s-v1.7.1-restrict-pods-create
+  labels:
+    policycontroller.gke.io/bundleName: cis-k8s-v1.7.1
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-k8s-v1.7.1',
+        bundleDisplayName: 'CIS Kubernetes Benchmark v1.7.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.7.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        controlNumbers: '[5.1.4]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the creation of pods in `Roles` and `ClusterRoles`.',
+        remediation: 'The creation of pods permission in `Roles` and `ClusterRoles` is restricted. Remove all pod creation rules from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
+        minimumTemplateLibraryVersion: '1.15.2',
+        constraintHash: '8c988fc3f78eac8a803ee139bfb787efa4ca4a65f9e0c797720b742171b0fab1'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - Role
+          - ClusterRole
+  parameters:
+    disallowedRules:
+      - apiGroups:
+          - ""
+        resources:
+          - pods
+        verbs:
+          - create
+    exemptions:
+      clusterRoles:
+        - name: cert-manager-controller-challenges
+        - name: cluster-admin
+        - name: system:controller:clusterrole-aggregation-controller
+        - name: system:controller:expand-controller
+        - name: system:controller:generic-garbage-collector
+        - name: system:controller:namespace-controller
+        - name: system:controller:persistent-volume-binder
+        - name: system:kube-controller-manager
+        - name: vmruntime-vmruntime-manager-role
+        # for GKE
+        - name: admin
+        - name: edit
+        - name: config-management-operator
+        - name: mdp-controller
+        - name: servicemesh
+        - name: system:aggregate-to-edit
+        - name: system:controller:job-controller
+        - name: system:controller:replication-controller
+        - name: system:controller:statefulset-controller
+        - name: system:controller:replicaset-controller
+        - name: system:gke-common-webhooks
+        - name: system:controller:daemon-set-controller
+        - name: system:node
+        # for Apigee
+        - name: apigee-cassandra-restore
+        - name: apigee-manager-role
+      roles:
+        - name: agent-updater
+          namespace: gke-connect

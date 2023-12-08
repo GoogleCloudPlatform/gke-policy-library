@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.2]',
         severity: 'UNSPECIFIED',
         description: 'Requires that every namespace defined in the cluster has a NetworkPolicy.',
         remediation: 'Cannot have a namespace in the cluster without a NetworkPolicy. Add a NetworkPolicy to your namespace. See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies',
-        minimumTemplateLibraryVersion: '1.10.1'
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '56bde876564dda068b2587144362cae10b68a7de0e591fcf856b47ef73763235'
       }"
 spec:
   enforcementAction: dryrun
@@ -56,6 +57,7 @@ spec:
       - gke-managed-filestorecsi
       - apigee
       - apigee-system
+      - gke-managed-system
     kinds:
       - apiGroups:
           - ""

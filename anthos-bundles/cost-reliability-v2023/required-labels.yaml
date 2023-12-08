@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cost-reliability-v2023
   annotations:
-    policycontroller.gke.io/bundleVersion: 202310.0-preview
+    policycontroller.gke.io/bundleVersion: "202311.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202310.0-preview',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Requires all pods and apps to have the required labels: `environment`, `team`, and `app`.',
         remediation: 'Cannot have a pod or app without the required labels: `environment`, `team`, and `app`. Add the missing labels. See "Labels and Selectors" for more information: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '7373671cae3337ce682a77781269c81b1a9b1d4bc2a6e5a2da5af61be0676f0e'
       }"
 spec:
   enforcementAction: dryrun

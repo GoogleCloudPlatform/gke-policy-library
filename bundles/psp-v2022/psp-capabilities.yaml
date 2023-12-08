@@ -18,20 +18,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Controls Linux capabilities on containers. Corresponds to the `allowedCapabilities` and `requiredDropCapabilities` fields in a PodSecurityPolicy.',
         remediation: 'Containers cannot run with capabilities listed in the `requiredDropCapabilities` field. Drop the listed capabilities or customize the field. See “Set capabilities for a Container” for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
-        minimumTemplateLibraryVersion: '1.10.2'
+        minimumTemplateLibraryVersion: '1.10.2',
+        constraintHash: 'c500a1a0918f9cfc1e422c558c97f90373e1e0fd53a088f9e7d7aee34d958300'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202311.0"
 spec:
   enforcementAction: dryrun
   match:

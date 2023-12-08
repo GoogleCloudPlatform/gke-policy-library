@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nsa-cisa-k8s-v1.2
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nsa-cisa-k8s-v1.2',
         bundleDisplayName: 'NSA CISA Kubernetes Hardening Guide v1.2',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nsa-cisa-k8s-v1.2',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nsa-cisa-k8s-v1.2',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NSA CISA Kubernetes Hardening Guide v1.2 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NSA CISA Kubernetes Hardening Guide v1.2.',
         controlNumbers: '[]',
         severity: 'Low',
         description: 'Restricts containers from running with the `hostNetwork` flag set to `true`.',
         remediation: 'Containers cannot run with `hostNetwork` set to `true`. Remove `hostNetwork: true` from your containers.',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '0a5a8fab505744697e9c36858e534c6204888d96e7c81e8d04279f4e0f7287d7'
       }"
 spec:
   enforcementAction: dryrun

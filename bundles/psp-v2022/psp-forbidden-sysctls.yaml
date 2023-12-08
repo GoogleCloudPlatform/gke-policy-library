@@ -18,20 +18,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/bundles/psp-v2022',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Controls the `sysctl` profile used by containers. Corresponds to the `forbiddenSysctls` field in a PodSecurityPolicy.',
         remediation: 'Containers can only set sysctls listed in the `allowedSysctls` field. Drop the listed `sysctl` or customize the field.',
-        minimumTemplateLibraryVersion: '1.10.1'
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '5b25e5b6152310a8b4f00303f02b69b9bdd63fff8797d976609c10680e9ffaa9'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202311.0"
 spec:
   enforcementAction: dryrun
   match:

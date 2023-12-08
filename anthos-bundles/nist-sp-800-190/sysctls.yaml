@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[CM-3,CM-7]',
         severity: 'UNSPECIFIED',
         description: 'Sysctls can disable security mechanisms or affect all containers on a host, and are restricted except for an allowed "safe" subset. A sysctl is safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node. https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
         remediation: 'Containers can set only sysctls listed in the `allowedSysctls` field. Drop any unlisted sysctls from your containers: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/',
-        minimumTemplateLibraryVersion: '1.14.1'
+        minimumTemplateLibraryVersion: '1.14.1',
+        constraintHash: '26ed42ef11d98ca6e7cdfc3604f884510242d70039b1e71a66b3ec55f7fc44c6'
       }"
 spec:
   enforcementAction: dryrun

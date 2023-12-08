@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nsa-cisa-k8s-v1.2
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nsa-cisa-k8s-v1.2',
         bundleDisplayName: 'NSA CISA Kubernetes Hardening Guide v1.2',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/nsa-cisa-k8s-v1.2',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nsa-cisa-k8s-v1.2',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NSA CISA Kubernetes Hardening Guide v1.2 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NSA CISA Kubernetes Hardening Guide v1.2.',
         controlNumbers: '[]',
         severity: 'Medium',
         description: 'Restricts the use of the `edit` role.',
         remediation: 'Cannot use the edit `ClusterRole` for Role-based access control (RBAC) because it can grant restricted `pods/exec` permissions to user. Use a different role. See "Using RBAC Authorization" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
-        minimumTemplateLibraryVersion: '1.10.1'
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '1fb692939452186d91c1bdf5ce1d697a83002f1114d3c8e4319c8f7f5b868003'
       }"
 spec:
   enforcementAction: dryrun

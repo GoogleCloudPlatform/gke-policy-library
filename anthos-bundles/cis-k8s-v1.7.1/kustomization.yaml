@@ -1,0 +1,42 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- require-admission-controller.yaml
+- require-binauthz.yaml
+- require-namespace-networkpolicy.yaml
+- require-seccomp-default.yaml
+- require-securitycontext.yaml
+- restrict-aggregation-controller.yaml
+- restrict-automountserviceaccounttoken.yaml
+- restrict-bind-escalate-impersonate.yaml
+- restrict-capabilities.yaml
+- restrict-certificatesigningrequests-approval.yaml
+- restrict-cluster-admin-role.yaml
+- restrict-creation-with-default-serviceaccount.yaml
+- restrict-default-namespace.yaml
+- restrict-env-var-secrets.yaml
+- restrict-host-namespace.yaml
+- restrict-host-port.yaml
+- restrict-hostpath-volumes.yaml
+- restrict-hosttnetwork.yaml
+- restrict-nodes-proxy.yaml
+- restrict-persistent-volume.yaml
+- restrict-pods-create.yaml
+- restrict-privilege-escalation.yaml
+- restrict-privileged-containers.yaml
+- restrict-role-secrets.yaml
+- restrict-role-wildcards.yaml
+- restrict-root-containers.yaml
+- restrict-secrets-of-type-basic-auth.yaml
+- restrict-serviceaccounts-token.yaml
+- restrict-system-masters-group.yaml
+- restrict-webhook-config.yaml
+- restrict-windows-hostprocess.yaml

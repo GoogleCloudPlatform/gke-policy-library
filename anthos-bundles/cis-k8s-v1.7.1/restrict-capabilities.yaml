@@ -1,0 +1,60 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPCapabilities
+metadata:
+  name: cis-k8s-v1.7.1-restrict-capabilities
+  labels:
+    policycontroller.gke.io/bundleName: cis-k8s-v1.7.1
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-k8s-v1.7.1',
+        bundleDisplayName: 'CIS Kubernetes Benchmark v1.7.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.7.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        controlNumbers: '[5.2.8,5.2.9,5.2.10]',
+        severity: 'UNSPECIFIED',
+        description: 'Containers must drop the `NET_RAW` capability and are not permitted to add back any capabilities.',
+        remediation: 'Set your containers with `securityContext.capabilities.add: []` and `securityContext.capabilities.drop: ["NET_RAW"]`. See "Set capabilities for a Container" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
+        minimumTemplateLibraryVersion: '1.10.2',
+        constraintHash: '1cbd5a3a7d5299f5df17319f38da6e01fa1d3a096dbd871abe731bcdad2b2826'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - config-management-system
+    - config-management-monitoring
+    - resource-group-system
+    - asm-system
+    - gke-connect
+    - cert-manager
+    - anthos-identity-service
+    - apigee
+  parameters:
+    allowedCapabilities: []
+    requiredDropCapabilities:
+    - NET_RAW
+    exemptImages:
+    - gcr.io/gke-release/*
+    - gcr.io/config-management-release/*
+    - gcr.io/kubebuilder/*
+    - gcr.io/anthos-baremetal-release/*
+    - gcr.io/gke-on-prem-release/*
+    - gcr.io/gke-multi-cloud-release/*
+    - gke.gcr.io/*

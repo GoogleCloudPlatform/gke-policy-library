@@ -1,0 +1,45 @@
+# Copyright 2023 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPHostNetworkingPorts
+metadata:
+  name: cis-k8s-v1.7.1-restrict-host-port
+  labels:
+    policycontroller.gke.io/bundleName: cis-k8s-v1.7.1
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-k8s-v1.7.1',
+        bundleDisplayName: 'CIS Kubernetes Benchmark v1.7.1',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the CIS Kubernetes Benchmark 1.7.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
+        controlNumbers: '[5.2.13]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts containers from running with `hostPort` configured.',
+        remediation: 'Containers cannot run with `hostPort` configured. Remove `hostPort` from your containers.',
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: 'ea29446bc8b522074eda9ae4671ee34719f7ca3dcc1c4da7b429503f19b66079'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - anthos-identity-service
+  parameters:
+    hostNetwork: true
+    min: 0
+    max: 0

@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[SC-8]',
         severity: 'UNSPECIFIED',
         description: 'Ensures PeerAuthentications cannot overwrite strict mTLS.',
         remediation: 'Cannot use PeerAuthentications other than strict mTLS. Use strict mTLS. See "Mutual TLS" for more information: https://istio.io/latest/docs/ops/best-practices/security/#mutual-tls',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '3fc99dbf61bc7c0f9c4192e0eb50ca923727d63d9e7dd6d088cb9327fe93e0e9'
       }"
 spec:
   enforcementAction: dryrun

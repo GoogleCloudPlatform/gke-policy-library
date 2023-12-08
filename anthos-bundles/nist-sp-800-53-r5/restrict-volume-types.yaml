@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[SC-7,SA-8,CM-3,CM-6,CM-7]',
         severity: 'UNSPECIFIED',
         description: 'Restricts the mountable volumes types to the allowed list.',
         remediation: 'Cannot use mountable volume types unless listed in the `volumes` field. See "Volumes" for more information: https://kubernetes.io/docs/concepts/storage/volumes/',
-        minimumTemplateLibraryVersion: '1.10.1'
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '27a79d68a84ea97f819211d3af8351dcc2f184631ba1d497988f31a4f29432af'
       }"
 spec:
   enforcementAction: dryrun

@@ -18,20 +18,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: asm-policy-v0.0.1
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'asm-policy-v0.0.1',
         bundleDisplayName: 'Anthos Service Mesh v0.0.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
-        bundleVersion: '202310.0',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
         controlNumbers: '[1.4.1]',
         severity: 'UNSPECIFIED',
         description: 'In RequestAuthentication, enforce the jwtRules outputPayloadToHeader to not contain well known HTTP request headers or user predefined prohibited headers.',
         remediation: 'Modify the corresponding RequestAuthentication to not use well known or predefined prohibited headers.',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '85838e97e5e216c8f6e64a5c4fda75ebbdc005694c7f92a89e9977366c9175c5'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202311.0"
 spec:
   enforcementAction: dryrun
   match:

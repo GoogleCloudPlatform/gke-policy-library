@@ -18,20 +18,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: asm-policy-v0.0.1
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'asm-policy-v0.0.1',
         bundleDisplayName: 'Anthos Service Mesh v0.0.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy',
-        bundleVersion: '202310.0',
+        bundleVersion: '202311.0',
         bundleDescription: 'Use the ASM Policy v0.0.1 policy bundle with Policy Controller to evaluate the compliance of your clusters running Anthos Service Mesh against service mesh security best practices.',
         controlNumbers: '[1.2.2]',
         severity: 'UNSPECIFIED',
         description: 'Enforce the AuthorizationPolicy normalization.',
         remediation: 'Modify the corresponding value following the normalization guideline: https://istio.io/latest/docs/ops/best-practices/security/#understand-path-normalization-in-authorization-policy.',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '54041f396306be741c13b7d16e78eb35f603b6abf8797ed2c8da861243016b4e'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202311.0"
 spec:
   enforcementAction: dryrun
   match:

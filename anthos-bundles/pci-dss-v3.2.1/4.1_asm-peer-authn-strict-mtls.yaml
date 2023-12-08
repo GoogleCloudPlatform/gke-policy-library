@@ -13,20 +13,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
-    policycontroller.gke.io/constraintData: |
+    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
-        bundleLink: 'https://github.com/GoogleCloudPlatform/acm-policy-controller-library/tree/master/anthos-bundles/pci-dss-v3.2.1',
-        bundleVersion: '202310.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[4.1]',
         severity: 'UNSPECIFIED',
         description: 'Ensures PeerAuthentications cannot overwrite strict mTLS.',
         remediation: 'Cannot use PeerAuthentications other than strict mTLS. Use strict mTLS. See "Mutual TLS" for more information: https://istio.io/latest/docs/ops/best-practices/security/#mutual-tls',
-        minimumTemplateLibraryVersion: '1.11.1'
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '3fc99dbf61bc7c0f9c4192e0eb50ca923727d63d9e7dd6d088cb9327fe93e0e9'
       }"
-    policycontroller.gke.io/bundleVersion: "202310.0"
 spec:
   enforcementAction: dryrun
   match:

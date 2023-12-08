@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[SI-3]',
         severity: 'UNSPECIFIED',
         description: 'Requires the presence of an Anti-Virus daemonset.',
         remediation: 'Add an Anti-Virus daemonset, such as ClamAV, with the specified name and namespace.',
-        minimumTemplateLibraryVersion: '1.16.0'
+        minimumTemplateLibraryVersion: '1.16.0',
+        constraintHash: '12d6315c68c852a9b99b6859461ca014af25b3e478b20df20e94a2b29a94c86c'
       }"
 spec:
   match:

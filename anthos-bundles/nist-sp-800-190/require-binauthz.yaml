@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[SI-7,CM-6,IA-5,AC-4,AC-6]',
         severity: 'UNSPECIFIED',
         description: 'Requires the Binary Authorization Validating Admission Webhook.',
         remediation: 'Containers must use Binary Authorization for container image authenticity and attestation. See "Set up Binary Authorization" for more information: https://cloud.google.com/binary-authorization/docs/set-up-platform',
-        minimumTemplateLibraryVersion: '1.15.2'
+        minimumTemplateLibraryVersion: '1.15.2',
+        constraintHash: '610a1f46831b68bbdda728e08a830e33f0741fff310a3fd4561be0d123e9d867'
       }"
 spec:
   match:

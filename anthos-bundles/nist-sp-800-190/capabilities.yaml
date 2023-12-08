@@ -13,19 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
-    policycontroller.gke.io/bundleVersion: "202310.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202310.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[CM-3,CM-7]',
         severity: 'UNSPECIFIED',
         description: 'Adding capabilities beyond those listed is not allowed. https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
         remediation: 'Containers can add only capabilities listed in the `allowedCapabilities` field. Drop any unlisted capabilities from your containers: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container',
-        minimumTemplateLibraryVersion: '1.10.2'
+        minimumTemplateLibraryVersion: '1.10.2',
+        constraintHash: '7be54c86a93faa6a8dc983dd2ca0c7ee433ef66f17258c0935033f0917bf1a1f'
       }"
 spec:
   enforcementAction: dryrun
