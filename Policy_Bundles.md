@@ -21,7 +21,7 @@ This repository contains **sample** `Constraint`s which make use of Policy Contr
 | [ASM Policy v0.0.1](./bundles/asm-policy-v0.0.1) | No | 202311.0 |
 | [Cost and Reliability v2023](./anthos-bundles/cost-reliability-v2023)| No | 202311.0 |
 | [CIS Kubernetes v1.5.1](./bundles/cis-k8s-v1.5.1) | No | 202312.0 |
-| [CIS Kubernetes v1.7.1](./bundles/cis-k8s-v1.7.1) (Preview)| No | 202312.0-preview |
+| [CIS Kubernetes v1.7.1](./anthos-bundles/cis-k8s-v1.7.1) (Preview)| No | 202312.0-preview |
 | [CIS Google Kubernetes Engine (GKE) v1.4.0](./anthos-bundles/cis-gke-v1.4.0) (Preview)| Yes | 202312.0-preview |
 | [National Institute of Standards and Technology SP 800-53 Rev. 5](./anthos-bundles/nist-sp-800-53-r5) | Yes | 202312.0 |
 | [National Institute of Standards and Technology SP 800-190](./anthos-bundles/nist-sp-800-190) | Yes | 202312.0 |
