@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -11,20 +11,20 @@ kind: K8sPodResourcesBestPractices
 metadata:
   name: cost-reliability-v2023-pod-resources-best-practices
   annotations:
-    policycontroller.gke.io/bundleVersion: "202311.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cost-reliability-v2023',
         bundleDisplayName: 'Cost and Reliability v2023',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cost-reliability-v2023',
-        bundleVersion: '202311.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the Cost and Reliability v2023 Policy bundle with Policy Controller to evaluate your Google Kubernetes Engine (GKE) cluster resources against cost and reliability best practices.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Requires that containers are not best-effort and following burstable best practices.',
         remediation: 'Cannot run containers without cpu and memory requests (best-effort) and memory limit equal to memory request (burstable). Optional annotations can be configured to bypass best specific practices for individual containers. See "State of Kubernetes Cost Optimization Report" for more information: https://goo.gle/state-of-kubernetes-cost-optimization',
         minimumTemplateLibraryVersion: '1.15.3',
-        constraintHash: 'f9b767a3b96bbb648e4b6f569bcee0faab96a97a810e982896ecbc34c6102556'
+        constraintHash: 'f0f6a79a8f6b01d28c0548cb40bcfdd6ff1b9ff3cc2e02edaa2e0245bdfa89fe'
       }"
   labels:
     policycontroller.gke.io/bundleName: cost-reliability-v2023
@@ -59,6 +59,7 @@ spec:
       - anthos-identity-service
       - apigee
       - apigee-system
+      - gke-managed-cim
   parameters:
     exemptImages:
       - gcr.io/anthos-baremetal-release/*

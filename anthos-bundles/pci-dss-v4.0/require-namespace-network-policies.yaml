@@ -1,0 +1,66 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireNamespaceNetworkPolicies
+metadata:
+  name: pci-dss-v4.0-require-namespace-network-policies
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v4.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pci-dss-v4.0',
+        bundleDisplayName: 'PCI DSS v4.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v4',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the PCI DSS v4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v4.0.',
+        controlNumbers: '[1.2.5,1.2.6,1.4.1,1.4.4]',
+        severity: 'UNSPECIFIED',
+        description: 'Requires that every namespace defined in the cluster has a NetworkPolicy.',
+        remediation: 'Cannot have a namespace in the cluster without a NetworkPolicy. Add a NetworkPolicy to your namespace. See "Network Policies" for more information: https://kubernetes.io/docs/concepts/services-networking/network-policies',
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '4157745efbe6d5c6c582c9828973720cdaf9bad00f5761a01c21622d76407481'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    excludedNamespaces:
+      - kube-system
+      - kube-node-lease
+      - kube-public
+      - gatekeeper-system
+      - config-management-system
+      - config-management-monitoring
+      - resource-group-system
+      - gke-connect
+      - istio-system
+      - asm-system
+      - default
+      - capi-system
+      - vm-system
+      - gke-managed-metrics-server
+      - cert-manager
+      - anthos-creds
+      - capi-kubeadm-bootstrap-system
+      - gke-system
+      - anthos-identity-service
+      - gmp-system
+      - gmp-public
+      - gke-gmp-system
+      - gke-managed-filestorecsi
+      - apigee
+      - apigee-system
+      - gke-managed-system
+      - gke-managed-cim
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Namespace

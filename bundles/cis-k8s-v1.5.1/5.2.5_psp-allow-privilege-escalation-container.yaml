@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.5.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.5.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.5.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.5.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.2.5]',
         severity: 'UNSPECIFIED',

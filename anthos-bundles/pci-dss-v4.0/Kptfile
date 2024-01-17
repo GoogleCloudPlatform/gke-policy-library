@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: pci-dss-v4.0
+info:
+  description: PCI Data Security Standard v4.0
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/set-enforcement-action:v0.1
+      configMap:
+        enforcementAction: dryrun

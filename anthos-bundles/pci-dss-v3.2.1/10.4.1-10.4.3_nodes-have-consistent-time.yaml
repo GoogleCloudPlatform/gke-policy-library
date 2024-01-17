@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[10.4.1,10.4.3]',
         severity: 'UNSPECIFIED',
@@ -27,7 +27,7 @@ metadata:
         minimumTemplateLibraryVersion: '1.14.3',
         constraintHash: '160aadae28297f5efab83b6c67f9af92f244f634f7bfc8de3bb5da1fa6a9b37a'
       }"
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
 spec:
   enforcementAction: dryrun
   match:

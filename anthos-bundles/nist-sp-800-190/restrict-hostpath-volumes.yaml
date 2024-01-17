@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -13,13 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[CM-3,CM-6,CM-7,AC-4,SI-7]',
         severity: 'UNSPECIFIED',

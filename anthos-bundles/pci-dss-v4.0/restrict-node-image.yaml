@@ -1,0 +1,41 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireCosNodeImage
+metadata:
+  name: pci-dss-v4.0-restrict-node-image
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v4.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pci-dss-v4.0',
+        bundleDisplayName: 'PCI DSS v4.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v4',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the PCI DSS v4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v4.0.',
+        controlNumbers: '[10.6.1,10.6.2,10.6.3]',
+        severity: 'UNSPECIFIED',
+        description: 'Ensures consistent and correct time on Nodes by allowing only Container-Optimized OS (COS) or Ubuntu as the OS image.',
+        remediation: 'OS image must be Container-Optimized OS (COS) or Ubuntu. See "Node Images" for more information: https://cloud.google.com/kubernetes-engine/docs/concepts/node-images',
+        minimumTemplateLibraryVersion: '1.14.3',
+        constraintHash: '160aadae28297f5efab83b6c67f9af92f244f634f7bfc8de3bb5da1fa6a9b37a'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Node
+  parameters:
+    exemptOsImages:
+      - Ubuntu* #https://cloud.google.com/anthos/clusters/docs/bare-metal/latest/installing/configure-os/ubuntu#time-synch

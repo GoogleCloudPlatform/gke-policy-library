@@ -1,0 +1,43 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireDaemonsets
+metadata:
+  name: pci-dss-v4.0-require-av-daemonset
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v4.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pci-dss-v4.0',
+        bundleDisplayName: 'PCI DSS v4.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v4',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the PCI DSS v4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v4.0.',
+        controlNumbers: '[5.2.1,5.2.2,5.2.3,5.3.1,5.3.2,5.3.5]',
+        severity: 'UNSPECIFIED',
+        description: 'Requires the presence of an Anti-Virus daemonset.',
+        remediation: 'Add an Anti-Virus daemonset, such as ClamAV, with the specified name and namespace.',
+        minimumTemplateLibraryVersion: '1.16.0',
+        constraintHash: '12d6315c68c852a9b99b6859461ca014af25b3e478b20df20e94a2b29a94c86c'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Namespace
+  enforcementAction: dryrun
+  parameters:
+    requiredDaemonsets:
+      - name: clamav
+        namespace: clamav
+    restrictNodeSelector: true

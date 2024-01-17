@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -13,20 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-190
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-190',
         bundleDisplayName: 'NIST SP 800-190',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-190',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the NIST SP 800-190 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-190 Appendix B controls.',
         controlNumbers: '[SC-6]',
         severity: 'UNSPECIFIED',
         description: 'All workload pods must specify `cpu` and `memory` limits.',
         remediation: 'Pods must specify `cpu` and `memory` limits. See "Resource Management for Pods and Containers" for more information: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/',
         minimumTemplateLibraryVersion: '1.12.0',
-        constraintHash: '1d83ed304f85abec662bfbea92cb8cea00f55717ae21827b4963231ff2c50bda'
+        constraintHash: 'a6df682567a187b272f8bb7fb0671d44b83536d7c934fd69c908b8ef34775a14'
       }"
 spec:
   enforcementAction: dryrun
@@ -53,6 +53,7 @@ spec:
       - anthos-identity-service
       - apigee
       - apigee-system
+      - gke-managed-cim
   parameters:
     limits:
       - cpu

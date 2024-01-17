@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ metadata:
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security',
-        bundleVersion: '202311.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
@@ -32,7 +32,7 @@ metadata:
         minimumTemplateLibraryVersion: '1.10.1',
         constraintHash: '7139990914d44528ff03d06f529298cf9a95dedbb16a02e4c99718341ec0c29d'
       }"
-    policycontroller.gke.io/bundleVersion: "202311.0"
+    policycontroller.gke.io/bundleVersion: "202312.0"
 spec:
   enforcementAction: dryrun
   match:

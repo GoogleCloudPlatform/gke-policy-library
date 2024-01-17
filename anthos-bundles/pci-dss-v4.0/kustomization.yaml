@@ -1,0 +1,31 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- require-apps-annotations.yaml
+- require-av-daemonset.yaml
+- require-binauthz.yaml
+- require-cloudarmor-backendconfig.yaml
+- require-config-management.yaml
+- require-default-deny-network-policies.yaml
+- require-managed-by-label.yaml
+- require-namespace-network-policies.yaml
+- require-peer-authentication-strict-mtls.yaml
+- require-valid-network-ranges.yaml
+- resources-have-required-labels.yaml
+- restrict-cluster-admin-role.yaml
+- restrict-creation-with-default-serviceaccount.yaml
+- restrict-default-namespace.yaml
+- restrict-ingress.yaml
+- restrict-node-image.yaml
+- restrict-pods-exec.yaml
+- restrict-rbac-subjects.yaml
+- restrict-role-wildcards.yaml
+- restrict-storageclass.yaml

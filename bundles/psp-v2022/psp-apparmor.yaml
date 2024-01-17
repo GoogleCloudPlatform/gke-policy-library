@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,21 +18,21 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: psp-v2022
   annotations:
+    policycontroller.gke.io/bundleVersion: "202312.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'psp-v2022',
         bundleDisplayName: 'Pod Security Policies v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-constraints-to-enforce-pod-security',
-        bundleVersion: '202311.0',
+        bundleVersion: '202312.0',
         bundleDescription: 'Use the Pod Security Policies (PSP) v2022 policy bundle with Policy Controller to implement the Kubernetes Pod Security Policies.',
-        controlNumbers: '',
+        controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Configures an allow-list of AppArmor profiles for use by containers. This corresponds to specific annotations applied to a PodSecurityPolicy.',
         remediation: 'Pods must use an AppArmor profile listed in the `allowedProfiles` field. Use a different type or customize the field. See "AppArmor" for more information: https://kubernetes.io/docs/tutorials/clusters/apparmor/',
         minimumTemplateLibraryVersion: '1.11.1',
         constraintHash: '8014262f0f5a5b70bd8b8c3c4ccb698d00af495a429ad8952b542d65a853e4c5'
       }"
-    policycontroller.gke.io/bundleVersion: "202311.0"
 spec:
   enforcementAction: dryrun
   match:

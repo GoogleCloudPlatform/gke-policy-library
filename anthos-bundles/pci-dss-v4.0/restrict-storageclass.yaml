@@ -1,0 +1,49 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sStorageClass
+metadata:
+  name: pci-dss-v4.0-restrict-storageclass
+  labels:
+    policycontroller.gke.io/bundleName: pci-dss-v4.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202312.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pci-dss-v4.0',
+        bundleDisplayName: 'PCI DSS v4.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v4',
+        bundleVersion: '202312.0-preview',
+        bundleDescription: 'Use the PCI DSS v4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v4.0.',
+        controlNumbers: '[3.3.2,3.3.3]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts `StorageClass` to a list of `StorageClass` which encrypt by default.',
+        remediation: 'Ensure your `StorageClass` uses an allowed `StorageClass`. If your `StorageClass` is encrypted by default, add it to the `allowedStorageClasses` parameter. See "Storage Classes" for more information: https://kubernetes.io/docs/concepts/storage/storage-classes',
+        minimumTemplateLibraryVersion: '1.15.1',
+        constraintHash: 'b4e4f20ec51dc19d066a70b5060de3230196e49c88fa3150ca2f64c9d46e0f10'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - PersistentVolumeClaim
+      - apiGroups:
+          - apps
+        kinds:
+          - StatefulSet
+  enforcementAction: dryrun
+  parameters:
+    includeStorageClassesInMessage: true
+    allowedStorageClasses:
+      # Listed StorageClasses must encrypt by default
+      - standard-rwo
+      - premium-rwo
+      - standard

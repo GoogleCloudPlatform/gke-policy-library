@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -13,20 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pci-dss-v3.2.1
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pci-dss-v3.2.1',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.1.5,2.4]',
         severity: 'UNSPECIFIED',
         description: 'Requires that all apps in the cluster have a `network-controls/date` annotation.',
         remediation: 'Every app in the cluster requires a `network-controls/date` annotation. Check the app's network-controls and add an `network-controls/date` annotation with the schema {YYYY-MM-DD}.',
         minimumTemplateLibraryVersion: '1.11.1',
-        constraintHash: 'ab971ab2c5241fcea28df8f369db202592abe633e6df763dcf08ba93a861e997'
+        constraintHash: '91d0f6fd469a5fa021ec74640396f3220396b720ac97f9b6bd86774289c75a0a'
       }"
 spec:
   enforcementAction: dryrun
@@ -61,6 +61,7 @@ spec:
       - gke-gmp-system
       - apigee
       - apigee-system
+      - gke-managed-cim
   parameters:
     message: All apps must have a `network-controls/date` annotations.
     annotations:

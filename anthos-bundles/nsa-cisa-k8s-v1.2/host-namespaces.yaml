@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # This is “Software” that is licensed under the “General Software” section of
 # the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
@@ -13,13 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nsa-cisa-k8s-v1.2
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.0"
+    policycontroller.gke.io/bundleVersion: "202312.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nsa-cisa-k8s-v1.2',
         bundleDisplayName: 'NSA CISA Kubernetes Hardening Guide v1.2',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nsa-cisa-k8s-v1.2',
-        bundleVersion: '202312.0',
+        bundleVersion: '202312.1',
         bundleDescription: 'Use the NSA CISA Kubernetes Hardening Guide v1.2 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NSA CISA Kubernetes Hardening Guide v1.2.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
