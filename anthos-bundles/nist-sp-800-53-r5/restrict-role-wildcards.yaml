@@ -13,20 +13,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: nist-sp-800-53-r5
   annotations:
-    policycontroller.gke.io/bundleVersion: "202312.1"
+    policycontroller.gke.io/bundleVersion: "202403.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'nist-sp-800-53-r5',
         bundleDisplayName: 'NIST SP 800-53 Rev. 5',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-nist-sp-800-53-r5',
-        bundleVersion: '202312.1',
+        bundleVersion: '202403.0',
         bundleDescription: 'Use the NIST SP 800-53 Rev. 5 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the NIST SP 800-53 Rev. 5 controls.',
         controlNumbers: '[AC-6]',
         severity: 'UNSPECIFIED',
         description: 'Restricts the use of wildcards in `Roles` and `ClusterRoles`.',
         remediation: 'Cannot use the wildcard character in `Roles` and `ClusterRoles. Remove all wildcards from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
         minimumTemplateLibraryVersion: '1.12.0',
-        constraintHash: 'c6a326c1cccd6b7b6768c67bee492ffcfe20adc095ea3dbcbe0fd290c0ba006c'
+        constraintHash: '85ca11f53b0728ff32324b3a366ec2bed146fd2f0053497db1f76f9a8c1bc025'
       }"
 spec:
   enforcementAction: dryrun
@@ -46,6 +46,7 @@ spec:
       clusterRoles:
         - name: config-management-operator
         - name: configsync.gke.io:ns-reconciler
+        - name: configsync.gke.io:root-reconciler
         - name: cluster-admin
         - name: external-metrics-reader
         - name: gatekeeper-manager-role

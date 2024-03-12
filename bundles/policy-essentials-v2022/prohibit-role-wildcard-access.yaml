@@ -18,20 +18,20 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: policy-essentials-v2022
   annotations:
-    policycontroller.gke.io/bundleVersion: "202311.0"
+    policycontroller.gke.io/bundleVersion: "202403.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'policy-essentials-v2022',
         bundleDisplayName: 'Policy Essentials v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-policy-essentials-v2022',
-        bundleVersion: '202311.0',
+        bundleVersion: '202403.0',
         bundleDescription: 'Use the Policy Essentials v2022 policy bundle with Policy Controller to apply Google recommended best practices to your cluster resources.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
         description: 'Restricts the use of wildcards in `Roles` and `ClusterRoles`.',
         remediation: 'Cannot use the wildcard character in `Roles` and `ClusterRoles. Remove all wildcards from your `Roles` and `ClusterRoles`. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
         minimumTemplateLibraryVersion: '1.12.0',
-        constraintHash: 'c6a326c1cccd6b7b6768c67bee492ffcfe20adc095ea3dbcbe0fd290c0ba006c'
+        constraintHash: '85ca11f53b0728ff32324b3a366ec2bed146fd2f0053497db1f76f9a8c1bc025'
       }"
 spec:
   enforcementAction: dryrun
@@ -51,6 +51,7 @@ spec:
       clusterRoles:
         - name: config-management-operator
         - name: configsync.gke.io:ns-reconciler
+        - name: configsync.gke.io:root-reconciler
         - name: cluster-admin
         - name: external-metrics-reader
         - name: gatekeeper-manager-role

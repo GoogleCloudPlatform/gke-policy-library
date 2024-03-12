@@ -9,7 +9,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPAllowedUsers
 metadata:
-  name: pss-restricted-v2022-running-as-non-root
+  name: pss-restricted-v2022-running-as-non-root-user
   labels:
     policycontroller.gke.io/bundleName: pss-restricted-v2022
   annotations:
@@ -18,16 +18,16 @@ metadata:
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted',
-        bundleVersion: '202311.0',
+        bundleVersion: '202403.0',
         bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
-        description: 'Containers must be required to run as non-root users. Containers must not set runAsUser to 0.',
-        remediation: '',
+        description: 'Containers must not set runAsUser to 0.',
+        remediation: 'Set your containers with `securityContext.runAsUser:` to a non-root user ID.',
         minimumTemplateLibraryVersion: '1.10.1',
         constraintHash: '978a9e1754712f609b7c79c145f82052740cbacff4cd1d311f7afb1c1e62fe57'
       }"
-    policycontroller.gke.io/bundleVersion: "202311.0"
+    policycontroller.gke.io/bundleVersion: "202403.0"
 spec:
   enforcementAction: dryrun
   match:

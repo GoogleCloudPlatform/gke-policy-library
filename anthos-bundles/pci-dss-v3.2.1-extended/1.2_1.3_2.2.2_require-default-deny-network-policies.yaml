@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pci-dss-v3.2.1-extended',
         bundleDisplayName: 'PCI DSS v3.2.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pci-dss-v3',
-        bundleVersion: '202312.1',
+        bundleVersion: '202403.0',
         bundleDescription: 'Use the PCI DSS v3.2.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the Payment Card Industry (PCI) Data Security Standard (DSS) v3.2.1.',
         controlNumbers: '[1.2,1.3,2.2.2]',
         severity: 'UNSPECIFIED',
@@ -27,7 +27,7 @@ metadata:
         minimumTemplateLibraryVersion: '1.14.0',
         constraintHash: '8cd9d492c2d35588640d8bde68c271ab21c35abec5bc0183139e3b42b1c2141e'
       }"
-    policycontroller.gke.io/bundleVersion: "202312.1"
+    policycontroller.gke.io/bundleVersion: "202403.0"
 spec:
   enforcementAction: dryrun
   match:
