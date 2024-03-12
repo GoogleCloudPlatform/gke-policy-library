@@ -2,4 +2,4 @@
 
 ## Contents
 - [Policy Bundles](Policy_Bundles.md)
-- [Custom Org Policy](Custom_Org_Policy.md)
+- [Custom Org Policy](gke-custom-org-policy/samples/)
