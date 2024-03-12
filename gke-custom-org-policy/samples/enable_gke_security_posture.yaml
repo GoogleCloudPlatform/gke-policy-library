@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.securityPosture
+resource_types: container.googleapis.com/Cluster
+method_types:
+ - CREATE
+ - UPDATE
+condition: resource.securityPostureConfig.vulnerabilityMode == "BASIC" || resource.securityPostureConfig.vulnerabilityMode == "ENTERPRISE"
+action_type: ALLOW
+display_name: Enable GKE Security Posture
+description: Only allow GKE Cluster resource create or update if Security Posture is enabled.
+
