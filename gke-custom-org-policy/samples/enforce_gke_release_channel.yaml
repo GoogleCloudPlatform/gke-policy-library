@@ -1,0 +1,9 @@
+name: organizations/${ORG_ID}/customConstraints/custom.releaseChannel
+resource_types: container.googleapis.com/Cluster
+method_types:
+  - CREATE
+  - UPDATE
+condition: resource.releaseChannel.channel == "REGULAR"
+action_type: ALLOW
+display_name: REGULAR release channel constraint
+description: Only allow clusters to be created or updated with REGULAR release channel.

@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.cosImageType
+resource_types: container.googleapis.com/NodePool
+method_types:
+  - CREATE
+  - UPDATE
+condition: resource.config.imageType == "cos" || resource.config.imageType == "cos_containerd"
+action_type: ALLOW
+display_name: Require COS image type
+description: Require NodePool image type to be COS.
+

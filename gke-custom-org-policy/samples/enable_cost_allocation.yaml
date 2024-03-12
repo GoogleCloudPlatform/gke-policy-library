@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.enableCostAllocation
+resource_types: container.googleapis.com/Cluster
+method_types:
+  - CREATE
+  - UPDATE
+condition: resource.costManagementConfig.enabled == true
+action_type: ALLOW
+display_name: Require GKE cost allocation
+description: Require GKE cost allocation configuration to be enabled
+

@@ -1,0 +1,9 @@
+name: organizations/315066163234/${ORG_ID}/custom.masterAuthorizedNetworksEnabled
+resource_types: container.googleapis.com/Cluster
+method_types:
+ - CREATE
+ - UPDATE
+condition: resource.masterAuthorizedNetworksConfig.enabled == true
+action_type: ALLOW
+display_name: Require GKE master authorized networks
+description: Require GKE master authorized networks configuration to be enabled.

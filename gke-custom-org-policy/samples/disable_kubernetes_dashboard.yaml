@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.disableK8sDashboard
+resource_types: container.googleapis.com/Cluster
+method_types:
+ - CREATE
+ - UPDATE
+condition: resource.addonsConfig.kubernetesDashboard.disabled == true
+action_type: ALLOW
+display_name: Disable Kubernetes Dashboard
+description: Only allow GKE Cluster resource create or update if Kubernetes Dashboard is disabled.
+
