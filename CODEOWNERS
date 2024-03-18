@@ -1,3 +1,6 @@
-* @GoogleCloudPlatform/blueprint-solutions @apeabody
+* @GoogleCloudPlatform/blueprint-solutions @GoogleCloudPlatform/eks-team
 
-/bundles/asm-policy-v0.0.1/ @GoogleCloudPlatform/blueprint-solutions @apeabody @liwenhao0810
+/Policy_Bundles.md @GoogleCloudPlatform/eks-team
+/anthos-bundles @GoogleCloudPlatform/eks-team
+/bundles @GoogleCloudPlatform/eks-team
+/bundles/asm-policy-v0.0.1/ @GoogleCloudPlatform/eks-team @liwenhao0810
