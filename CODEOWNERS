@@ -4,3 +4,4 @@
 /anthos-bundles @GoogleCloudPlatform/eks-team
 /bundles @GoogleCloudPlatform/eks-team
 /bundles/asm-policy-v0.0.1/ @GoogleCloudPlatform/eks-team @liwenhao0810
+/gke-custom-org-policy @GoogleCloudPlatform/eks-team @chuyang-deng
