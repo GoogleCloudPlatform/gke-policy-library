@@ -11,7 +11,7 @@ Controls](https://kubernetes.io/docs/concepts/security/pod-security-standards/#r
 | Volume Types             | pss-restricted-v2022-volume-types                                                               |
 | Privilege Escalation     | pss-restricted-v2022-privilege-escalation                                                       |
 | Running as Non-root      | pss-restricted-v2022-running-as-non-root                                                        |
-| Running as Non-root user | pss-restricted-v2022-running-as-non-root                                                        |
+| Running as Non-root user | pss-restricted-v2022-running-as-non-root-user                                                   |
 | Seccomp                  | pss-restricted-v2022-seccomp                                                                    |
 | Capabilities             | pss-restricted-v2022-capabilities                                                               |
 

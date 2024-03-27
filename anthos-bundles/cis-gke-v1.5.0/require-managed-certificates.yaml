@@ -1,0 +1,45 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredAnnotations
+metadata:
+  name: cis-gke-v1.5.0-require-managed-certificates
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[5.6.8]',
+        severity: 'UNSPECIFIED',
+        description: 'Requires that all Ingress objects have a `networking.gke.io/managed-certificates` annotation.',
+        remediation: 'Every Ingress object requires a `networking.gke.io/managed-certificates` annotation. Check Ingress objects and add a `networking.gke.io/managed-certificates` annotation with the comma-separated list of ManagedCertificate objects. See "Using Google-managed SSL certificates" for more information: https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs',
+        minimumTemplateLibraryVersion: '1.12.0',
+        constraintHash: '7f49686ecd317b0fbc5a6e8c9ff7ec3d5c50afd85b474ba9b95b53a2dbba7dc8'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - extensions
+          - networking.k8s.io
+        kinds:
+          - Ingress
+  parameters:
+    message: All Ingress objects must have a `networking.gke.io/managed-certificates` annotation
+    annotations:
+      - key: networking.gke.io/managed-certificates
+        # comma-separated list of ManagedCertificate object names (and optional spaces between commas)
+        allowedRegex: ^[0-9a-z\-\.]+(\s*,\s*[0-9a-z\-\.]+)*$

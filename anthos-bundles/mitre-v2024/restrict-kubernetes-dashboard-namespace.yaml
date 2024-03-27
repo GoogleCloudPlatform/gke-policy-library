@@ -1,0 +1,41 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictNamespaces
+metadata:
+  name: mitre-v2024-restrict-kubernetes-dashboard-namespace
+  labels:
+    policycontroller.gke.io/bundleName: mitre-v2024
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202402.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'mitre-v2024',
+        bundleDisplayName: 'MITRE',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-mitre-v2024',
+        bundleVersion: '202402.0-preview',
+        bundleDescription: 'Use the MITRE policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the MITRE knowledge base of adversary tactics and techniques based on real-world observations.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the use of the `kubernetes-dashboard` namespace. Kubernetes dashboard versions prior to v2.0.1 do not support user authentication. If exposed externally, it will allow unauthenticated remote management of the cluster.',
+        remediation: 'Ensure dashboard version is v2.0.1 or higher, or use the Google Cloud console to manage, troubleshoot, and monitor your GKE clusters, workloads, and applications: https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards#kubernetes_dashboard',
+        minimumTemplateLibraryVersion: '1.10.2',
+        constraintHash: 'de0c87a2a8c1b803e2f18cb01e8251afced48a18fa3b913512cd79caa953dcd3'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+  parameters:
+    restrictedNamespaces:
+      - kubernetes-dashboard

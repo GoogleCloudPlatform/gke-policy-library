@@ -1,6 +1,9 @@
 PCI DSS v3.2.1 Extended
 ==================================================
 
+Note: The PCI DSS v3.2.1 Extended policy bundle is deprecated. Please migrate to the
+[PCI DSS v4.0 policy bundle](https://github.com/GoogleCloudPlatform/gke-policy-library.git/anthos-bundles/pci-dss-v4.0).
+
 ## Description
 
 Use the PCI DSS v3.2.1 Extended policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the PCI Data Security Standard v3.2.1.

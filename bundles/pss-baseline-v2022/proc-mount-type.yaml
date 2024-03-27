@@ -18,13 +18,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: pss-baseline-v2022
   annotations:
-    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/bundleVersion: "202403.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pss-baseline-v2022',
         bundleDisplayName: 'Pod Security Standards Baseline v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-baseline',
-        bundleVersion: '202403.0',
+        bundleVersion: '202403.1',
         bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Baseline policy protections.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',

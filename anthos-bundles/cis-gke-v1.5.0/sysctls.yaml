@@ -1,0 +1,45 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPForbiddenSysctls
+metadata:
+  name: cis-gke-v1.5.0-sysctls
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[4.2.1]',
+        severity: 'UNSPECIFIED',
+        description: 'Sysctls can disable security mechanisms or affect all containers on a host, and are restricted except for an allowed "safe" subset. A sysctl is safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node. See "Pod Security Standards" for more information: https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Containers can set only sysctls listed in the `allowedSysctls` field. Drop any unlisted sysctls from your containers: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/',
+        minimumTemplateLibraryVersion: '1.14.1',
+        constraintHash: '26ed42ef11d98ca6e7cdfc3604f884510242d70039b1e71a66b3ec55f7fc44c6'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+  parameters:
+    allowedSysctls:
+      - kernel.shm_rmid_forced
+      - net.ipv4.ip_local_port_range
+      - net.ipv4.ip_unprivileged_port_start
+      - net.ipv4.tcp_syncookies
+      - net.ipv4.ping_group_range

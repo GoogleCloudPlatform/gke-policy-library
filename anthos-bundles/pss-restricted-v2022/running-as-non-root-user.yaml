@@ -1,0 +1,59 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPAllowedUsers
+metadata:
+  name: pss-restricted-v2022-running-as-non-root-user
+  labels:
+    policycontroller.gke.io/bundleName: pss-restricted-v2022
+  annotations:
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pss-restricted-v2022',
+        bundleDisplayName: 'Pod Security Standards Restricted v2022',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted',
+        bundleVersion: '202403.1',
+        bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'Containers must not set runAsUser to 0.',
+        remediation: 'Set your containers with `securityContext.runAsUser:` to a non-root user ID.',
+        minimumTemplateLibraryVersion: '1.10.1',
+        constraintHash: '5fe658809a5083c3f40b8f17af653d8baaedece8b69adc41cd72f81618a8c709'
+      }"
+    policycontroller.gke.io/bundleVersion: "202403.1"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - asm-system
+    - config-management-system
+    - config-management-monitoring
+    - cert-manager
+    - gke-connect
+    - istio-system
+    - resource-group-system
+    - gatekeeper-system
+    - anthos-identity-service
+  parameters:
+    exemptImages:
+    - gcr.io/gke-release/asm/proxyv2:*
+    - gcr.io/anthos-baremetal-release/*
+    - gke.gcr.io/*
+    runAsUser:
+      rule: MustRunAs
+      ranges:
+      - min: 1
+        max: 65536

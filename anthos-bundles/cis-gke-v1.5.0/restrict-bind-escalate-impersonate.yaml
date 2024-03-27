@@ -1,0 +1,59 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictRoleRules
+metadata:
+  name: cis-gke-v1.5.0-restrict-bind-escalate-impersonate
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[4.1.8]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the access to the bind, escalate, impersonate on roles/clusterroles in `Roles` and `ClusterRoles`.',
+        remediation: 'The access to roles/clusterroles with bind, escalate, impersonate in Roles and ClusterRoles is restricted. Remove bind, escalate, impersonate rules for clusterroles/roles from your Roles and ClusterRoles. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
+        minimumTemplateLibraryVersion: '1.15.2',
+        constraintHash: '5cbc41cd74d8b7743eaf498a5bacf7fb6ec734d80e3c244481aac1eb44ebc7b6'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - Role
+          - ClusterRole
+  parameters:
+    disallowedRules:
+      - apiGroups:
+          - ""
+        resources:
+          - clusterroles
+          - roles
+        verbs:
+          - bind
+          - escalate
+          - impersonate
+    exemptions:
+      clusterRoles:
+        - name: admin
+        - name: cluster-admin
+        - name: system:controller:clusterrole-aggregation-controller
+        - name: config-management-operator
+      roles:
+        - name: agent-updater
+          namespace: gke-connect

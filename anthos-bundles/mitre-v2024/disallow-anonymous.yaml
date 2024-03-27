@@ -1,0 +1,47 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDisallowAnonymous
+metadata:
+  name: mitre-v2024-no-anonymous
+  labels:
+    policycontroller.gke.io/bundleName: mitre-v2024
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202402.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'mitre-v2024',
+        bundleDisplayName: 'MITRE',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-mitre-v2024',
+        bundleVersion: '202402.0-preview',
+        bundleDescription: 'Use the MITRE policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the MITRE knowledge base of adversary tactics and techniques based on real-world observations.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'Disallows associating `ClusterRole` and `Role` resources to the `system:anonymous` user and `system:unauthenticated` group.',
+        remediation: 'Remove all `ClusterRole` and `Role` resources associated with the `system:anonymous` user or `system:unauthenticated` group. See "Avoid default roles and groups" for more information: https://cloud.google.com/kubernetes-engine/docs/best-practices/rbac#default-roles-groups',
+        minimumTemplateLibraryVersion: '1.14.0',
+        constraintHash: 'b17f6800fe5eda68da1de99eb29235eba18148e2393c2fd91d02a58882487686'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - ClusterRoleBinding
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - RoleBinding
+  parameters:
+    allowedRoles:
+      - ais-proxy-get-role
+      - kubeadm:bootstrap-signer-clusterinfo
+      - system:public-info-viewer
+  enforcementAction: dryrun

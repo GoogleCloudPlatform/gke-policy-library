@@ -1,8 +1,6 @@
 PCI DSS v4.0
 ==================================================
 
-Note: The PCI DSS v4.0 policy bundle is a preview release. This means that the functionality might change in backward-incompatible ways. A preview release is not subject to any SLA or deprecation policy and may receive limited or no support.
-
 ## Description
 
 Use the PCI DSS v4.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the PCI Data Security Standard v4.0.

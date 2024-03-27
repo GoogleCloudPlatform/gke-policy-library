@@ -1,0 +1,179 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictRbacSubjects
+metadata:
+  name: cis-gke-v1.5.0-restrict-rbac-subjects
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[5.8.2]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the use of names in RBAC subjects to permitted values.',
+        remediation: 'Cannot use names in RBAC bindings other than permitted values. Remove the restricted RBAC subject entry or add the name to the `allowedSubjects` list. See “Using RBAC Authorization” for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles',
+        minimumTemplateLibraryVersion: '1.14.0',
+        constraintHash: '057797f13d10a8f3a6c7e9143dded0944d3adf8b097acc7f9e818829ddc8d013'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - RoleBinding
+          - ClusterRoleBinding
+    excludedNamespaces: # Applicable only to RoleBindings
+      - kube-system
+      - apigee
+      - apigee-system
+  parameters:
+    allowedSubjects:
+      # Permit Google Groups for RBAC: https://cloud.google.com/kubernetes-engine/docs/how-to/google-groups-rbac
+      # Uncomment the following line and put your domain name after '@'
+      # - name: "gke-security-groups@[yourdomain.com]"
+      # Example: Permit @google.com email domain
+      - name: ^.+@google.com$ # Update to your email domain
+        regexMatch: true
+      # Permit Google Service Agents
+      - name: ^.+@gcp-sa-[a-z-]+.iam.gserviceaccount.com$
+        regexMatch: true
+      - name: ^.+@system.gserviceaccount.com$
+        regexMatch: true
+      # Permit selected patterns
+      - name: ^system:.+$
+        regexMatch: true
+      - name: ^.+-controller$
+        regexMatch: true
+      - name: ^istiod-asm-[0-9]{4}-[0-9]$
+        regexMatch: true
+      - name: ^preflightcheck-operator-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      - name: ^capi-controller-manager-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      - name: ^capi-kubeadm-bootstrap-system-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      - name: ^capi-kubeadm-bootstrap-manager-rolebinding-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      - name: ^cap-controller-manager-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      - name: ^anthos-cluster-operator-[0-9].[0-9]{2}.[0-9]+$
+        regexMatch: true
+      # for Apigee
+      - name: ^apigee.*$
+        regexMatch: true
+      # Permit Config Sync root and namespace reconcilers
+      - name: ^(root|ns)-reconciler-.+$
+        regexMatch: true
+      # Permit selected names
+      - name: antrea-cpha
+      - name: bootstrap-signer
+      - name: canonical-service-account
+      - name: cilium
+      - name: cloud-provider
+      - name: cluster-autoscaler
+      - name: config-management-operator
+      - name: connect-agent-sa
+      - name: default
+      - name: event-exporter-sa
+      - name: gatekeeper-admin
+      - name: generic-garbage-collector
+      - name: gke-metadata-server
+      - name: gke-metrics-agent
+      - name: horizontal-pod-autoscaler
+      - name: istio-reader-service-account
+      - name: istiod-service-account
+      - name: konnectivity-agent-cpha
+      - name: kube-apiserver
+      - name: kube-controller-manager
+      - name: kube-dns
+      - name: kube-dns-autoscaler
+      - name: kube-proxy
+      - name: kube-scheduler
+      - name: kubelet
+      - name: kubelet-bootstrap
+      - name: metrics-server
+      - name: monitor
+      - name: netd
+      - name: pdcsi-node-sa
+      - name: persistent-volume-binder
+      - name: pod-garbage-collector
+      - name: reconciler-manager
+      - name: resource-group-sa
+      - name: root-ca-cert-publisher
+      - name: root-reconciler
+      - name: token-cleaner
+      - name: stackdriver-prometheus-scrape
+      - name: stackdriver-operator
+      - name: cert-manager
+      - name: edge-sa
+      - name: vmruntime-vmruntime-controller-manager
+      - name: cert-manager
+      - name: clientconfig-operator
+      - name: localpv
+      - name: metrics-server-operator
+      - name: cert-manager-webhook
+      - name: sp-controller-manager
+      - name: core-dns-autoscale
+      - name: metadata-agent
+      - name: cert-manager-cainjector
+      - name: metallb-speaker
+      - name: istio-ingressgateway-service-account
+      - name: lifecycle-controllers-manager
+      - name: metallb-speaker
+      - name: ais-manager
+      - name: ansible-runner
+      - name: healthcheck-metrics-collector
+      - name: core-dns-autoscaler
+      - name: lifecycle-controllers-manager
+      - name: healthcheck-metrics-collector
+      - name: stackdriver-log-forwarder
+      - name: coredns
+      - name: lifecycle-controllers-deployer
+      - name: capi-controller-manager
+      - name: cilium-operator
+      - name: kube-state-metrics
+      - name: istio-cni
+      - name: istio-cni-repair-rolebinding
+      - name: mdp-controller
+      - name: fluentbit-gke
+      - name: admission-webhook
+      - name: operator
+      - name: collector
+      - name: cilium-win
+      - name: maintenance-handler
+      - name: filestorecsi-node-sa
+      - name: gcsfusecsi-node-sa
+      - name: pkgextract-service
+      - name: pkgextract-cleanup-service
+      - name: prometheus-scrape
+      - name: calico-typha-horizontal-autoscaler
+      - name: prometheus
+      - name: user-apiserver-metrics-scrape
+      - name: bigip-ctlr
+      - name: calico-cni-sa
+      - name: calico-cni-plugin
+      - name: coredns-autoscaler
+      - name: calico-sa
+      - name: calico-typha
+      - name: konnectivity-agent-autoscaler
+      - name: load-balancer-f5
+      - name: vsphere-csi-node
+      - name: csi-snapshot-webhook
+      - name: vsphere-legacy-cloud-provider
+      - name: legacy-service-account-token-cleaner
+      - name: container-watcher-pod-reader

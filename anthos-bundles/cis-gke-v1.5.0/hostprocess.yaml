@@ -1,0 +1,40 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPWindowsHostProcess
+metadata:
+  name: cis-gke-v1.5.0-hostprocess
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[4.2.1]',
+        severity: 'UNSPECIFIED',
+        description: 'Windows pods offer the ability to run HostProcess containers which enables privileged access to the Windows node. Privileged access to the host is disallowed in the baseline policy. See "Pod Security Standards" for more information: https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Containers and pods cannot run with `securityContext.windowsOptions.hostProcess` set to `true`. Remove `securityContext.windowsOptions.hostProcess: true` from your containers and pods. See "Create a Windows HostProcess Pod" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/create-hostprocess-pod/',
+        minimumTemplateLibraryVersion: '1.16.2',
+        constraintHash: 'ecb6e212dd9f9f8d81032a7f49bf2a2138edf01f5df562ae6258d17099a53b00'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+    excludedNamespaces:
+      - kube-system
+  enforcementAction: dryrun

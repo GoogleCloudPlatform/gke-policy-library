@@ -21,6 +21,7 @@ resources:
 - host-namespaces-hostnetwork.yaml
 - host-ports.yaml
 - hostpath-volumes.yaml
+- hostprocess.yaml
 - privileged-containers.yaml
 - proc-mount-type.yaml
 - seccomp.yaml

@@ -7,53 +7,42 @@
 # cluster” is defined as “A Cluster (of any kind) registered to a fleet project
 # where the Anthos API is enabled”.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPAllowedUsers
+kind: K8sPSSRunAsNonRoot
 metadata:
-  name: pss-restricted-v2022-running-as-non-root-user
+  name: pss-restricted-v2022-running-as-non-root
   labels:
     policycontroller.gke.io/bundleName: pss-restricted-v2022
   annotations:
+    policycontroller.gke.io/bundleVersion: "202403.1"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted',
-        bundleVersion: '202403.0',
+        bundleVersion: '202403.1',
         bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
-        description: 'Containers must not set runAsUser to 0.',
-        remediation: 'Set your containers with `securityContext.runAsUser:` to a non-root user ID.',
-        minimumTemplateLibraryVersion: '1.10.1',
-        constraintHash: '978a9e1754712f609b7c79c145f82052740cbacff4cd1d311f7afb1c1e62fe57'
+        description: 'Containers must be required to run as non-root users. See "Pod Security Standards" for more information: https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted',
+        remediation: 'Set your pods and containers with `securityContext.runAsNonRoot: true`.',
+        minimumTemplateLibraryVersion: '1.17.3',
+        constraintHash: '578967fba871a9f2748d08cb0b4c3c0b0d42a43bf3e3aaa494ec26626089b374'
       }"
-    policycontroller.gke.io/bundleVersion: "202403.0"
 spec:
   enforcementAction: dryrun
   match:
     kinds:
-    - apiGroups:
-      - ""
-      kinds:
-      - Pod
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
     excludedNamespaces:
-    - kube-system
-    - asm-system
-    - config-management-system
-    - config-management-monitoring
-    - cert-manager
-    - gke-connect
-    - istio-system
-    - resource-group-system
-    - gatekeeper-system
-    - anthos-identity-service
-  parameters:
-    exemptImages:
-    - gcr.io/gke-release/asm/proxyv2:*
-    - gcr.io/anthos-baremetal-release/*
-    - gke.gcr.io/*
-    runAsUser:
-      rule: MustRunAsNonRoot
-      ranges:
-      - min: 1
-        max: 65536
+      - kube-system
+      - gatekeeper-system
+      - anthos-identity-service
+      - gke-system
+      - cluster-* # Anthos clusters on bare metal
+      - capi-kubeadm-bootstrap-system
+      - capi-system
+      - vm-system
+      - gke-managed-cim

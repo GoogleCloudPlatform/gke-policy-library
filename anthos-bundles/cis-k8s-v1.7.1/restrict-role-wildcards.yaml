@@ -13,13 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-k8s-v1.7.1
   annotations:
-    policycontroller.gke.io/bundleVersion: 202312.1-preview
+    policycontroller.gke.io/bundleVersion: 202403.0-preview
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-k8s-v1.7.1',
         bundleDisplayName: 'CIS Kubernetes Benchmark v1.7.1',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-k8s-benchmark',
-        bundleVersion: '202312.1-preview',
+        bundleVersion: '202403.0-preview',
         bundleDescription: 'Use the CIS Kubernetes Benchmark 1.7.1 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS Kubernetes Benchmark, which is a set of recommendations for configuring Kubernetes to support a robust security posture.',
         controlNumbers: '[5.1.3]',
         severity: 'UNSPECIFIED',

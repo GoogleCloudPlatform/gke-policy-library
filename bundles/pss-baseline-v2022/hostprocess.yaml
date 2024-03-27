@@ -1,0 +1,45 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPWindowsHostProcess
+metadata:
+  name: pss-baseline-v2022-hostprocess
+  labels:
+    policycontroller.gke.io/bundleName: pss-baseline-v2022
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.1"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'pss-baseline-v2022',
+        bundleDisplayName: 'Pod Security Standards Baseline v2022',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-baseline',
+        bundleVersion: '202403.1',
+        bundleDescription: 'Use the Pod Security Standards Baseline v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Baseline policy protections.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts running of Windows HostProcess containers / pods. See "Create a Windows HostProcess Pod" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/create-hostprocess-pod/',
+        remediation: 'Containers and pods cannot run with `securityContext.windowsOptions.hostProcess` set to `true`. Remove `securityContext.windowsOptions.hostProcess: true` from your containers and pods. See "Create a Windows HostProcess Pod" for more information: https://kubernetes.io/docs/tasks/configure-pod-container/create-hostprocess-pod/',
+        minimumTemplateLibraryVersion: '1.16.2',
+        constraintHash: 'ecb6e212dd9f9f8d81032a7f49bf2a2138edf01f5df562ae6258d17099a53b00'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - ""
+        kinds:
+          - Pod
+    excludedNamespaces:
+      - kube-system
+  enforcementAction: dryrun

@@ -1,0 +1,45 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPHostNetworkingPorts
+metadata:
+  name: mitre-v2024-host-ports
+  labels:
+    policycontroller.gke.io/bundleName: mitre-v2024
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202402.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'mitre-v2024',
+        bundleDisplayName: 'MITRE',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-mitre-v2024',
+        bundleVersion: '202402.0-preview',
+        bundleDescription: 'Use the MITRE policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the MITRE knowledge base of adversary tactics and techniques based on real-world observations.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'HostPorts should be disallowed, or at minimum restricted to a known list.  https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline',
+        remediation: 'Pods are restricted to the port range inclusive of the `min` and `max` fields. Use a different port or customize the fields.',
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '3c32999166f251187df2c024be8f755fd88f50f5820d98600de13e9f005ea36f'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
+    - anthos-identity-service
+  parameters:
+    # A minimum restricted known list can be implemented here.
+    min: 0
+    max: 0

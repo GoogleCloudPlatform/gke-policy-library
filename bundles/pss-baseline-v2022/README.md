@@ -16,7 +16,7 @@ Controls](https://kubernetes.io/docs/concepts/security/pod-security-standards/#b
 
 | PSS Baseline Control  | Constraint                                                                                      |
 |-----------------------|-------------------------------------------------------------------------------------------------|
-| HostProcess           | (not currently implemented)                                                                     |
+| HostProcess           | pss-baseline-v2022-hostprocess                                                                  |
 | Host Namespaces       | pss-baseline-v2022-host-namespaces-hostnetwork, pss-baseline-v2022-host-namespaces-host-pid-ipc |
 | Privileged Containers | pss-baseline-v2022-privileged-containers                                                        |
 | Capabilities          | pss-baseline-v2022-capabilities                                                                 |

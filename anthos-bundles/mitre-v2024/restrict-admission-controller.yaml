@@ -1,0 +1,76 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictAdmissionController
+metadata:
+  name: mitre-v2024-restrict-admission-controller
+  labels:
+    policycontroller.gke.io/bundleName: mitre-v2024
+  annotations:
+    policycontroller.gke.io/bundleVersion: 202402.0-preview
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'mitre-v2024',
+        bundleDisplayName: 'MITRE',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-mitre-v2024',
+        bundleVersion: '202402.0-preview',
+        bundleDescription: 'Use the MITRE policy bundle with Policy Controller to evaluate the compliance of your cluster resources against some aspects of the MITRE knowledge base of adversary tactics and techniques based on real-world observations.',
+        controlNumbers: '[]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the use of dynamic admission controllers and webhooks. See "Dynamic Admission Controllers" for more information: https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/',
+        remediation: 'Ensure all the admission controllers are necessary and add required admission controllers to the list of permitted mutating / validating webhooks.',
+        minimumTemplateLibraryVersion: '1.17.2',
+        constraintHash: '959220c3b6c160d0fdf1b7f03b0547e60ad33125c7ea16f650a7683d78a127fd'
+      }"
+spec:
+  match:
+    kinds:
+      - apiGroups:
+          - admissionregistration.k8s.io
+        kinds:
+          - MutatingWebhookConfiguration
+          - ValidatingWebhookConfiguration
+  parameters:
+    permittedMutatingWebhooks:
+      - 0-cluster-metrics-webhook
+      - cert-manager-webhook
+      - gmp-operator.gmp-system.monitoring.googleapis.com
+      - istio-revision-tag-default
+      - istiod-asm-managed-rapid
+      - lcm-mutating-webhook-configuration
+      - neg-annotation.config.common-webhooks.networking.gke.io
+      - pod-ready.config.common-webhooks.networking.gke.io
+      - warden-mutating.config.common-webhooks.networking.gke.io
+      - gmp-operator.gke-gmp-system.monitoring.googleapis.com
+      - gcsfuse-sidecar-injector.csi.storage.gke.io
+      - admissionwebhookcontroller.config.common-webhooks.networking.gke.io
+      - sasecret-redacter.config.common-webhooks.networking.gke.io
+      - mutate-scheduler-profile.config.common-webhooks.networking.gke.io
+      - filestorecsi-mutation-webhook.storage.k8s.io
+      - gke-vpa-webhook-config
+      - gatekeeper-mutating-webhook-configuration
+    permittedValidatingWebhooks:
+      - binauthz-admission-controller
+      - cert-manager-webhook
+      - clientconfig-admission-webhook
+      - clusterdns-webhook
+      - csi-snapshot-validation-webhook
+      - flowcontrol-guardrails.config.common-webhooks.networking.gke.io
+      - gatekeeper-validating-webhook-configuration
+      - gmp-operator.gmp-system.monitoring.googleapis.com
+      - istiod-istio-system-mcp
+      - lcm-validating-webhook-configuration
+      - net-attach-def-admission-controller-validating-config
+      - nodelimit.config.common-webhooks.networking.gke.io
+      - validation-webhook.snapshot.storage.k8s.io
+      - vmruntime-validating-webhook-configuration
+      - warden-validating.config.common-webhooks.networking.gke.io
+      - gateway-api-alpha-readonly.networking.gke.io
+      - gmp-operator.gke-gmp-system.monitoring.googleapis.com
+  enforcementAction: dryrun

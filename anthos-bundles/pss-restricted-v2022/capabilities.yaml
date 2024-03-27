@@ -18,7 +18,7 @@ metadata:
         bundleName: 'pss-restricted-v2022',
         bundleDisplayName: 'Pod Security Standards Restricted v2022',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-pss-restricted',
-        bundleVersion: '202403.0',
+        bundleVersion: '202403.1',
         bundleDescription: 'Use the Pod Security Standards Restricted v2022 policy bundle with Policy Controller to achieve many of the Kubernetes Pod Security Standards Restricted policy protections.',
         controlNumbers: '[]',
         severity: 'UNSPECIFIED',
@@ -27,7 +27,7 @@ metadata:
         minimumTemplateLibraryVersion: '1.10.2',
         constraintHash: '5a5b41b6802f8d84144fe3ec8a4548239a2dc9b0cd9ec735a986ad8abfbda4cc'
       }"
-    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/bundleVersion: "202403.1"
 spec:
   enforcementAction: dryrun
   match:

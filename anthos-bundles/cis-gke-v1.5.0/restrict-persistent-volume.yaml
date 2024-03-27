@@ -1,0 +1,62 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictRoleRules
+metadata:
+  name: cis-gke-v1.5.0-restrict-persistent-volume
+  labels:
+    policycontroller.gke.io/bundleName: cis-gke-v1.5.0
+  annotations:
+    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/constraintData: |-
+      "{
+        bundleName: 'cis-gke-v1.5.0',
+        bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
+        bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
+        bundleVersion: '202403.0',
+        bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
+        controlNumbers: '[4.1.9]',
+        severity: 'UNSPECIFIED',
+        description: 'Restricts the creation of `persistentvolumes` in `Roles` and `ClusterRoles`.',
+        remediation: 'The creation of persistent volumes in Roles and ClusterRoles is restricted. Remove all persistent volumes creation rules from your Roles and ClusterRoles. See "RoleBinding and ClusterRoleBinding" for more information: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding',
+        minimumTemplateLibraryVersion: '1.15.2',
+        constraintHash: '74c1737ec7cf2f68aad5bfebacdab25d7df917dfc4dfb7d0f38a88175e875162'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        kinds:
+          - Role
+          - ClusterRole
+  parameters:
+    disallowedRules:
+      - apiGroups:
+          - ""
+        resources:
+          - persistentvolumes
+        verbs:
+          - create
+    exemptions:
+      clusterRoles:
+        - name: admin
+        - name: cluster-admin
+        - name: config-management-operator
+        - name: pdcsi-provisioner-role
+        - name: system:controller:persistent-volume-binder
+        - name: system:persistent-volume-provisioner
+        - name: vmruntime-vmruntime-manager-role
+        - name: localpv-node-clusterrole
+        - name: filestorecsi-provisioner-role
+        - name: vsphere-csi-controller-role
+      roles:
+        - name: agent-updater
+          namespace: gke-connect
