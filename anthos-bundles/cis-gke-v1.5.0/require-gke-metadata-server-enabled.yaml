@@ -13,13 +13,13 @@ metadata:
   labels:
     policycontroller.gke.io/bundleName: cis-gke-v1.5.0
   annotations:
-    policycontroller.gke.io/bundleVersion: "202403.0"
+    policycontroller.gke.io/bundleVersion: "202405.0"
     policycontroller.gke.io/constraintData: |-
       "{
         bundleName: 'cis-gke-v1.5.0',
         bundleDisplayName: 'CIS GKE Benchmark v1.5.0',
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
-        bundleVersion: '202403.0',
+        bundleVersion: '202405.0',
         bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
         controlNumbers: '[5.4.2]',
         severity: 'UNSPECIFIED',

@@ -7,9 +7,9 @@
 # cluster” is defined as “A Cluster (of any kind) registered to a fleet project
 # where the Anthos API is enabled”.
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequiredAnnotations
+kind: K8sPSPHostNetworkingPorts
 metadata:
-  name: cis-gke-v1.5.0-require-ingress.class-gce
+  name: cis-gke-v1.5.0-host-namespaces-hostnetwork
   labels:
     policycontroller.gke.io/bundleName: cis-gke-v1.5.0
   annotations:
@@ -21,24 +21,22 @@ metadata:
         bundleLink: 'https://cloud.google.com/anthos-config-management/docs/how-to/using-cis-gke-v1.5',
         bundleVersion: '202405.0',
         bundleDescription: 'Use the CIS GKE Benchmark 1.5.0 policy bundle with Policy Controller to evaluate the compliance of your cluster resources against the CIS GKE Benchmark v1.5.0, which is a set of recommendations for configuring GKE to support a robust security posture.',
-        controlNumbers: '[5.6.8]',
+        controlNumbers: '[4.2.1]',
         severity: 'UNSPECIFIED',
-        description: 'Requires that all Ingress objects have a `kubernetes.io/ingress.class: "gce"` annotation.',
-        remediation: 'Every Ingress object requires a `kubernetes.io/ingress.class: "gce"` annotation. Check Ingress objects and add a `kubernetes.io/ingress.class: "gce"` annotation. See "Using Google-managed SSL certificates" for more information: https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs',
-        minimumTemplateLibraryVersion: '1.12.0',
-        constraintHash: '56c5a1a98a68a291ab16bffc11493cce5bc932892a9778648f123eb654d31bcf'
+        description: 'Restricts containers from running with the `hostNetwork` flag set to `true`.',
+        remediation: 'Containers cannot run with `hostNetwork` set to `true`. Remove `hostNetwork: true` from your containers.',
+        minimumTemplateLibraryVersion: '1.11.1',
+        constraintHash: '27560187435749d266c602cc5b9bc37612a622372662884368153dc0e39c890f'
       }"
 spec:
   enforcementAction: dryrun
   match:
     kinds:
-      - apiGroups:
-          - extensions
-          - networking.k8s.io
-        kinds:
-          - Ingress
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system
   parameters:
-    message: 'All Ingress objects must have a `kubernetes.io/ingress.class: "gce"` annotation'
-    annotations:
-      - key: kubernetes.io/ingress.class
-        allowedRegex: ^gce$
+    hostNetwork: false

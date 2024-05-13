@@ -13,6 +13,7 @@ resources:
 - capabilities.yaml
 - host-namespace.yaml
 - host-port.yaml
+- host_namespaces_hostnetwork.yaml
 - hostpath-volumes.yaml
 - hostprocess.yaml
 - privileged-containers.yaml
