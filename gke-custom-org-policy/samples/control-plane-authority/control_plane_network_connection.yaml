@@ -1,4 +1,4 @@
-name: organizations/1234567890/customConstraints/custom.controlPlaneNetworkConnectionLogs
+name: organizations/${ORG_ID}/customConstraints/custom.controlPlaneNetworkConnectionLogs
 resource_types: container.googleapis.com/Cluster
 method_types:
  - CREATE

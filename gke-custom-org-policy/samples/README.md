@@ -27,3 +27,11 @@ gcloud org-policies set-policy gke_custom_org_policy.yaml
 ### For more information visit:
 [https://cloud.google.com/kubernetes-engine/docs/how-to/custom-org-policies](https://cloud.google.com/kubernetes-engine/docs/how-to/custom-org-policies)
 
+## GKE Control Plane Authority
+
+The following samples pertain to [GKE Control Plane Authority](https://cloud.google.com/kubernetes-engine/docs/concepts/about-control-plane-authority). Note: This is a general availability feature or capability that's only available to use on request. To use this feature, contact your Google Cloud account team.
+
+* [control_plane_user_managed_keys.yaml](gke-custom-org-policy/samples/control_plane_user_managed_keys.yaml)
+* [control_plane_ssh_logs.yaml](gke-custom-org-policy/samples/control_plane_ssh_logs.yaml)
+* [control_plane_network_connection.yaml](gke-custom-org-policy/samples/control_plane_network_connection.yaml)
+

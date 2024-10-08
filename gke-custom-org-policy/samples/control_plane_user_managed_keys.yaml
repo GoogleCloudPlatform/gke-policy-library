@@ -1,9 +1,0 @@
-name: organizations/1234567890/customConstraints/custom.controlPlaneUserManagedKeys
-resource_types: container.googleapis.com/Cluster
-method_types:
- - CREATE
- - UPDATE
-condition: resource.userManagedKeysConfig.clusterCa != "" && resource.userManagedKeysConfig.etcdApiCa != "" && resource.userManagedKeysConfig.etcdPeerCa != "" && resource.userManagedKeysConfig.aggregationCa != "" && resource.userManagedKeysConfig.controlPlaneDiskEncryptionKey != "" && resource.userManagedKeysConfig.gkeopsEtcdBackupEncryptionKey != "" && size(resource.userManagedKeysConfig.serviceAccountSigningKeys) != 0 && size(resource.userManagedKeysConfig.serviceAccountVerificationKeys) != 0
-action_type: ALLOW
-display_name: GKE Control Plane Authority CMEK
-description: Only allow Clusters to be created and updated with GKE Control Plane Authority features, namely inputting the Cluster CA, etcd-API CA, etcd-peer CA, service account signing & verification key, etcd backup encryption key, and the control plane boot disk & etcd storage key housed in Certificate Authority Service and Cloud KMS.
