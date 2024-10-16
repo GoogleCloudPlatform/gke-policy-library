@@ -1,4 +1,4 @@
-name: organizations/${ORG_ID}/customConstraints/custom.disableGkeAutoUpgrade
+name: organizations/${ORG_ID}/customConstraints/custom.enableGkeAutoUpgrade
 resource_types: container.googleapis.com/NodePool
 method_types:
  - CREATE
