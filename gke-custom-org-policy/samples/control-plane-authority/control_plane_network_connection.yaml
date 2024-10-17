@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.controlPlaneNetworkConnectionLogs
+resource_types: container.googleapis.com/Cluster
+method_types:
+ - CREATE
+ - UPDATE
+condition: resource.loggingConfig.componentConfig.enableComponents.exists(component, component=="KCP_CONNECTION")
+action_type: ALLOW
+display_name: GKE Control Plane Authority Network Connection Logs Visibility
+description: Only allow Clusters to be created and updated when GKE Control Plane Authority network connections logs visibility is enabled.
+
