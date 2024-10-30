@@ -1,0 +1,10 @@
+name: organizations/${ORG_ID}/customConstraints/custom.controlPlaneSSHLogs
+resource_types: container.googleapis.com/Cluster
+method_types:
+ - CREATE
+ - UPDATE
+condition: resource.loggingConfig.componentConfig.enableComponents.exists(component, component=="KCP_SSHD")
+action_type: ALLOW
+display_name: GKE Control Plane Authority SSH Logs Visibility
+description: Only allow Clusters to be created and updated when GKE Control Plane Authority SSH logs visibility is enabled.
+
