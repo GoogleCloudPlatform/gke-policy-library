@@ -7,4 +7,3 @@ condition: resource.userManagedKeysConfig.clusterCa.startsWith("projects/${PROJE
 action_type: ALLOW
 display_name: GKE Control Plane Authority CMEK
 description: Only allow Clusters to be created and updated with GKE Control Plane Authority features, namely inputting the Cluster CA, etcd-API CA, etcd-peer CA, service account signing & verification key, etcd backup encryption key, and the control plane boot disk & etcd storage key housed in Certificate Authority Service and Cloud KMS from specific project.
-
