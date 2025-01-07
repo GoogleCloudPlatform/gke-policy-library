@@ -1,0 +1,9 @@
+name: organizations/${ORG_ID}/customConstraints/custom.denyalltrafficallowedfirewalls
+resource_types: compute.googleapis.com/Firewall
+method_types:
+- CREATE
+- UPDATE
+condition: resource.direction.matches('INGRESS') && resource.sourceRanges.exists(r, r =='0.0.0.0/0')
+action_type: DENY
+display_name: denyalltrafficallowedfirewalls
+description: deny firewall configurations that allow all traffic
