@@ -94,3 +94,7 @@ spec:
         - name: policycontroller
         - name: apigee
         - name: apigee-init
+
+      roles:
+        - namespace: kube-system
+          name: gke-spiffe-leaderelection
