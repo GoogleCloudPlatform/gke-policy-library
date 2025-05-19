@@ -177,3 +177,4 @@ spec:
       - name: vsphere-legacy-cloud-provider
       - name: legacy-service-account-token-cleaner
       - name: container-watcher-pod-reader
+      - name: tpu-device-plugin-sa

@@ -50,6 +50,7 @@ spec:
         - name: admin
         - name: cluster-admin
         - name: config-management-operator
+        - name: gke-volume-populator-role
         - name: pdcsi-provisioner-role
         - name: system:controller:persistent-volume-binder
         - name: system:persistent-volume-provisioner
