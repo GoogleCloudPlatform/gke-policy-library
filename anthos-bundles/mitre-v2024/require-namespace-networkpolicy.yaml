@@ -58,6 +58,7 @@ spec:
       - apigee-system
       - gke-managed-system
       - gke-managed-cim
+      - gke-managed-volumepopulator
     kinds:
       - apiGroups:
           - ""
